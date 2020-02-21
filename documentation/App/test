@@ -1,0 +1,30 @@
+https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2
+
+https://www.moneycontrol.com/mc/widget/basicchart/get_chart_value?classic=true&sc_did=OPI&dur=1d
+
+https://www.moneycontrol.com/mc/widget/historicalprices/historicaldata?classic=true&sc_did=TM4&exchange=bse&range=&sel_date=20200101
+
+https://www.moneycontrol.com/news18/stocks/overview/TM4/N?classic=true
+
+https://appfeeds.moneycontrol.com/mcradar/processing_aws.php?q_a=d&ep101043&callback=cbr
+
+https://www.moneycontrol.com/mccode/common/indices_chart/indices_chart.php?classic=true&market=i&period=1d&ind_id=9&width=250&height=120&classic=true
+
+https://indices.moneycontrol.co.in/sensex_nifty/radtkr.json?v=25122019&callback=tickerdat
+
+
+tweet_wiki = TextBlob(tweet_text_content)
+
+tweet_sentiment_subjectivity = tweet_wiki.sentiment.subjectivity
+tweet_sentiment_polarity = tweet_wiki.sentiment.polarity
+
+
+https://economictimes.indiatimes.com/lazyloadlistnew.cms?msid=2146843&curpg=100&img=0
+
+https://economictimes.indiatimes.com/etlatestnewsupdate.cms?curpg=6
+
+https://www1.nseindia.com/csv/csvdownload.jsp
+
+https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json
+
+https://www1.nseindia.com/live_market/dynaContent/live_analysis/losers/niftyLosers1.json
