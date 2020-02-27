@@ -1,0 +1,5 @@
+beautifulsoup4==4.8.2
+requests==2.22.0
+vaderSentiment==3.2.1
+en-core-web-sm==2.2.5
+nltk==3.4.5
