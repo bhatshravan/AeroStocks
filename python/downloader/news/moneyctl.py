@@ -13,7 +13,7 @@ def downloadMtlAll(url, page):
 
     b.append('')
     a.append('')
-    output_file = open("../../data/news/moneycontrol/2020", "a")
+    output_file = open("../../data/news/moneycontrol/2020.csv", "a")
     for LiIds in range(1, 25):
         LiId = "newslist-"+str(LiIds)
 

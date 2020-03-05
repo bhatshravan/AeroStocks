@@ -5,9 +5,9 @@ import random
 
 
 # Stocks lst
-#stocks_list = ["ADANIPORTS","ASIANPAINT","AXISBANK","BAJAJ-AUTO","BAJAJFINSV","BAJFINANCE","BHARTIARTL","BPCL","CIPLA","COALINDIA","DRREDDY","EICHERMOT","GAIL","GRASIM","HCLTECH","HDFC","HDFCBANK","HEROMOTOCO","HINDALCO","HINDPETRO","HINDUNILVR","IBULHSGFIN","ICICIBANK","INDUSINDBK","INFRATEL","INFY","IOC","ITC","JSWSTEEL","KOTAKBANK","LT","MARUTI","NTPC","ONGC","POWERGRID","RELIANCE","SBIN","SUNPHARMA","TATAMOTORS","TATASTEEL","TCS","TECHM","TITAN","ULTRACEMCO","UPL","VEDL","WIPRO","YESBANK","ZEEL"]
-stocks_list = ["CIPLA", "HCLTECH", "HINDUNILVR",
-               "IOC", "NTPC", "TATAMOTORS", "UPL"]
+stocks_list = ["ADANIPORTS", "ASIANPAINT", "AXISBANK", "BAJAJ-AUTO", "BAJAJFINSV", "BAJFINANCE", "BHARTIARTL", "BPCL", "CIPLA", "COALINDIA", "DRREDDY", "EICHERMOT", "GAIL", "GRASIM", "HCLTECH", "HDFC", "HDFCBANK", "HEROMOTOCO", "HINDALCO", "HINDPETRO", "HINDUNILVR", "IBULHSGFIN",
+               "ICICIBANK", "INDUSINDBK", "INFRATEL", "INFY", "IOC", "ITC", "JSWSTEEL", "KOTAKBANK", "LT", "MARUTI", "NTPC", "ONGC", "POWERGRID", "RELIANCE", "SBIN", "SUNPHARMA", "TATAMOTORS", "TATASTEEL", "TCS", "TECHM", "TITAN", "ULTRACEMCO", "UPL", "VEDL", "WIPRO", "YESBANK", "ZEEL"]
+# stocks_list = ["CIPLA", "HCLTECH", "HINDUNILVR","IOC", "NTPC", "TATAMOTORS", "UPL"]
 # Misc
 api_key = ["D4V3YEYJGNXZ27PL", "BEZAPQ60MX6M0MTV", "C73M71O6LA04D9KI",
            "4D5AD7GG5BUJ0R9Y", "5LIB86FZXJJ5YQD3", "LK8JHRNLLTU90Q9C"]
@@ -42,7 +42,7 @@ def download():
         if b'hank you for using Alpha Vantage' not in content:
             print("Yes")
 
-            f = open(filename, "wb")
+            f = open("../../data/stocks/alphavantage/"+filename, "wb")
             f.write(content)
             f.close()
             if sopped == True:
