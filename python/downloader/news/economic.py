@@ -10,7 +10,6 @@ def cleanhtml(raw_html):
 
 
 def downloadEconomicAll(curpg):
-
     links = []
     headlines = []
     date_of_articles = []
@@ -26,17 +25,17 @@ def downloadEconomicAll(curpg):
         headline = anchor.find('a')
         if("videoshow/" in headline['href']):
             break
-        time = anchor.find('time').get_text().replace(",", "-")
+        # time = anchor.find('time').get_text().replace(",", "-")
+        time = anchor.find('time').get_text()
 
         headline_title = headline.get_text().replace(",", "--")
         print(headline['href'])
         print(headline_title)
         print(time)
-        outs = str(headline_title)+", " + \
-            str(headline['href'])+", " + str(time)+"\n"
+        outs = str(headline_title)+"," + \
+            str(headline['href'])+"," + str(time)+"\n"
         output_file.write(outs)
         print("\n\n")
-
     output_file.close()
 
 
@@ -46,10 +45,12 @@ def downloadEconomicOne(url):
     article = soup.find('div', attrs={'class': 'Normal'})
     news_article = cleanhtml(article.get_text())
     print(news_article)
+    return (news_article)
 
 
 if __name__ == '__main__':
     # for i in range(1, 100):
-    #     downloadEconomicAll(i)
-    downloadEconomicOne(
-        'https://economictimes.indiatimes.com/markets/stocks/news/cadila-healthcare-gets-eir-from-usfda-for-its-ahmedabad-facility/articleshow/74063201.cms')
+    for i in range(1, 2):
+        downloadEconomicAll(i)
+    # downloadEconomicOne(
+    #     'https://economictimes.indiatimes.com/markets/stocks/news/cadila-healthcare-gets-eir-from-usfda-for-its-ahmedabad-facility/articleshow/74063201.cms')

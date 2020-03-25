@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import dates as dts
 
 
 def downloadMtlAll(url, page):
@@ -21,12 +22,13 @@ def downloadMtlAll(url, page):
         title = sp.find('h2').get_text().replace(
             "\n", "").replace(",", "").strip()
         link = sp.find('a').get('href')
-        date = sp.find('span').get_text().replace(
-            ", 2020 ", "/2020-").replace(" ", "/")
+        # date = sp.find('span').get_text().replace(
+        #     ", 2020 ", "/2020-").replace(" ", "/")
+        date = sp.find('span').get_text()
 
         outs = str(title)+", "+str(link)+", "+str(date)+"\n"
         print(outs)
-        output_file.write(outs)
+        # output_file.write(outs)
     output_file.close()
 
 
