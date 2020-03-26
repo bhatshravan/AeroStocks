@@ -9,12 +9,32 @@ import os.path
 from os import path
 
 
+inputFileOpen = open('../data/news/deccan/2020_03.csv', 'rt')
+inputFile = csv.reader(inputFileOpen)
+
+global raw_file_data, raw_file_heading
+
+
 def downloadEconomicOne(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     article = soup.find('div', attrs={'class': 'Normal'})
     news_article = cleanhtml(article.get_text())
     return (news_article)
+
+
+def downloadDeccanOne(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    title = soup.find('h1', {"id": "page-title"}).get_text()
+
+    contents = soup.find_all('div', {"class": "content"})
+    data = ""
+    for content in contents:
+        data = data + content.get_text()
+
+    return(data)
 
 
 def cleanhtml(raw_html):
@@ -24,13 +44,8 @@ def cleanhtml(raw_html):
     return cleantext
 
 
-inputFileOpen = open('../data/news/economic/all.csv', 'rt')
-inputFile = csv.reader(inputFileOpen)
-
-global raw_file_data, raw_file_heading
-
 for idx, row in enumerate(inputFile):
-    if(idx > 5):
+    if(idx > 100):
         break
     if(row[0] == ""):
         continue
@@ -38,13 +53,12 @@ for idx, row in enumerate(inputFile):
     raw_heading = str(slugify(row[0]))
     raw_news_file = raw_heading[0:120]+str(slugify(row[2]))
 
-    raw_file_name = '../data/news/economic/raw/'+raw_news_file+'.txt'
+    raw_file_name = '../data/news/deccan/raw/'+raw_news_file+'.txt'
 
-    url = 'https://economictimes.indiatimes.com'+row[1]
+    url = 'https://www.deccanherald.com'+row[1]
     url = url.replace(" ", "")
 
     if(path.exists(raw_file_name)):
-        print(raw_file_name)
         raw_file = open(raw_file_name, "r").read()
         raw_file_split = raw_file.split("-------")
         raw_file_heading = raw_file_split[0]
@@ -54,8 +68,9 @@ for idx, row in enumerate(inputFile):
         outs = ""
 
         raw_file_heading = row[0]
-        # raw_file_heading = raw_file_heading.replace("--", ",")
-        raw_file_data = downloadEconomicOne(url)
+        raw_file_heading = raw_file_heading.replace("--", ",")
+
+        raw_file_data = downloadDeccanOne(url)
 
         print("URL CALL")
 

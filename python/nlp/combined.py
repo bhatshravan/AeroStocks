@@ -18,7 +18,7 @@ def downloadEconomicOne(url):
     date = soup.find('div', {'class': 'publish_on'}).get_text().replace(
         "Last Updated: ", "").strip()
     date = dts.economic(date)
-    data = data+"\n-------\n"+date
+    data = data+date
     return (data)
 
 
@@ -38,7 +38,7 @@ def downloadDeccanOne(url):
     date = (dts.deccan(date.get_text().strip()))
 
     # print(title)
-    data = data+"\n-------\n"+date
+    data = data+date
     return(data)
 
 
@@ -60,7 +60,7 @@ def downloadMtlOne(url):
 
     date = dts.moneyctl2(date)
 
-    data = data+"\n-------\n"+date
+    data = data+date
     return(data)
 
 
@@ -77,7 +77,10 @@ def downloadRawsAndPolarity(row, newsPaper):
     raw_file_heading = ""
 
     raw_heading = str(slugify(row[0]))
-    raw_news_file = raw_heading[0:120]+"-"+str(slugify(row[2]))
+    try:
+        raw_news_file = raw_heading[0:120]+"-"+str(slugify(row[2]))
+    except:
+        raw_news_file = raw_heading+"-"+str(slugify(row[2]))
 
     raw_file_name = '../data/news/'+newsPaper+'/raw/'+raw_news_file+'.txt'
 
@@ -127,19 +130,19 @@ def downloadRawsAndPolarity(row, newsPaper):
         raw_file_heading, vader_score, vader_polarity, keyWords, url))
 
 
-def downloadInputFile(inputFile):
+def downloadInputFile(inputFile, newsPaper):
     inputFileOpen = open('../data/news/'+inputFile, 'rt')
     inputFile = csv.reader(inputFileOpen)
 
     for idx, row in enumerate(inputFile):
-        if(idx > 3):
+        if(idx > 0):
             break
         if(row[0] == ""):
             continue
 
-        downloadRawsAndPolarity(row, "deccan")
+        downloadRawsAndPolarity(row, newsPaper)
 
 
 if __name__ == "__main__":
-    # print("Test")
-    downloadInputFile('deccan/deccan-business.csv')
+    # downloadInputFile('deccan/deccan-business.csv')
+    downloadInputFile('test.csv', "economic")

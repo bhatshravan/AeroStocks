@@ -1,9 +1,51 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-
+from nltk import tokenize
 import requests
 from datetime import timedelta, date
 from bs4 import BeautifulSoup
+
+import csv
+import pandas as pd
+
+
+def LoughranMcDonald(data):
+
+    # stock market lexicon
+    stock_lex = pd.read_csv('../data/classifier/stock_lex.csv')
+    stock_lex['sentiment'] = (
+        stock_lex['Aff_Score'] + stock_lex['Neg_Score'])/2
+    stock_lex = dict(zip(stock_lex.Item, stock_lex.sentiment))
+    stock_lex = {k: v for k, v in stock_lex.items() if len(k.split(' ')) == 1}
+    stock_lex_scaled = {}
+    for k, v in stock_lex.items():
+        if v > 0:
+            stock_lex_scaled[k] = v / max(stock_lex.values()) * 4
+        else:
+            stock_lex_scaled[k] = v / min(stock_lex.values()) * -4
+
+    # # Loughran and McDonald
+    # positive = []
+    # with open('../data/classifier/lm_positive.csv', 'r') as f:
+    #     reader = csv.reader(f)
+    #     for row in reader:
+    #         positive.append(row[0].strip())
+
+    # negative = []
+    # with open('../data/classifier/lm_negative.csv', 'r') as f:
+    #     reader = csv.reader(f)
+    #     for row in reader:
+    #         entry = row[0].strip().split(" ")
+    #         if len(entry) > 1:
+    #             negative.extend(entry)
+    #         else:
+    #             negative.append(entry[0])
+
+    final_lex = {}
+    # final_lex.update({word:2.0 for word in positive})
+    # final_lex.update({word:-2.0 for word in negative})
+    final_lex.update(stock_lex_scaled)
+    final_lex.update(sia.lexicon)
+    sia.lexicon = final_lex
 
 
 def vaderAtOnce(data):
@@ -17,13 +59,49 @@ def vaderAtOnce(data):
     neg = vs['neg']
     neu = vs['neu']
 
-    print(data, "\n -", pos, neg, neu)
+    # print(data, "-\n", pos, neg, neu)
+    print("Input - {}\nPositivity - {}\nNegativity - {}\nNeutrality - {}".format(data, pos, neg, neu))
     polarity = round(pos-neg, 3)
 
     if(pos > neg):
         return("Positive", pos, neg, neu)
     else:
         return("Negative", pos, neg, neu)
+
+
+def vaderParagraph(data):
+
+    analyzer = SentimentIntensityAnalyzer()
+
+    # stock_lex = pd.read_csv('../data/classifier/stock_lex.csv')
+    # stock_lex['sentiment'] = (
+    #     stock_lex['Aff_Score'] + stock_lex['Neg_Score'])/2
+    # stock_lex = dict(zip(stock_lex.Item, stock_lex.sentiment))
+    # stock_lex = {k: v for k, v in stock_lex.items() if len(k.split(' ')) == 1}
+    # stock_lex_scaled = {}
+    # for k, v in stock_lex.items():
+    #     if v > 0:
+    #         stock_lex_scaled[k] = v / max(stock_lex.values()) * 4
+    #     else:
+    #         stock_lex_scaled[k] = v / min(stock_lex.values()) * -4
+
+    # final_lex = {}
+    # final_lex.update(stock_lex_scaled)
+    # final_lex.update(analyzer.lexicon)
+    # analyzer.lexicon = final_lex
+
+    if(data == "none"):
+        return("none", 0.0, 0.0, 0.0)
+
+    sentence_list = tokenize.sent_tokenize(data)
+    paragraphSentiments = 0.0
+    for sentence in sentence_list:
+        vs = analyzer.polarity_scores(sentence)
+        paragraphSentiments += vs["compound"]
+    averageSentiment = round(paragraphSentiments / len(sentence_list), 4)
+    # print(str(averageSentiment))
+
+    return ((averageSentiment))
 
 
 def vaderWords(data):
