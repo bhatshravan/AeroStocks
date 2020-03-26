@@ -14,9 +14,10 @@ api_key = ["D4V3YEYJGNXZ27PL", "BEZAPQ60MX6M0MTV", "C73M71O6LA04D9KI",
 outputsize = "full"
 
 
+# https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3A&interval=5min&apikey=demo
 # Url initialization
 
-def download():
+def downloadAllDaily():
 
     sopped = False
     start_time = time.time()
@@ -58,11 +59,29 @@ def download():
             if sopped == False:
                 start_time = time.time()
             time.sleep(30)
-
         print("Finsihed downloading\n\n")
-
     print(endlist)
 
 
+def downloadIntraDay(stock):
+    rand_key = api_key[random.randrange(0, len(api_key))]
+    #rand_key = api_key[random.choice([0,1,2])]
+    url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3A" + \
+        stock+"&apikey="+rand_key+"&datatype=csv&interval=5min&outputsize="+outputsize
+
+    print(url)
+
+    print("Starting download of {0} using key {1}".format(
+        stock, rand_key))
+    page = urllib.request.urlopen(url)
+
+    content = page.read()
+    print(content)
+    f = open("../../data/stocks/alphavantage/"+stock+"-Intra.csv", "wb")
+    f.write(content)
+    f.close()
+
+
 if __name__ == '__main__':
-    download()
+    # downloadAllDaily()
+    downloadIntraDay("ICICIBANK")

@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import dates as dts
+import merge as merge
 
 
 def cleanhtml(raw_html):
@@ -25,21 +26,20 @@ def downloadEconomicAll(curpg, file_page):
     date = dts.economic2(date.get_text().replace(
         "Archives", "").replace(">", "").strip())
 
-    print(date)
-
     for headline in pagetext.find_all('li'):
 
         headline_title = headline.get_text().replace(",", "--")
         link = headline.a['href']
 
-        outs = str(headline_title)+",https://economictimes.indiatimes.com/archivelist/starttime-" + \
-            str(link)+"\n"
-        # try:
-        #     # output_file.write(outs)
-        #     print(outs)
+        headline_title = str(headline_title)
+        outs = headline_title+",https://economictimes.indiatimes.com" + \
+            str(link)+","+date+"\n"
+        try:
+            output_file.write(outs)
+            print(outs)
 
-        # except:
-        #     print("Error")
+        except:
+            print("Error")
     output_file.close()
 
 
@@ -55,10 +55,10 @@ def downloadEconomicOne(url):
     return (news_article)
 
 
-if __name__ == '__main__':
-    # for i in range(43914, 43915):
-    for i in range(43914, 43915):
-        downloadEconomicAll(i, i)
+# if __name__ == '__main__':
+#     # for i in range(43914, 43915):
+#     for i in range(43914, 43915):
+#         downloadEconomicAll(i, i)
     # downloadEconomicOne(
     #     'https://economictimes.indiatimes.com/markets/stocks/news/cadila-healthcare-gets-eir-from-usfda-for-its-ahmedabad-facility/articleshow/74063201.cms')
 # 43914

@@ -33,8 +33,10 @@ class DownloadWorker(Thread):
                 # mtl.downloadMtlAll(url, x)
 
                 # Economic times
-                # ecl.downloadEconomicAll(link, x)
-                dcl.downloadDeccanAll(link, x)
+                ecl.downloadEconomicAll(link, x)
+
+                # Deccan
+                # dcl.downloadDeccanAll(link, x)
 
             finally:
                 self.queue.task_done()
@@ -47,16 +49,16 @@ def main():
     # pages = [x for x in range(1, 1500)]
 
     # Economic
-    # pages = [x for x in range(43647, 43914)]
+    pages = [x for x in range(43647, 43914)]
 
     # Deccan
-    date1 = date(2019, 9, 2)
-    date2 = date(2020, 3, 25)
-    pages = [d.strftime('%Y/%m/%d') for d in (date1 + timedelta(days=i)
-                                              for i in range((date2 - date1).days + 1))]
+    # date1 = date(2019, 9, 2)
+    # date2 = date(2020, 3, 25)
+    # pages = [d.strftime('%Y/%m/%d') for d in (date1 + timedelta(days=i)
+    #                                           for i in range((date2 - date1).days + 1))]
 
     queue = Queue()
-    for x in range(8):
+    for x in range(15):
         worker = DownloadWorker(queue, x)
         worker.daemon = True
         worker.start()

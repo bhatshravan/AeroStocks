@@ -3,7 +3,7 @@ import glob
 
 
 def mergeLists(newspaper):
-    outfilename = "../../data/news/"+newspaper+"-merged.csv"
+    outfilename = "../../data/news/"+newspaper+"/"+newspaper+"-merged.csv"
 
     with open(outfilename, 'wb') as outfile:
         for filename in glob.glob('../../data/news/'+newspaper+'/lists/*'):
@@ -12,3 +12,7 @@ def mergeLists(newspaper):
                 continue
             with open(filename, 'rb') as readfile:
                 shutil.copyfileobj(readfile, outfile)
+
+
+if __name__ == '__main__':
+    mergeLists('economic')
