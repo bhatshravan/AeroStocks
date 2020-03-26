@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import dates as dts
 
 
 def cleanhtml(raw_html):
@@ -9,33 +10,36 @@ def cleanhtml(raw_html):
     return cleantext
 
 
-def downloadEconomicAll(curpg):
-    links = []
-    headlines = []
-    date_of_articles = []
-    p_content = []
-    page = 'https://economictimes.indiatimes.com/lazyloadlistnew.cms?msid=2146843&curpg=' + \
-        str(curpg)+'&img=0'
+def downloadEconomicAll(curpg, file_page):
+
+    page = 'https://economictimes.indiatimes.com/archivelist/starttime-' + \
+        str(curpg)+'.cms'
     response = requests.get(page)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    output_file = open("../../data/news/economic/all.csv", "a")
+    output_file = open("../../data/news/economic/lists/all-" +
+                       str(file_page)+".csv", "a")
+    pagetext = soup.find('span', attrs={'class': 'pagetext'})
 
-    for anchor in soup.find_all('div', attrs={'class': 'eachStory'}):
-        headline = anchor.find('a')
-        if("videoshow/" in headline['href']):
-            break
-        # time = anchor.find('time').get_text().replace(",", "-")
-        time = anchor.find('time').get_text()
+    date = soup.find('td', {'class': 'contentbox5'})
+    date = dts.economic2(date.get_text().replace(
+        "Archives", "").replace(">", "").strip())
+
+    print(date)
+
+    for headline in pagetext.find_all('li'):
 
         headline_title = headline.get_text().replace(",", "--")
-        print(headline['href'])
-        print(headline_title)
-        print(time)
-        outs = str(headline_title)+"," + \
-            str(headline['href'])+"," + str(time)+"\n"
-        output_file.write(outs)
-        print("\n\n")
+        link = headline.a['href']
+
+        outs = str(headline_title)+",https://economictimes.indiatimes.com/archivelist/starttime-" + \
+            str(link)+"\n"
+        # try:
+        #     # output_file.write(outs)
+        #     print(outs)
+
+        # except:
+        #     print("Error")
     output_file.close()
 
 
@@ -44,13 +48,18 @@ def downloadEconomicOne(url):
     soup = BeautifulSoup(response.content, "html.parser")
     article = soup.find('div', attrs={'class': 'Normal'})
     news_article = cleanhtml(article.get_text())
-    print(news_article)
+    date = soup.find('div', {'class': 'publish_on'}).get_text().replace(
+        "Last Updated: ", "").strip()
+
+    print(dts.economic(date))
     return (news_article)
 
 
 if __name__ == '__main__':
-    # for i in range(1, 100):
-    for i in range(1, 2):
-        downloadEconomicAll(i)
+    # for i in range(43914, 43915):
+    for i in range(43914, 43915):
+        downloadEconomicAll(i, i)
     # downloadEconomicOne(
     #     'https://economictimes.indiatimes.com/markets/stocks/news/cadila-healthcare-gets-eir-from-usfda-for-its-ahmedabad-facility/articleshow/74063201.cms')
+# 43914
+# 43647

@@ -10,6 +10,7 @@ documentation/Survey_Paper/certificates/
 python/data/stocks/alphavantage/*
 python/data/news/*/raw/*.*
 python/data/news/*/20*
+python/data/news
 
 # Distribution / packaging
 .Python

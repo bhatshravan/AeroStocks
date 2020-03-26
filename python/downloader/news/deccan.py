@@ -4,68 +4,10 @@ from bs4 import BeautifulSoup
 import re
 import math
 from datetime import datetime, timedelta, date
+import dates as dts
 
 # Variables
 url = "https://www.deccanherald.com/getarchive"
-
-global output_file
-output_file = open("../test", "a")
-
-
-def daterange(start_date, end_date):
-    for n in range(int((end_date - start_date).days)):
-        yield start_date + timedelta(n)
-
-
-def normalizeSpaces(input):
-    return input.strip().replace(" ", "-").lower()
-
-
-def normalizeSentence(input):
-    return re.sub(r'[\'\,\:\/\\\(\)]', '', input.strip().lower())
-    # return re.sub(r'[\,]', '--', input.strip())
-
-
-def printLinks(currentDate):
-    print(currentDate)
-    global output_file
-    response = requests.post(url, json={'arcDate': currentDate})
-    soup = BeautifulSoup(response.content, "html.parser")
-    print(response.content)
-
-    headlines = soup.find_all('h2')
-    contents = soup.find_all('ul', {'class': 'group'})
-
-    for idx, content in enumerate(contents):
-        contentLinks = content.findChildren('li')
-        for contentLink in contentLinks:
-            contentList = [normalizeSentence(contentLink.string),
-                           contentLink.a['href'], normalizeSpaces(headlines[idx].string), currentDate]
-            # contentList = [normalizeSentence(contentLink.string),
-            #                contentLink.a['href'], currentDate, normalizeSpaces(headlines[idx].string)]
-            hL = headlines[idx].string
-            if(hL.startswith("Business")):
-                outs = ','.join(contentList)
-                outs = outs+"\n"
-                output_file.write(outs)
-                print(contentLink.a['href'])
-
-    # Print all headlines Only
-    # for idx, headline in enumerate(headlines):
-    #     print(idx, headline.string)
-
-
-def daterange(d1, d2):
-    return (d1 + timedelta(days=i) for i in range((d2 - d1).days + 1))
-
-
-# Variables
-url = "https://www.deccanherald.com/business/business-news/private-sector-salaries-show-slowest-growth-in-10-years-755915.html"
-initalUrl = "https://www.deccanherald.com"
-
-
-def extractUrl(url):
-    return(re.findall("\(|\)|\d{6}|\(|\)|\d{5}", url))
 
 
 def downloadDeccanOne(url):
@@ -76,38 +18,65 @@ def downloadDeccanOne(url):
 
     contents = soup.find_all('div', {"class": "content"})
     data = ""
+
+    date = soup.find(
+        'li', {'class': 'sanspro-semib text-uppercase crud-items__lists'})
+    print(dts.deccan(date.get_text().strip()))
+
     for content in contents:
-        data = data + content.get_text().replace("\n", "").replace("\"", "")
+        data = data + content.get_text()
 
-    print(title)
-    print(data)
-
-
-# downloadUrl(url)
+    # print(title, data)
+    return(data)
 
 
-def main():
-    m1 = m2 = ""
-    global output_file
-    date1 = date(2020, 3, 1)
-    date2 = date(2020, 3, 7)
+def daterange(start_date, end_date):
+    for n in range(int((end_date - start_date).days)):
+        yield start_date + timedelta(n)
 
-    for d in daterange(date1, date2):
-        m2 = int(d.strftime('%m'))
-        y = int(d.strftime('%y'))
-        if(m2 != m1):
-            m1 = m2
-            ops = "../../data/news/deccan/"+str(d.strftime('%Y_%m'))+".csv"
-            # ops = "../../data/news/deccan/all.csv"
-            output_file.close()
-            output_file = open(ops, "a")
-            # output_file = open(ops, "a")
-            output_file.write("headline,link,category,date\n")
 
-        printLinks(d.strftime('%Y/%m/%d'))
+def downloadDeccanAll(currentDate, file_page):
+
+    response = requests.post(url, json={'arcDate': currentDate})
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    headlines = soup.find_all('h2')
+    contents = soup.find_all('ul', {'class': 'group'})
+
+    output_file = open("../../data/news/deccan/lists/all-" +
+                       str(file_page)+".csv", "a")
+
+    currentDate = currentDate.replace("/", "-")
+    for idx, content in enumerate(contents):
+        contentLinks = content.findChildren('li')
+        for contentLink in contentLinks:
+            try:
+                tag = (headlines[idx].string).replace(",", "--")
+                headline = (contentLink.string).strip().replace(",", "--")
+                contentList = [headline,
+                               "https://www.deccanherald.com"+contentLink.a['href'], currentDate, currentDate, tag]
+                outs = ','.join(contentList)
+                outs = outs+"\n"
+                output_file.write(outs)
+                print(outs)
+            except:
+                continue
 
     output_file.close()
 
 
+# def main():
+#     m1 = m2 = ""
+#     date1 = date(2020, 3, 1)
+#     date2 = date(2020, 3, 3)
+
+#     current_date = [d.strftime('%Y/%m/%d') for d in (date1 + timedelta(days=i)
+#                                                      for i in range((date2 - date1).days + 1))]
+#     for d in current_date:
+#         downloadDeccanAll(d, "1")
+
+
 if __name__ == "__main__":
-    main()
+    # main()
+    downloadDeccanOne(
+        "https://www.deccanherald.com/business/business-news/investors-lose-money-as-fiis-turn-negative-on-india-748235.html")
