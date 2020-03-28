@@ -27,6 +27,16 @@ def economic2(date_str):
     return(printDate(dt_object))
 
 
+def firstpost(date_str):
+    dt_object = datetime.strptime(date_str, "%b %d, %Y")
+    return(printDate(dt_object))
+
+
+def firstpost2(date_str):
+    dt_object = datetime.strptime(date_str, "%b %d, %Y %H:%M:%S IST")
+    return(printDate(dt_object))
+
+
 def printDate(dt_object):
     timestamp = datetime.timestamp(dt_object)
     date_time = datetime.fromtimestamp(timestamp)

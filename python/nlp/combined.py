@@ -60,6 +60,37 @@ def downloadDeccanOne(url):
     return(data)
 
 
+def downloadFirstPostOne(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    article_arr = soup.find(
+        'div', attrs={'class': 'article-full-content'}).find_all('p')
+
+    article = ""
+
+    for p in article_arr:
+        article = article+p.text+"\n"
+
+    news_article = cleanhtml(article)
+
+    dataArr = news_article.split("\n")
+
+    ends = 0
+    data = ""
+    for idx, row in enumerate(dataArr):
+        if "var width" in row:
+            ends = idx
+            break
+        data = data+row+"\n"
+
+    date = soup.find('span', {'class': 'article-date'}).get_text().strip()
+
+    date = (dts.firstpost2(date))
+
+    return(data+date)
+
+
 def downloadMtlOne(url, date1, date2):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
@@ -227,6 +258,6 @@ def getPolarityScore(row, newsPaper):
 # downloadDeccanOne(
 #     'https://www.deccanherald.com/business/economy-business/disaster-management-crucial-in-a-growing-economy-shah-790826.html')
 # downloadInputFile('economic-merged.csv', "economic")
-if __name__ == "__main__":
-    # downloadInputFile('moneyctl-merged-buisness.csv', "moneycontrol")
-    downloadInputFile('deccan-business.csv', "deccan")
+# if __name__ == "__main__":
+# downloadInputFile('moneyctl-merged-buisness.csv', "moneycontrol")
+# downloadInputFile('deccan-business.csv', "deccan")

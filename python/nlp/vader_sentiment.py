@@ -73,23 +73,6 @@ def vaderParagraph(data):
 
     analyzer = SentimentIntensityAnalyzer()
 
-    # stock_lex = pd.read_csv('../data/classifier/stock_lex.csv')
-    # stock_lex['sentiment'] = (
-    #     stock_lex['Aff_Score'] + stock_lex['Neg_Score'])/2
-    # stock_lex = dict(zip(stock_lex.Item, stock_lex.sentiment))
-    # stock_lex = {k: v for k, v in stock_lex.items() if len(k.split(' ')) == 1}
-    # stock_lex_scaled = {}
-    # for k, v in stock_lex.items():
-    #     if v > 0:
-    #         stock_lex_scaled[k] = v / max(stock_lex.values()) * 4
-    #     else:
-    #         stock_lex_scaled[k] = v / min(stock_lex.values()) * -4
-
-    # final_lex = {}
-    # final_lex.update(stock_lex_scaled)
-    # final_lex.update(analyzer.lexicon)
-    # analyzer.lexicon = final_lex
-
     if(data == "none"):
         return("none", 0.0, 0.0, 0.0)
 
@@ -98,7 +81,20 @@ def vaderParagraph(data):
     for sentence in sentence_list:
         vs = analyzer.polarity_scores(sentence)
         paragraphSentiments += vs["compound"]
+
+    neg_words = ["plunge up to", "share price falls",
+                 "52-week low", "nosedives", "share price tanks", "-yr low"]
+
     averageSentiment = round(paragraphSentiments / len(sentence_list), 4)
+
+    for words in neg_words:
+        if words in data.lower():
+            if(averageSentiment > 0):
+                averageSentiment = -1*averageSentiment
+
+            print("Man:", averageSentiment)
+            return(averageSentiment)
+
     # print(str(averageSentiment))
 
     return ((averageSentiment))

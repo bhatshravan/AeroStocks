@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, date
 import moneyctl as mtl
 import economic as ecl
 import deccan as dcl
+import firstpost as fpl
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -33,7 +34,10 @@ class DownloadWorker(Thread):
                 # mtl.downloadMtlAll(url, x)
 
                 # Economic times
-                ecl.downloadEconomicAll(link, x)
+                # ecl.downloadEconomicAll(link, x)
+
+                # FirstPost
+                fpl.downloadFirstPostAll(link, x)
 
                 # Deccan
                 # dcl.downloadDeccanAll(link, x)
@@ -49,7 +53,10 @@ def main():
     # pages = [x for x in range(1, 1500)]
 
     # Economic
-    pages = [x for x in range(43647, 43914)]
+    # pages = [x for x in range(43647, 43914)]
+
+    # FirstPost
+    pages = [x for x in range(2, 560)]
 
     # Deccan
     # date1 = date(2019, 9, 2)
@@ -58,7 +65,7 @@ def main():
     #                                           for i in range((date2 - date1).days + 1))]
 
     queue = Queue()
-    for x in range(15):
+    for x in range(8):
         worker = DownloadWorker(queue, x)
         worker.daemon = True
         worker.start()

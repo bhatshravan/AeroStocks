@@ -78,5 +78,5 @@ def downloadFirstPostOne(url):
 
 # downloadFirstPostAll('2', 1)
 # https://www.firstpost.com/category/business/page/2
-downloadFirstPostOne(
-    "https://www.firstpost.com/business/finance-ministry-writes-to-rbi-on-coronavirus-relief-measures-asks-central-bank-to-help-borrowers-cope-with-damage-from-outbreak-8193211.html")
+# downloadFirstPostOne(
+#     "https://www.firstpost.com/business/finance-ministry-writes-to-rbi-on-coronavirus-relief-measures-asks-central-bank-to-help-borrowers-cope-with-damage-from-outbreak-8193211.html")
