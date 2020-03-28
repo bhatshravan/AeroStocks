@@ -5,9 +5,10 @@ import random
 
 
 # Stocks lst
-stocks_list = ["ADANIPORTS", "ASIANPAINT", "AXISBANK", "BAJAJ-AUTO", "BAJAJFINSV", "BAJFINANCE", "BHARTIARTL", "BPCL", "CIPLA", "COALINDIA", "DRREDDY", "EICHERMOT", "GAIL", "GRASIM", "HCLTECH", "HDFC", "HDFCBANK", "HEROMOTOCO", "HINDALCO", "HINDPETRO", "HINDUNILVR", "IBULHSGFIN",
-               "ICICIBANK", "INDUSINDBK", "INFRATEL", "INFY", "IOC", "ITC", "JSWSTEEL", "KOTAKBANK", "LT", "MARUTI", "NTPC", "ONGC", "POWERGRID", "RELIANCE", "SBIN", "SUNPHARMA", "TATAMOTORS", "TATASTEEL", "TCS", "TECHM", "TITAN", "ULTRACEMCO", "UPL", "VEDL", "WIPRO", "YESBANK", "ZEEL"]
-# stocks_list = ["CIPLA", "HCLTECH", "HINDUNILVR","IOC", "NTPC", "TATAMOTORS", "UPL"]
+# stocks_list = ["BAJAJ-AUTO", "EICHERMOT", "HEROMOTOCO", "M%26M", "MARUTI", "TATAMOTORS", "AXISBANK", "HDFCBANK", "ICICIBANK", "INDUSINDBK", "KOTAKBANK", "SBIN", "GRASIM", "ULTRACEMCO", "SHREECEM", "UPL", "LT", "ASIANPAINT", "HINDUNILVR", "BRITANNIA", "ITC", "TITAN", "BPCL", "GAIL",
+#                "IOC", "ONGC", "RELIANCE", "NTPC", "POWERGRID", "COALINDIA", "BAJFINANCE", "BAJAJFINSV", "HDFC", "NESTLEIND", "HCLTECH", "INFY", "TCS", "TECHM", "WIPRO", "ADANIPORTS", "ZEEL", "HINDALCO", "JSWSTEEL", "TATASTEEL", "VEDL", "CIPLA", "DRREDDY", "SUNPHARMA", "BHARTIARTL", "INFRATEL"]
+
+stocks_list = ["BAJAJFINSERV"]
 # Misc
 api_key = ["D4V3YEYJGNXZ27PL", "BEZAPQ60MX6M0MTV", "C73M71O6LA04D9KI",
            "4D5AD7GG5BUJ0R9Y", "5LIB86FZXJJ5YQD3", "LK8JHRNLLTU90Q9C"]
@@ -32,6 +33,9 @@ def downloadAllDaily():
             filename+"&apikey="+rand_key+"&datatype=csv&outputsize="+outputsize
 
         print(url)
+
+        if(filename == "M%26M"):
+            filename = "M&M"
 
         print("Starting download of {0} using key {1}".format(
             filename, rand_key))
@@ -60,7 +64,7 @@ def downloadAllDaily():
                 start_time = time.time()
             time.sleep(30)
         print("Finsihed downloading\n\n")
-    print(endlist)
+    # print(endlist)
 
 
 def downloadIntraDay(stock):
@@ -76,12 +80,12 @@ def downloadIntraDay(stock):
     page = urllib.request.urlopen(url)
 
     content = page.read()
-    print(content)
+    # print(content)
     f = open("../../data/stocks/alphavantage/"+stock+"-Intra.csv", "wb")
     f.write(content)
     f.close()
 
 
 if __name__ == '__main__':
-    # downloadAllDaily()
-    downloadIntraDay("ICICIBANK")
+    downloadAllDaily()
+    # downloadIntraDay("ICICIBANK")

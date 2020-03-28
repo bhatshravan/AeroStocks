@@ -3,9 +3,7 @@ import os
 from queue import Queue
 from threading import Thread
 from time import time
-
-from download import setup_download_dir, get_links, download_link
-
+import moneyctl as mtl
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -15,34 +13,37 @@ logger = logging.getLogger(__name__)
 
 class DownloadWorker(Thread):
 
-    def __init__(self, queue):
+    def __init__(self, queue, x):
         Thread.__init__(self)
         self.queue = queue
+        self.x = x
 
     def run(self):
         while True:
-            directory, link = self.queue.get()
+            link = self.queue.get()
+            x = self.x
             try:
-                download_link(directory, link)
+                # download_link(directory, link)
+                url = "https://www.moneycontrol.com/news/business/"+link
+                # mtl.downloadMtlAll()
+                print(url, x)
             finally:
                 self.queue.task_done()
 
 
 def main():
     ts = time()
-    client_id = os.getenv('IMGUR_CLIENT_ID')
-    if not client_id:
-        raise Exception("Couldn't find IMGUR_CLIENT_ID environment variable!")
-    download_dir = setup_download_dir()
-    links = get_links(client_id)
+
+    pages = [x for x in range(300, 303)]
+
     queue = Queue()
     for x in range(8):
-        worker = DownloadWorker(queue)
+        worker = DownloadWorker(queue, x)
         worker.daemon = True
         worker.start()
-    for link in links:
+    for link in pages:
         logger.info('Queueing {}'.format(link))
-        queue.put((download_dir, link))
+        queue.put((link))
     queue.join()
     logging.info('Took %s', time() - ts)
 

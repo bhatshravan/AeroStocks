@@ -92,7 +92,7 @@ def vaderParagraph(data):
             if(averageSentiment > 0):
                 averageSentiment = -1*averageSentiment
 
-            print("Man:", averageSentiment)
+            # print("Man:", averageSentiment)
             return(averageSentiment)
 
     # print(str(averageSentiment))
