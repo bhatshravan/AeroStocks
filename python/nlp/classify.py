@@ -15,11 +15,11 @@ stock_dict = {"Bajaj": {"company": "Bajaj", "symbol": "BAJAJ-AUTO", "sector": "A
               "Reliance": {"company": "Reliance", "symbol": "RELIANCE", "sector": "Energy"}, "NTPC": {"company": "NTPC", "symbol": "NTPC", "sector": "Power"}, "PowerGrid Corporation of India": {"company": "PowerGrid Corporation of India", "symbol": "POWERGRID", "sector": "Power"}, "Coal India": {"company": "Coal India", "symbol": "COALINDIA", "sector": "Mining"}, "Bajaj Finance": {"company": "Bajaj Finance", "symbol": "BAJFINANCE", "sector": "Financial Services"}, "Bajaj Finserv": {"company": "Bajaj Finserv", "symbol": "BAJAJFINSV", "sector": "Financial Services"}, "HDFC": {"company": "HDFC", "symbol": "HDFC", "sector": "Financial Services"}, "Nestle India Ltd": {"company": "Nestle India Ltd", "symbol": "NESTLEIND", "sector": "Food Processing"}, "HCL": {"company": "HCL", "symbol": "HCLTECH", "sector": "Information Technology"}, "Infosys": {"company": "Infosys", "symbol": "INFY", "sector": "Information Technology"}, "Tata Consultancy Services": {"company": "Tata Consultancy Services", "symbol": "TCS", "sector": "Information Technology"}, "Tech Mahindra": {"company": "Tech Mahindra", "symbol": "TECHM", "sector": "Information Technology"}, "Wipro": {"company": "Wipro", "symbol": "WIPRO", "sector": "Information Technology"}, "Adani": {"company": "Adani", "symbol": "ADANIPORTS", "sector": "Infrastructure"}, "Zee": {"company": "Zee", "symbol": "ZEEL", "sector": "Media"}, "Hindalco": {"company": "Hindalco", "symbol": "HINDALCO", "sector": "Metals"}, "JSW": {"company": "JSW", "symbol": "JSWSTEEL", "sector": "Metals"}, "Tata Steel": {"company": "Tata Steel", "symbol": "TATASTEEL", "sector": "Metals"}, "Vedanta": {"company": "Vedanta", "symbol": "VEDL", "sector": "Metals"}, "Cipla": {"company": "Cipla", "symbol": "CIPLA", "sector": "Pharmaceuticals"}, "Dr Reddy": {"company": "Dr Reddy", "symbol": "DRREDDY", "sector": "Pharmaceuticals"}, "Sun Pharmaceutical": {"company": "Sun Pharmaceutical", "symbol": "SUNPHARMA", "sector": "Pharmaceuticals"}, "Airtel": {"company": "Airtel", "symbol": "BHARTIARTL", "sector": "Telecommunication"}, "Infratel": {"company": "Infratel", "symbol": "INFRATEL", "sector": "Telecommunication"}}
 
 global final_dict
-global relavant_docs
+global relevant_docs
 global retrieved_docs
 
 final_dict = dict()
-relavant_docs = 0
+relevant_docs = 0
 retrieved_docs = 0
 
 
@@ -46,6 +46,7 @@ def getStockPrice(df, date):
             perc_change = round(100 * (close_val - open_val) / open_val, 2)
         except:
             date = addDay(date)
+            return(0, 0, 0, "invalid")
 
     effect = ""
     if(perc_change > 0):
@@ -71,40 +72,60 @@ def addDay(day):
 def getCsvRows(inputFile, newsPaper):
     global final_dict
 
-    inputFileOpen = open('../data/news/'+newsPaper+"/"+inputFile, 'rt')
+    inputFileOpen = open('../data/news/'+newsPaper+"/" +
+                         inputFile, 'r', encoding="utf8")
     inputFile = csv.reader(inputFileOpen)
 
     prints = 0
 
-    global relavant_docs
+    global relevant_docs
     global retrieved_docs
 
     for idx, row in enumerate(inputFile):
         retrieved_docs = retrieved_docs+1
 
-        if(idx > 900):
+        # if(idx < 100):
+        #     continue
+        if(idx > 100):
             break
         if(row[0] == ""):
             continue
         if(idx % 100 == 0):
             print("{} iterations done".format(idx))
-        try:
-            vader_score, stocks_arr, dates = getPolarityScore(row, newsPaper)
-            dates = str(dates)
-            if stocks_arr != []:
-                # print(vader_score, stocks_arr, dates)
-                relavant_docs = relavant_docs+1
-                stocks_arr = stocks_arr.split("|")
+            # print(row[2])
 
-                if not dates in final_dict:
-                    final_dict[dates] = {}
-                for stock in stocks_arr:
-                    if not stock in final_dict[dates]:
-                        final_dict[dates][stock] = []
-                    final_dict[dates][stock].append(vader_score)
+        headline, link, vader_score, stocks_arr, sectors_arr, dates = getPolarityScore(
+            row, newsPaper)
 
-        except:
-            continue
+        dates = str(dates)
+
+        entered_stock = False
+
+        if stocks_arr != []:
+            entered_stock = True
+            relevant_docs = relevant_docs+1
+
+            stocks_arr = stocks_arr.split("|")
+
+            if not dates in final_dict:
+                final_dict[dates] = {"sector": {}}
+            for stock in stocks_arr:
+                if not stock in final_dict[dates]:
+                    final_dict[dates][stock] = {
+                        'vader': [], 'link': [], 'headline': []}
+                final_dict[dates][stock]['vader'].append(vader_score)
+                final_dict[dates][stock]['link'].append(link)
+                final_dict[dates][stock]['headline'].append(headline)
+
+            if sectors_arr != [] and sectors_arr != " ":
+                sectors_arr = sectors_arr.strip().split("|")
+                for sector in sectors_arr:
+                    if not sector in final_dict[dates]["sector"]:
+                        final_dict[dates]["sector"][sector] = []
+                    final_dict[dates]["sector"][sector].append(vader_score)
+
+        # if not entered_stock and sectors_arr != []:
+        #     f = 0
 
 
 def getPolarityScore(row, newsPaper):
@@ -117,71 +138,76 @@ def getPolarityScore(row, newsPaper):
     url = row[1]
 
     if(path.exists(raw_file_name)):
-        try:
-            raw_file = open(raw_file_name, "r").read()
-            raw_file_split = raw_file.split("-------")
-            raw_file_heading = raw_file_split[0]
-            raw_file_data = raw_file_split[1]
-            raw_file_heading = raw_file_heading.replace("--", ",")
-            vader_score = vaderParagraph(raw_file_data)
-            vader_polarity = "Neutral news"
-            news_data = raw_file_data.replace("\n", "")
-            keyWords = getKeyWords(news_data)
+        raw_file = open(raw_file_name, "r", encoding="utf8").read()
+        raw_file_split = raw_file.split("-------")
+        raw_file_heading = raw_file_split[0]
+        raw_file_data = raw_file_split[1]
+        raw_file_heading = raw_file_heading.replace("--", ",")
+        vader_score = vaderParagraph(raw_file_heading, raw_file_data)
+        vader_polarity = "Neutral news"
+        news_data = raw_file_data.replace("\n", "")
+        keyWords, keySectors = getKeyWords(news_data)
 
-            if(keyWords != ""):
-                return(vader_score, keyWords, row[2])
-        except:
-            return (0, [], "")
+        return(raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
 
 
 def makeKeyWordList():
     global final_dict
 
-    global relavant_docs
+    global relevant_docs
     global retrieved_docs
 
-    getCsvRows('moneyctl-merged-buisness.csv', "moneycontrol")
-    # getCsvRows('deccan-business.csv', "deccan")
+    # getCsvRows('moneyctl-merged-buisness.csv', "moneycontrol")
+    # getCsvRows('economic-merged-formatted.csv', "economic")
+    # getCsvRows('economic-merged.csv', "economic")
+    getCsvRows('deccan-business.csv', "deccan")
+    # getCsvRows('firstpost-merged.csv', "firstpost")
 
     tp, tn, fp, fn = 0, 0, 0, 0
 
     for dates in final_dict:
         for index in final_dict[dates]:
 
-            try:
-                stock_avg_score = round(mean(final_dict[dates][index]), 2)
+            if(index == "sector"):
+                # print(final_dict[dates]["sector"])
+                continue
+            stock_avg_score = round(
+                mean(final_dict[dates][index]['vader']), 2)
 
-                symbol, industry, sector = (getSymbol(index))
-                perc_change, open_val, close_val, effect = getStockPrice(
-                    getStockFile(symbol), dates)
+            symbol, industry, sector = (getSymbol(index.strip()))
+            perc_change, open_val, close_val, effect = getStockPrice(
+                getStockFile(symbol), dates)
 
-                if (perc_change > 0 and stock_avg_score > 0):
-                    tp = tp+1
-                elif(perc_change < 0 and stock_avg_score < 0):
-                    tn = tn+1
-                elif(perc_change < 0 and stock_avg_score > 0):
-                    fp = fp+1
-                elif(perc_change > 0 and stock_avg_score < 0):
-                    fn = fn+1
-
-            except:
+            if(effect == "invalid"):
                 continue
 
-    print("\n\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}\n".format(
-        tp, fp, fn, tn))
+            if (perc_change > 0 and stock_avg_score > 0):
+                tp = tp+1
+            elif(perc_change < 0 and stock_avg_score < 0):
+                tn = tn+1
+            elif(perc_change < 0 and stock_avg_score > 0):
+                fp = fp+1
 
-    precision = (retrieved_docs / (relavant_docs + retrieved_docs))*100
-    recall = (relavant_docs / (relavant_docs + retrieved_docs))*100
+            elif(perc_change > 0 and stock_avg_score < 0):
+                fn = fn+1
 
-    acc = round(((tn+tp)/(tp+tn+fp+fn)), 4)*100
-    specificity = (tn/(tn + fp))*100
-    sensitivity = (tp/(tp + fn))*100
+    # print("\n\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}\n".format(
+    #     tp, fp, fn, tn))
 
-    print("Accuracy = {}%".format(acc))
-    print("Specificity = {}".format(specificity))
-    print("Sensitivity = {}".format(sensitivity))
-    print("Precision = {}".format(precision))
-    print("Recall = {}".format(recall))
+    precision = round(
+        (retrieved_docs / (relevant_docs + retrieved_docs))*100, 2)
+    recall = round((relevant_docs / (relevant_docs + retrieved_docs))*100, 2)
+
+    acc = round(((tn+tp)/(tp+tn+fp+fn))*100, 4)
+    specificity = round((tn/(tn + fp))*100, 2)
+    sensitivity = round((tp/(tp + fn))*100, 2)
+
+    # print("Accuracy = {}%".format(acc))
+    # print("Specificity = {}".format(specificity))
+    # print("Sensitivity = {}".format(sensitivity))
+    # print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
+    # print("Precision = {}".format(precision))
+    # print("Recall = {}".format(recall))
 
     # print(index, stock_avg_score, perc_change)
 
