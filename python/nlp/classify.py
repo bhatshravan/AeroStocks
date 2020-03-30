@@ -14,6 +14,7 @@ from statistics import mean
 import random
 import combined as combined
 from time import time
+import multiprocessing
 
 stock_dict = {
     "Bajaj": {"company": "Bajaj", "symbol": "BAJAJ-AUTO", "sector": "Automobile"},
@@ -148,16 +149,6 @@ stock_dict = {
     },
 }
 
-global final_dict
-global relevant_docs
-global retrieved_docs
-global date_num
-
-final_dict = dict()
-relevant_docs = 0
-retrieved_docs = 0
-date_num = 0
-
 
 def getStockFile(index):
     path = "../data/stocks/alphavantage/" + index
@@ -168,6 +159,28 @@ def getStockFile(index):
 def getSymbol(data):
     index = stock_dict[data]
     return (index["symbol"], index["company"], index["sector"])
+
+
+def getPolarityScore(row, newsPaper):
+    raw_file_data = ""
+    vader_score = 0
+
+    raw_heading = str(slugify(row[0]))
+    raw_news_file = raw_heading[0:120] + "-" + str(slugify(row[2]))
+    raw_file_name = "../data/news/" + newsPaper + "/raw/" + raw_news_file + ".txt"
+    url = row[1]
+
+    if path.exists(raw_file_name):
+        raw_file = open(raw_file_name, "r", encoding="utf8").read()
+        raw_file_split = raw_file.split("-------")
+        raw_file_heading = raw_file_split[0]
+        raw_file_data = raw_file_split[1]
+        raw_file_heading = raw_file_heading.replace("--", ",")
+        vader_score = vaderParagraph(raw_file_heading, raw_file_data)
+        news_data = raw_file_data.replace("\n", "")
+        keyWords, keySectors = getKeyWords(news_data)
+
+        return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
 
 
 def getStockPrice(df, date):
@@ -206,17 +219,17 @@ def addDay(day):
 
 
 def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
-    global final_dict
-    global relevant_docs
-    global retrieved_docs
-    global date_num
+
+    relevant_docs = 0
+    retrieved_docs = 0
+    date_num = 0
+    final_dict = dict()
+    prints = 0
 
     inputFileOpen = open(
         "../data/news/" + newsPaper + "/" + inputFile, "r", encoding="utf-8"
     )
     inputFile = csv.reader(inputFileOpen)
-
-    prints = 0
 
     for idx, row in enumerate(inputFile):
         retrieved_docs = retrieved_docs + 1
@@ -229,7 +242,6 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
             continue
         if idx % 100 == 0:
             print("{} iterations done".format(idx))
-
         try:
             (
                 headline,
@@ -241,8 +253,6 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
             ) = getPolarityScore(row, newsPaper)
         except:
             continue
-
-        dates = str(dates)
 
         entered_stock = False
 
@@ -257,7 +267,8 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
                 date_num = date_num + 1
             for stock in stocks_arr:
                 if not stock in final_dict[dates]:
-                    final_dict[dates][stock] = {"vader": [], "link": [], "headline": []}
+                    final_dict[dates][stock] = {
+                        "vader": [], "link": [], "headline": []}
                 final_dict[dates][stock]["vader"].append(vader_score)
                 final_dict[dates][stock]["link"].append(link)
                 final_dict[dates][stock]["headline"].append(headline)
@@ -282,102 +293,94 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
                     final_dict[dates]["sector"][sector] = []
                 final_dict[dates]["sector"][sector].append(vader_score)
 
-
-def getPolarityScore(row, newsPaper):
-    raw_file_data = ""
-    vader_score = 0
-
-    raw_heading = str(slugify(row[0]))
-    raw_news_file = raw_heading[0:120] + "-" + str(slugify(row[2]))
-    raw_file_name = "../data/news/" + newsPaper + "/raw/" + raw_news_file + ".txt"
-    url = row[1]
-
-    if path.exists(raw_file_name):
-        raw_file = open(raw_file_name, "r", encoding="utf8").read()
-        raw_file_split = raw_file.split("-------")
-        raw_file_heading = raw_file_split[0]
-        raw_file_data = raw_file_split[1]
-        raw_file_heading = raw_file_heading.replace("--", ",")
-        vader_score = vaderParagraph(raw_file_heading, raw_file_data)
-        news_data = raw_file_data.replace("\n", "")
-        keyWords, keySectors = getKeyWords(news_data)
-
-        return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
+    return final_dict, relevant_docs, retrieved_docs, date_num
 
 
-def makeKeyWordList(filename, newspaper, idx_lower, idx_upper):
-    global final_dict
-    global date_num
-    global relevant_docs
-    global retrieved_docs
+# def makeKeyWordList(filename, newspaper, idx_lower, idx_upper):
+
+
+def makeKeyWordList(filename, paper, idx_lower, idx_upper):
 
     sector_avg_score = {}
-
     ts = time()
-    # idx_lower = 10000
-    # idx_upper = 11000
 
-    # getCsvRows('moneyctl-merged-buisness.csv', "moneycontrol")
-    # getCsvRows('economic-merged-formatted.csv', "economic")
-    # getCsvRows('economic-merged.csv', "economic")
-    # getCsvRows('deccan-business.csv', "deccan")
-    # getCsvRows('firstpost-merged.csv', "firstpost")
-    getCsvRows(filename, newspaper, idx_lower, idx_upper)
+    final_dict, relevant_docs, retrieved_docs, date_num = getCsvRows(
+        filename, paper, idx_lower, idx_upper
+    )
 
     tp, tn, fp, fn = 0, 0, 0, 0
 
     for dates in final_dict:
         for index in final_dict[dates]:
-
             if index == "sector":
-                print("\n", dates, " ==")
                 for sectors in final_dict[dates]["sector"]:
                     sector_avg_score = round(
                         mean(final_dict[dates]["sector"][sectors]), 2
                     )
-                    print("{} - {}".format(sectors, sector_avg_score))
-                continue
+                    # print("{} - {}".format(sectors, sector_avg_score))
+            else:
+                stock_avg_score = round(
+                    mean(final_dict[dates][index]["vader"]), 2)
 
-            stock_avg_score = round(mean(final_dict[dates][index]["vader"]), 2)
+                symbol, industry, sector = getSymbol(index.strip())
+                perc_change, open_val, close_val, effect = getStockPrice(
+                    getStockFile(symbol), dates
+                )
 
-            symbol, industry, sector = getSymbol(index.strip())
-            perc_change, open_val, close_val, effect = getStockPrice(
-                getStockFile(symbol), dates
-            )
+                if effect == "invalid":
+                    continue
 
-            if effect == "invalid":
-                continue
+                if perc_change > 0 and stock_avg_score > 0:
+                    tp = tp + 1
+                elif perc_change < 0 and stock_avg_score < 0:
+                    tn = tn + 1
+                elif perc_change < 0 and stock_avg_score > 0:
+                    fp = fp + 1
+                    for ids, heads in enumerate(final_dict[dates][index]["headline"]):
+                        print(
+                            final_dict[dates][index]["headline"][ids],
+                            " - ",
+                            final_dict[dates][index]["vader"][ids],
+                            index,
+                        )
+                    # print(
+                    #     "\nIndex = {}\nVader = {} \t Stock_Change = {}\nHeadline = {} ".format(
+                    #         index,
+                    #         stock_avg_score,
+                    #         perc_change,
+                    #         final_dict[dates][index]["headline"],
+                    #     )
+                    # )
 
-            if perc_change > 0 and stock_avg_score > 0:
-                tp = tp + 1
-            elif perc_change < 0 and stock_avg_score < 0:
-                tn = tn + 1
-            elif perc_change < 0 and stock_avg_score > 0:
-                fp = fp + 1
-                # print("\nIndex = {}\nVader = {} \t Stock_Change = {}\nHeadline = {} ".format(
-                #     index, stock_avg_score, perc_change, final_dict[dates][index]['headline']))
-
-            elif perc_change > 0 and stock_avg_score < 0:
-                fn = fn + 1
+                elif perc_change > 0 and stock_avg_score < 0:
+                    fn = fn + 1
 
     print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
 
-    precision = round((retrieved_docs / (relevant_docs + retrieved_docs)) * 100, 2)
-    recall = round((relevant_docs / (relevant_docs + retrieved_docs)) * 100, 2)
+    # precision = round((retrieved_docs / (relevant_docs + retrieved_docs)) * 100, 2)
+    # recall = round((relevant_docs / (relevant_docs + retrieved_docs)) * 100, 2)
 
-    acc = round(((tn + tp) / (tp + tn + fp + fn)) * 100, 4)
-    specificity = round((tn / (tn + fp)) * 100, 2)
-    sensitivity = round((tp / (tp + fn)) * 100, 2)
+    if (tp + tn + fp + fn) == 0:
+        return -1
 
-    print("Accuracy = {}%".format(acc))
-    print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
+    try:
+        acc = round(((tn + tp) / (tp + tn + fp + fn)) * 100, 4)
+    except:
+        return -1
+    # specificity = round((tn / (tn + fp)) * 100, 2)
+    # sensitivity = round((tp / (tp + fn)) * 100, 2)
+
+    # print("Accuracy = {}%".format(acc))
+    # print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
     # print("Specificity = {}".format(specificity))
-    print("Date Num = {}".format(date_num))
+    # print("Date Num = {}".format(date_num))
 
-    print("Took ", time() - ts)
+    # print("Took ", time() - ts)
     # print("Sensitivity = {}".format(sensitivity))
     # print("Precision = {}".format(precision))
     # print("Recall = {}".format(recall))
+
+    return acc
 
 
 def main():
@@ -386,5 +389,50 @@ def main():
 
 
 # makeKeyWordList()
-makeKeyWordList("economic-merged.csv", "economic", idx_lower, idx_upper)
+if __name__ == "__main__":
+    # getCsvRows('moneyctl-merged-buisness.csv', "moneycontrol")
+    # getCsvRows('economic-merged-formatted.csv', "economic")
+    # getCsvRows('economic-merged.csv', "economic")
+    # getCsvRows('deccan-business.csv', "deccan")
+    # getCsvRows('firstpost-merged.csv', "firstpost")
 
+    newspaperList = [
+        ["economic-merged.csv", "economic"],
+        ["deccan-business.csv", "deccan"],
+        ["firstpost-merged.csv", "firstpost"],
+        ["moneyctl-merged-buisness.csv", "moneycontrol"],
+    ]
+    ts = time()
+
+    results = []
+    gaps = 100
+    idx_upper = 100
+
+    for idxx in range(0, 1):
+
+        lists = [
+            (newspaperList[idxx][0], newspaperList[idxx][1], x, x + gaps)
+            for x in range(0, idx_upper, gaps)
+        ]
+
+        with multiprocessing.Pool(processes=1) as pool:
+            results2 = pool.starmap(makeKeyWordList, lists)
+
+        # print(newspaperList[idxx][1], " - ", results2)
+
+        results = results + results2
+
+    res = 0
+    i = 0
+    for result in results:
+        if result != -1:
+            res = res + result
+            i = i + 1
+
+    print(results, res / i, i)
+
+    print("Took ", time() - ts)
+
+    # print(newspaperList[0][0])
+    # results = makeKeyWordList(newspaperList[2][0], newspaperList[2][1], 0, 1000)
+    # print(results)
