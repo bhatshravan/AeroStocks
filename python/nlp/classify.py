@@ -288,8 +288,11 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
                 sectors_arr = sectors_arr.strip().split("|")
                 for sector in sectors_arr:
                     if not sector in final_dict[dates]["sector"]:
-                        final_dict[dates]["sector"][sector] = []
-                    final_dict[dates]["sector"][sector].append(vader_score)
+                        final_dict[dates]["sector"][sector] = {'vader':[],'link':[], "headline": []}
+                    
+                    final_dict[dates]["sector"][sector]["vader"].append(vader_score)
+                    final_dict[dates]["sector"][sector]["link"].append(link)
+                    final_dict[dates]["sector"][sector]["headline"].append(headline)
 
         if not entered_stock and sectors_arr != []:
             relevant_docs = relevant_docs + 1
@@ -301,8 +304,11 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
 
             for sector in sectors_arr:
                 if not sector in final_dict[dates]["sector"]:
-                    final_dict[dates]["sector"][sector] = []
-                final_dict[dates]["sector"][sector].append(vader_score)
+                    final_dict[dates]["sector"][sector] = {'vader':[],'link':[], "headline": []}
+                
+                final_dict[dates]["sector"][sector]["vader"].append(vader_score)
+                final_dict[dates]["sector"][sector]["link"].append(link)
+                final_dict[dates]["sector"][sector]["headline"].append(headline)
 
     return final_dict, relevant_docs, retrieved_docs, date_num
 
@@ -316,16 +322,20 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
         filename, paper, idx_lower, idx_upper
     )
 
+    if(relevant_docs==0):
+        return -2
+
     tp, tn, fp, fn = 0, 0, 0, 0
 
     sector_dict = dict()
     stock_assoc_dict = dict()
-    sector_assoc = dict()
 
     # score dict in format: {'date':{'stock':[mean_vader,mean_sector,mean_sector_stock,stock_price]}}
     score_dict = dict()
 
     for date in final_dict:
+        avg_day_score=0
+        avg_day_score_idx=0
 
         score_dict[date] = {}
         stock_assoc_dict[date] = {}
@@ -336,7 +346,7 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
                 if not date in sector_dict:
                     sector_dict[date] = {}
                 sector_dict[date][sectors] = round(
-                    mean(final_dict[date]["sector"][sectors]), 2)
+                    mean(final_dict[date]["sector"][sectors]["vader"]), 2)
 
         for sector in sectorList:
             try:
@@ -349,7 +359,7 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
         # Start populating score_dict
         for index in stockList:
             score_dict[date][index] = [
-                0, 0, 0, -1, "inavlid", "sector", "symbol"]
+                0, 0, 0, -1, "inavlid", "sector", "symbol","news",date]
 
             symbol, industry, sector = getSymbol(index.strip())
             perc_change, effect = getStockPrice(getStockFile(symbol), date)
@@ -360,9 +370,23 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
             score_dict[date][index][5] = sector
             score_dict[date][index][6] = symbol
 
+            score7 = ""
+            if index in final_dict[date]:
+                for idx,news_score in enumerate(final_dict[date][index]["vader"]):
+                    score7 = score7+ str(news_score)+" : "+final_dict[date][index]["headline"][idx]
+
+
+            score_dict[date][index][7] = score7
+
             if index != "sector" and index in final_dict[date]:
                 score_dict[date][index][0] = round(
                     mean(final_dict[date][index]["vader"]), 2)
+
+                avg_day_score = avg_day_score+score_dict[date][index][0]
+                avg_day_score_idx = avg_day_score_idx+1
+            
+        if avg_day_score_idx!=0:
+            avg_day_score = avg_day_score/avg_day_score_idx
 
         # Tabluate score for each stock
         for sector in sectorStockDict:
@@ -371,60 +395,30 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
             for stocks in sectorStockDict[sector]:
                 avg = avg + score_dict[date][stocks][0]
                 avg_number = avg_number+1
-            avg = avg/avg_number
+            avg = round(avg/avg_number,2)
             stock_assoc_dict[date][sector] = avg
+
 
         for index in stockList:
             score_dict[date][index][2] = stock_assoc_dict[date][score_dict[date][index][5]]
 
             cR = score_dict[date][index]
             if cR[0] !=0 or cR[4]!="invalid" or cR[4]!="neutral":
-                print(date, index, score_dict[date][index])
 
-    # for dates in final_dict:
-    #     for index in final_dict[dates]:
-    #         if index == "sector":
-    #             for sectors in final_dict[dates]["sector"]:
-    #                 sector_avg_score = round(
-    #                     mean(final_dict[dates]["sector"][sectors]), 2
-    #                 )
-    #                 # print("{} - {}".format(sectors, sector_avg_score))
-    #         else:
-    #             stock_avg_score = round(
-    #                 mean(final_dict[dates][index]["vader"]), 2)
 
-    #             symbol, industry, sector = getSymbol(index.strip())
-    #             perc_change, open_val, close_val, effect = getStockPrice(
-    #                 getStockFile(symbol), dates
-    #             )
+                if cR[3] > 0 and cR[0] > 0:
+                    tp = tp + 1
+                elif cR[3] < 0 and cR[0] < 0:
+                    tn = tn + 1
+                elif cR[3] < 0 and cR[0] > 0:
+                    print(score_dict[date][index])
+                    fp = fp + 1
+                elif cR[3] > 0 and cR[0] < 0:
+                    fn = fn + 1
 
-    #             if effect == "invalid":
-    #                 continue
-
-    #             if perc_change > 0 and stock_avg_score > 0:
-    #                 tp = tp + 1
-    #             elif perc_change < 0 and stock_avg_score < 0:
-    #                 tn = tn + 1
-    #             elif perc_change < 0 and stock_avg_score > 0:
-    #                 fp = fp + 1
-    #                 for ids, heads in enumerate(final_dict[dates][index]["headline"]):
-    #                     print(
-    #                         final_dict[dates][index]["headline"][ids],
-    #                         " - ",
-    #                         final_dict[dates][index]["vader"][ids],
-    #                         index,
-    #                     )
-    #                 # print(
-    #                 #     "\nIndex = {}\nVader = {} \t Stock_Change = {}\nHeadline = {} ".format(
-    #                 #         index,
-    #                 #         stock_avg_score,
-    #                 #         perc_change,
-    #                 #         final_dict[dates][index]["headline"],
-    #                 #     )
-    #                 # )
-
-    #             elif perc_change > 0 and stock_avg_score < 0:
-    #                 fn = fn + 1
+                # print(date, index, score_dict[date][index])
+                
+                
 
     print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
 
@@ -432,16 +426,20 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
     # recall = round((relevant_docs / (relevant_docs + retrieved_docs)) * 100, 2)
 
     if (tp + tn + fp + fn) == 0:
+        print("Error:",paper,idx_lower,idx_upper)
+        for dates in score_dict:
+            print(dates)
+        # print(score_dict)
         return -1
 
     try:
         acc = round(((tn + tp) / (tp + tn + fp + fn)) * 100, 4)
-    except:
-        return -1
+    except Exception as e:
+        return -2
     # specificity = round((tn / (tn + fp)) * 100, 2)
     # sensitivity = round((tp / (tp + fn)) * 100, 2)
 
-    # print("Accuracy = {}%".format(acc))
+    print("Accuracy = {}%".format(acc))
     # print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
     # print("Specificity = {}".format(specificity))
     # print("Date Num = {}".format(date_num))
@@ -476,10 +474,10 @@ if __name__ == "__main__":
     ts = time()
 
     # results = []
-    # gaps = 4000
-    # idx_upper = 10000
+    # gaps = 5000
+    # idx_upper = 75000
 
-    # for idxx in range(0, 4):
+    # for idxx in range(0, 1):
     #     lists = [
     #         (newspaperList[idxx][0], newspaperList[idxx][1], x, x + gaps)
     #         for x in range(0, idx_upper, gaps)
@@ -491,7 +489,7 @@ if __name__ == "__main__":
     # res = 0
     # i = 0
     # for result in results:
-    #     if result != -1:
+    #     if result > 0:
     #         res = res + result
     #         i = i + 1
 
@@ -499,6 +497,8 @@ if __name__ == "__main__":
 
     # print("Took ", time() - ts)
 
+    # results = makeKeyWordList(
+    #     newspaperList[1][0], newspaperList[1][1], 0, 400)
     results = makeKeyWordList(
-        newspaperList[0][0], newspaperList[0][1], 0, 2000)
+        'ultimate-merged3.csv', newspaperList[1][1], 0, 400)
     print(results)
