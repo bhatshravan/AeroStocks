@@ -17,21 +17,21 @@ from time import time
 import multiprocessing
 
 stock_dict = {
-    "Bajaj": {"company": "Bajaj", "symbol": "BAJAJ-AUTO", "sector": "Automobile"},
-    "Eicher": {"company": "Eicher", "symbol": "EICHERMOT", "sector": "Automobile"},
-    "Hero": {"company": "Hero", "symbol": "HEROMOTOCO", "sector": "Automobile"},
+    "Bajaj Auto": {"company": "Bajaj", "symbol": "BAJAJ-AUTO", "sector": "Automobile"},
+    "Eicher Motors": {"company": "Eicher", "symbol": "EICHERMOT", "sector": "Automobile"},
+    "Hero MotoCorp": {"company": "Hero", "symbol": "HEROMOTOCO", "sector": "Automobile"},
     "Mahindra": {"company": "Mahindra", "symbol": "M&M", "sector": "Automobile"},
-    "Maruti": {"company": "Maruti", "symbol": "MARUTI", "sector": "Automobile"},
+    "Maruti Suzuki": {"company": "Maruti", "symbol": "MARUTI", "sector": "Automobile"},
     "Tata Motors": {
         "company": "Tata Motors",
         "symbol": "TATAMOTORS",
         "sector": "Automobile",
     },
     "Axis Bank": {"company": "Axis Bank", "symbol": "AXISBANK", "sector": "Banking"},
-    "HDFC": {"company": "HDFC", "symbol": "HDFCBANK", "sector": "Banking"},
-    "ICICI": {"company": "ICICI", "symbol": "ICICIBANK", "sector": "Banking"},
-    "IndusInd": {"company": "IndusInd", "symbol": "INDUSINDBK", "sector": "Banking"},
-    "Kotak Mahindra": {
+    "HDFC Bank": {"company": "HDFC", "symbol": "HDFCBANK", "sector": "Banking"},
+    "ICICI Bank": {"company": "ICICI", "symbol": "ICICIBANK", "sector": "Banking"},
+    "IndusInd Bank": {"company": "IndusInd", "symbol": "INDUSINDBK", "sector": "Banking"},
+    "Kotak Mahindra Bank": {
         "company": "Kotak Mahindra",
         "symbol": "KOTAKBANK",
         "sector": "Banking",
@@ -41,10 +41,10 @@ stock_dict = {
         "symbol": "SBIN",
         "sector": "Banking",
     },
-    "Grasim": {"company": "Grasim", "symbol": "GRASIM", "sector": "Cement"},
-    "UltraTech": {"company": "UltraTech", "symbol": "ULTRACEMCO", "sector": "Cement"},
-    "Shree": {"company": "Shree", "symbol": "SHREECEM", "sector": "Cement"},
-    "United Phosphorus": {
+    "Grasim Industries": {"company": "Grasim", "symbol": "GRASIM", "sector": "Cement"},
+    "UltraTech Cement": {"company": "UltraTech", "symbol": "ULTRACEMCO", "sector": "Cement"},
+    "Shree Cement": {"company": "Shree", "symbol": "SHREECEM", "sector": "Cement"},
+    "United Phosphorus Limited": {
         "company": "United Phosphorus",
         "symbol": "UPL",
         "sector": "Chemicals",
@@ -54,7 +54,7 @@ stock_dict = {
         "symbol": "LT",
         "sector": "Construction",
     },
-    "Asian Paints": {
+    "Asian Paints Ltd": {
         "company": "Asian Paints",
         "symbol": "ASIANPAINT",
         "sector": "Consumer Goods",
@@ -64,19 +64,19 @@ stock_dict = {
         "symbol": "HINDUNILVR",
         "sector": "Consumer Goods",
     },
-    "Britannia": {
+    "Britannia Industries": {
         "company": "Britannia",
         "symbol": "BRITANNIA",
         "sector": "Consumer Goods",
     },
-    "ITC": {"company": "ITC", "symbol": "ITC", "sector": "Consumer Goods"},
-    "Titan": {"company": "Titan", "symbol": "TITAN", "sector": "Consumer Goods"},
+    "ITC Limited": {"company": "ITC", "symbol": "ITC", "sector": "Consumer Goods"},
+    "Titan Company": {"company": "Titan", "symbol": "TITAN", "sector": "Consumer Goods"},
     "BPCL": {"company": "BPCL", "symbol": "BPCL", "sector": "Energy"},
     "GAIL": {"company": "GAIL", "symbol": "GAIL", "sector": "Energy"},
     "IOC": {"company": "IOC", "symbol": "IOC", "sector": "Energy"},
     "ONGC": {"company": "ONGC", "symbol": "ONGC", "sector": "Energy"},
-    "Reliance": {"company": "Reliance", "symbol": "RELIANCE", "sector": "Energy"},
-    "NTPC": {"company": "NTPC", "symbol": "NTPC", "sector": "Power"},
+    "Reliance Industries": {"company": "Reliance", "symbol": "RELIANCE", "sector": "Energy"},
+    "NTPC Limited": {"company": "NTPC", "symbol": "NTPC", "sector": "Power"},
     "PowerGrid Corporation of India": {
         "company": "PowerGrid Corporation of India",
         "symbol": "POWERGRID",
@@ -99,7 +99,7 @@ stock_dict = {
         "symbol": "NESTLEIND",
         "sector": "Food Processing",
     },
-    "HCL": {"company": "HCL", "symbol": "HCLTECH", "sector": "Information Technology"},
+    "HCL Technologies": {"company": "HCL", "symbol": "HCLTECH", "sector": "Information Technology"},
     "Infosys": {
         "company": "Infosys",
         "symbol": "INFY",
@@ -120,14 +120,14 @@ stock_dict = {
         "symbol": "WIPRO",
         "sector": "Information Technology",
     },
-    "Adani": {"company": "Adani", "symbol": "ADANIPORTS", "sector": "Infrastructure"},
-    "Zee": {"company": "Zee", "symbol": "ZEEL", "sector": "Media"},
+    "Adani Ports": {"company": "Adani", "symbol": "ADANIPORTS", "sector": "Infrastructure"},
+    "Zee Entertainment Enterprises": {"company": "Zee", "symbol": "ZEEL", "sector": "Media"},
     "Hindalco": {"company": "Hindalco", "symbol": "HINDALCO", "sector": "Metals"},
-    "JSW": {"company": "JSW", "symbol": "JSWSTEEL", "sector": "Metals"},
+    "JSW Steel": {"company": "JSW", "symbol": "JSWSTEEL", "sector": "Metals"},
     "Tata Steel": {"company": "Tata Steel", "symbol": "TATASTEEL", "sector": "Metals"},
     "Vedanta": {"company": "Vedanta", "symbol": "VEDL", "sector": "Metals"},
     "Cipla": {"company": "Cipla", "symbol": "CIPLA", "sector": "Pharmaceuticals"},
-    "Dr Reddy": {
+    "Dr Reddy Lab": {
         "company": "Dr Reddy",
         "symbol": "DRREDDY",
         "sector": "Pharmaceuticals",
@@ -148,6 +148,15 @@ stock_dict = {
         "sector": "Telecommunication",
     },
 }
+
+sectorStockDict = {'Automobile': ['Bajaj Auto', 'Eicher Motors', 'Hero MotoCorp', 'Mahindra', 'Maruti Suzuki', 'Tata Motors'], 'Banking': ['Axis Bank', 'HDFC Bank', 'ICICI Bank', 'IndusInd Bank', 'Kotak Mahindra Bank', 'State Bank of India'], 'Cement': ['Grasim Industries', 'UltraTech Cement', 'Shree Cement'], 'Chemicals': ['United Phosphorus Limited'], 'Construction': ['Larsen & Toubro'], 'Consumer Goods': ['Asian Paints Ltd', 'Hindustan Unilever', 'Britannia Industries', 'ITC Limited', 'Titan Company'], 'Energy': ['BPCL', 'GAIL', 'IOC', 'ONGC', 'Reliance Industries'], 'Power': [
+    'NTPC Limited', 'PowerGrid Corporation of India'], 'Mining': ['Coal India'], 'Financial Services': ['Bajaj Finance', 'Bajaj Finserv', 'HDFC'], 'Food Processing': ['Nestle India Ltd'], 'Information Technology': ['HCL Technologies', 'Infosys', 'Tata Consultancy Services', 'Tech Mahindra', 'Wipro'], 'Infrastructure': ['Adani Ports'], 'Media': ['Zee Entertainment Enterprises'], 'Metals': ['Hindalco', 'JSW Steel', 'Tata Steel', 'Vedanta'], 'Pharmaceuticals': ['Cipla', 'Dr Reddy Lab', 'Sun Pharmaceutical'], 'Telecommunication': ['Airtel', 'Infratel']}
+
+sectorList = ['Automobile', 'Banking', 'Financial Services', 'Cement', 'Chemicals', 'Construction', 'Consumer Goods', 'Energy', 'Power',
+              'Mining', 'Food Processing', 'Information Technology', 'Infrastructure', 'Media', 'Metals', 'Pharmaceuticals', 'Telecommunication']
+
+stockList = ["Bajaj Auto", "Eicher Motors", "Hero MotoCorp", "Mahindra", "Maruti Suzuki", "Tata Motors", "Axis Bank", "HDFC Bank", "ICICI Bank", "IndusInd Bank", "Kotak Mahindra Bank", "State Bank of India", "Grasim Industries", "UltraTech Cement", "Shree Cement", "United Phosphorus Limited", "Larsen & Toubro", "Asian Paints Ltd", "Hindustan Unilever", "Britannia Industries", "ITC Limited", "Titan Company", "BPCL",
+             "GAIL", "IOC", "ONGC", "Reliance Industries", "NTPC Limited", "PowerGrid Corporation of India", "Coal India", "Bajaj Finance", "Bajaj Finserv", "HDFC", "Nestle India Ltd", "HCL Technologies", "Infosys", "Tata Consultancy Services", "Tech Mahindra", "Wipro", "Adani Ports", "Zee Entertainment Enterprises", "Hindalco", "JSW Steel", "Tata Steel", "Vedanta", "Cipla", "Dr Reddy Lab", "Sun Pharmaceutical", "Airtel", "Infratel"]
 
 
 def getStockFile(index):
@@ -195,18 +204,20 @@ def getStockPrice(df, date):
             perc_change = round(100 * (close_val - open_val) / open_val, 2)
         except:
             date = addDay(date)
-            return (0, 0, 0, "invalid")
+            # return (0, 0, 0, "invalid")
+            return (0, "invalid")
 
     effect = ""
     if perc_change > 0:
-        effect = "Positive"
+        effect = "positive"
     elif perc_change < 0:
-        effect = "Negative"
+        effect = "negative"
     else:
-        effect = "Neutral"
+        effect = "neutral"
 
     # print(perc_change, open_val, close_val, effect)
-    return (perc_change, open_val, close_val, effect)
+    # return (perc_change, open_val, close_val, effect)
+    return (perc_change, effect)
 
 
 def addDay(day):
@@ -296,9 +307,6 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
     return final_dict, relevant_docs, retrieved_docs, date_num
 
 
-# def makeKeyWordList(filename, newspaper, idx_lower, idx_upper):
-
-
 def makeKeyWordList(filename, paper, idx_lower, idx_upper):
 
     sector_avg_score = {}
@@ -310,50 +318,113 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
 
     tp, tn, fp, fn = 0, 0, 0, 0
 
-    for dates in final_dict:
-        for index in final_dict[dates]:
-            if index == "sector":
-                for sectors in final_dict[dates]["sector"]:
-                    sector_avg_score = round(
-                        mean(final_dict[dates]["sector"][sectors]), 2
-                    )
-                    # print("{} - {}".format(sectors, sector_avg_score))
-            else:
-                stock_avg_score = round(
-                    mean(final_dict[dates][index]["vader"]), 2)
+    sector_dict = dict()
+    stock_assoc_dict = dict()
+    sector_assoc = dict()
 
-                symbol, industry, sector = getSymbol(index.strip())
-                perc_change, open_val, close_val, effect = getStockPrice(
-                    getStockFile(symbol), dates
-                )
+    # score dict in format: {'date':{'stock':[mean_vader,mean_sector,mean_sector_stock,stock_price]}}
+    score_dict = dict()
 
-                if effect == "invalid":
-                    continue
+    for date in final_dict:
 
-                if perc_change > 0 and stock_avg_score > 0:
-                    tp = tp + 1
-                elif perc_change < 0 and stock_avg_score < 0:
-                    tn = tn + 1
-                elif perc_change < 0 and stock_avg_score > 0:
-                    fp = fp + 1
-                    for ids, heads in enumerate(final_dict[dates][index]["headline"]):
-                        print(
-                            final_dict[dates][index]["headline"][ids],
-                            " - ",
-                            final_dict[dates][index]["vader"][ids],
-                            index,
-                        )
-                    # print(
-                    #     "\nIndex = {}\nVader = {} \t Stock_Change = {}\nHeadline = {} ".format(
-                    #         index,
-                    #         stock_avg_score,
-                    #         perc_change,
-                    #         final_dict[dates][index]["headline"],
-                    #     )
-                    # )
+        score_dict[date] = {}
+        stock_assoc_dict[date] = {}
 
-                elif perc_change > 0 and stock_avg_score < 0:
-                    fn = fn + 1
+        # Tabulate score for each sector
+        if "sector" in final_dict[date]:
+            for sectors in final_dict[date]["sector"]:
+                if not date in sector_dict:
+                    sector_dict[date] = {}
+                sector_dict[date][sectors] = round(
+                    mean(final_dict[date]["sector"][sectors]), 2)
+
+        for sector in sectorList:
+            try:
+                if sector not in sector_dict[date]:
+                    sector_dict[date][sector] = 0
+            except:
+                sector_dict[date] = {}
+                sector_dict[date][sector] = 0
+
+        # Start populating score_dict
+        for index in stockList:
+            score_dict[date][index] = [
+                0, 0, 0, -1, "inavlid", "sector", "symbol"]
+
+            symbol, industry, sector = getSymbol(index.strip())
+            perc_change, effect = getStockPrice(getStockFile(symbol), date)
+
+            score_dict[date][index][1] = sector_dict[date][sector]
+            score_dict[date][index][3] = perc_change
+            score_dict[date][index][4] = effect
+            score_dict[date][index][5] = sector
+            score_dict[date][index][6] = symbol
+
+            if index != "sector" and index in final_dict[date]:
+                score_dict[date][index][0] = round(
+                    mean(final_dict[date][index]["vader"]), 2)
+
+        # Tabluate score for each stock
+        for sector in sectorStockDict:
+            avg = 0
+            avg_number = 0
+            for stocks in sectorStockDict[sector]:
+                avg = avg + score_dict[date][stocks][0]
+                avg_number = avg_number+1
+            avg = avg/avg_number
+            stock_assoc_dict[date][sector] = avg
+
+        for index in stockList:
+            score_dict[date][index][2] = stock_assoc_dict[date][score_dict[date][index][5]]
+
+            cR = score_dict[date][index]
+            if cR[0] !=0 or cR[4]!="invalid" or cR[4]!="neutral":
+                print(date, index, score_dict[date][index])
+
+    # for dates in final_dict:
+    #     for index in final_dict[dates]:
+    #         if index == "sector":
+    #             for sectors in final_dict[dates]["sector"]:
+    #                 sector_avg_score = round(
+    #                     mean(final_dict[dates]["sector"][sectors]), 2
+    #                 )
+    #                 # print("{} - {}".format(sectors, sector_avg_score))
+    #         else:
+    #             stock_avg_score = round(
+    #                 mean(final_dict[dates][index]["vader"]), 2)
+
+    #             symbol, industry, sector = getSymbol(index.strip())
+    #             perc_change, open_val, close_val, effect = getStockPrice(
+    #                 getStockFile(symbol), dates
+    #             )
+
+    #             if effect == "invalid":
+    #                 continue
+
+    #             if perc_change > 0 and stock_avg_score > 0:
+    #                 tp = tp + 1
+    #             elif perc_change < 0 and stock_avg_score < 0:
+    #                 tn = tn + 1
+    #             elif perc_change < 0 and stock_avg_score > 0:
+    #                 fp = fp + 1
+    #                 for ids, heads in enumerate(final_dict[dates][index]["headline"]):
+    #                     print(
+    #                         final_dict[dates][index]["headline"][ids],
+    #                         " - ",
+    #                         final_dict[dates][index]["vader"][ids],
+    #                         index,
+    #                     )
+    #                 # print(
+    #                 #     "\nIndex = {}\nVader = {} \t Stock_Change = {}\nHeadline = {} ".format(
+    #                 #         index,
+    #                 #         stock_avg_score,
+    #                 #         perc_change,
+    #                 #         final_dict[dates][index]["headline"],
+    #                 #     )
+    #                 # )
+
+    #             elif perc_change > 0 and stock_avg_score < 0:
+    #                 fn = fn + 1
 
     print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
 
@@ -404,35 +475,30 @@ if __name__ == "__main__":
     ]
     ts = time()
 
-    results = []
-    gaps = 100
-    idx_upper = 100
+    # results = []
+    # gaps = 4000
+    # idx_upper = 10000
 
-    for idxx in range(0, 1):
+    # for idxx in range(0, 4):
+    #     lists = [
+    #         (newspaperList[idxx][0], newspaperList[idxx][1], x, x + gaps)
+    #         for x in range(0, idx_upper, gaps)
+    #     ]
+    #     with multiprocessing.Pool(processes=12) as pool:
+    #         results2 = pool.starmap(makeKeyWordList, lists)
+    #     results = results + results2
 
-        lists = [
-            (newspaperList[idxx][0], newspaperList[idxx][1], x, x + gaps)
-            for x in range(0, idx_upper, gaps)
-        ]
+    # res = 0
+    # i = 0
+    # for result in results:
+    #     if result != -1:
+    #         res = res + result
+    #         i = i + 1
 
-        with multiprocessing.Pool(processes=1) as pool:
-            results2 = pool.starmap(makeKeyWordList, lists)
+    # print(results, res / i, i)
 
-        # print(newspaperList[idxx][1], " - ", results2)
+    # print("Took ", time() - ts)
 
-        results = results + results2
-
-    res = 0
-    i = 0
-    for result in results:
-        if result != -1:
-            res = res + result
-            i = i + 1
-
-    print(results, res / i, i)
-
-    print("Took ", time() - ts)
-
-    # print(newspaperList[0][0])
-    # results = makeKeyWordList(newspaperList[2][0], newspaperList[2][1], 0, 1000)
-    # print(results)
+    results = makeKeyWordList(
+        newspaperList[0][0], newspaperList[0][1], 0, 2000)
+    print(results)
