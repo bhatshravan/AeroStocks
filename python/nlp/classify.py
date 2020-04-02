@@ -170,7 +170,19 @@ def getSymbol(data):
     return (index["symbol"], index["company"], index["sector"])
 
 
-def getPolarityScore(row, newsPaper):
+def getPolarityScore(row):
+    newsPaper = ""
+    
+    if(row[1].startswith("https://economictimes")):
+        newsPaper = 'economic'
+    elif(row[1].startswith("https://www.moneycontrol")):
+        newsPaper = 'moneycontrol'
+    if(row[1].startswith("https://www.deccanherald")):
+        newsPaper = 'deccan'
+    if(row[1].startswith("https://www.firstpost")):
+        newsPaper = 'firstpost'
+
+
     raw_file_data = ""
     vader_score = 0
 
@@ -179,6 +191,7 @@ def getPolarityScore(row, newsPaper):
     raw_file_name = "../data/news/" + newsPaper + "/raw/" + raw_news_file + ".txt"
     url = row[1]
 
+    # print(raw_file_name)
     if path.exists(raw_file_name):
         raw_file = open(raw_file_name, "r", encoding="utf8").read()
         raw_file_split = raw_file.split("-------")
@@ -186,7 +199,8 @@ def getPolarityScore(row, newsPaper):
         raw_file_data = raw_file_split[1]
         raw_file_heading = raw_file_heading.replace("--", ",")
         vader_score = vaderParagraph(raw_file_heading, raw_file_data)
-        news_data = raw_file_data.replace("\n", "")
+        # news_data = raw_file_data.replace("\n", "")
+        news_data = raw_file_heading.replace("\n", "")
         keyWords, keySectors = getKeyWords(news_data)
 
         return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
@@ -229,30 +243,36 @@ def addDay(day):
     return d
 
 
-def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
+# def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
+def getCsvRows(idx_lower, idx_upper):
 
+    print("Started: {} {}".format(idx_lower,idx_upper))
     relevant_docs = 0
     retrieved_docs = 0
     date_num = 0
     final_dict = dict()
     prints = 0
 
+    # inputFileOpen = open(
+    #     "../data/news/" + newsPaper + "/" + inputFile, "r", encoding="utf-8"
+    # )
     inputFileOpen = open(
-        "../data/news/" + newsPaper + "/" + inputFile, "r", encoding="utf-8"
+        "../data/news/ultimate-merged3.csv", "r", encoding="utf-8"
     )
+
     inputFile = csv.reader(inputFileOpen)
 
     for idx, row in enumerate(inputFile):
-        retrieved_docs = retrieved_docs + 1
 
         if idx < idx_lower:
             continue
         if idx > idx_upper:
             break
+        retrieved_docs = retrieved_docs + 1
         if row[0] == "":
             continue
-        if idx % 100 == 0:
-            print("{} iterations done".format(idx))
+        # if idx % (idx_upper-idx_lower/2) == 0:
+        #     print("{} iterations done".format(idx))
         try:
             (
                 headline,
@@ -261,7 +281,7 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
                 stocks_arr,
                 sectors_arr,
                 dates,
-            ) = getPolarityScore(row, newsPaper)
+            ) = getPolarityScore(row)
         except:
             continue
 
@@ -313,13 +333,18 @@ def getCsvRows(inputFile, newsPaper, idx_lower, idx_upper):
     return final_dict, relevant_docs, retrieved_docs, date_num
 
 
-def makeKeyWordList(filename, paper, idx_lower, idx_upper):
+def makeKeyWordList(idx_lower, idx_upper,xx):
+    output_file = open("final/finals"+str(xx)+".csv","a")
+    outs = ""
+    output_file2 = open("final2/finals2"+str(xx)+".csv","a")
+    # outs2 = "stock,vader,perc"
+    outs2 = ""
 
     sector_avg_score = {}
     ts = time()
 
     final_dict, relevant_docs, retrieved_docs, date_num = getCsvRows(
-        filename, paper, idx_lower, idx_upper
+        idx_lower, idx_upper
     )
 
     if(relevant_docs==0):
@@ -403,43 +428,54 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
             score_dict[date][index][2] = stock_assoc_dict[date][score_dict[date][index][5]]
 
             cR = score_dict[date][index]
-            if cR[0] !=0 or cR[4]!="invalid" or cR[4]!="neutral":
+            score = cR[0]
+            change = cR[3]
+
+            if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
 
 
-                if cR[3] > 0 and cR[0] > 0:
+                if change > 0 and score > 0:
                     tp = tp + 1
-                elif cR[3] < 0 and cR[0] < 0:
+                elif change < 0 and score < 0:
                     tn = tn + 1
-                elif cR[3] < 0 and cR[0] > 0:
-                    print(score_dict[date][index])
+                elif change < 0 and score > 0:
+                    # print(score_dict[date][index])
                     fp = fp + 1
-                elif cR[3] > 0 and cR[0] < 0:
+                elif change > 0 and score < 0:
                     fn = fn + 1
 
-                # print(date, index, score_dict[date][index])
+                # print(date, score, cR[3], cR[1],cR[6])
+                # print(score,change,cR[1],cR[2])
+                outs = outs + str(date)+","+str(score)+","+str(cR[3])+","+str(cR[1])+","+str(cR[2])+","+str(cR[6])+"\n"
+                outs2 = outs2 + str(cR[6])+","+str(score)+","+str(cR[3])+"\n"
+
+                print(outs2)
+                output_file.write(outs)
+                output_file2.write(outs2)
+    output_file.close()
                 
                 
 
-    print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
+    # print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
 
     # precision = round((retrieved_docs / (relevant_docs + retrieved_docs)) * 100, 2)
     # recall = round((relevant_docs / (relevant_docs + retrieved_docs)) * 100, 2)
 
     if (tp + tn + fp + fn) == 0:
-        print("Error:",paper,idx_lower,idx_upper)
-        for dates in score_dict:
-            print(dates)
+        # print("Error:",idx_lower,idx_upper)
+        # for dates in score_dict:
+        #     print(dates)
         # print(score_dict)
         return -1
 
     try:
-        acc = round(((tn + tp) / (tp + tn + fp + fn)) * 100, 4)
+        acc = round(((tn + tp) / (tp + tn + fp + fn)) * 100, 2)
     except Exception as e:
         return -2
     # specificity = round((tn / (tn + fp)) * 100, 2)
     # sensitivity = round((tp / (tp + fn)) * 100, 2)
 
-    print("Accuracy = {}%".format(acc))
+    # print("Accuracy = {}% - {} {}".format(acc,idx_lower,idx_upper))
     # print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
     # print("Specificity = {}".format(specificity))
     # print("Date Num = {}".format(date_num))
@@ -449,7 +485,7 @@ def makeKeyWordList(filename, paper, idx_lower, idx_upper):
     # print("Precision = {}".format(precision))
     # print("Recall = {}".format(recall))
 
-    return acc
+    return acc,idx_lower,idx_upper
 
 
 def main():
@@ -465,40 +501,55 @@ if __name__ == "__main__":
     # getCsvRows('deccan-business.csv', "deccan")
     # getCsvRows('firstpost-merged.csv', "firstpost")
 
-    newspaperList = [
-        ["economic-merged.csv", "economic"],
-        ["deccan-business.csv", "deccan"],
-        ["firstpost-merged.csv", "firstpost"],
-        ["moneyctl-merged-buisness.csv", "moneycontrol"],
-    ]
-    ts = time()
+    # newspaperList = [
+    #     ["economic-merged.csv", "economic"],
+    #     ["deccan-business.csv", "deccan"],
+    #     ["firstpost-merged.csv", "firstpost"],
+    #     ["moneyctl-merged-buisness.csv", "moneycontrol"],
+    # ]
+    # ts = time()
 
     # results = []
-    # gaps = 5000
-    # idx_upper = 75000
+    # proccesses = 12
+    # idx_upper = 66000
+    # idx_lower = 30000
+    # # gaps = round((idx_upper/proccesses))
+    # gaps = 3000
 
-    # for idxx in range(0, 1):
-    #     lists = [
-    #         (newspaperList[idxx][0], newspaperList[idxx][1], x, x + gaps)
-    #         for x in range(0, idx_upper, gaps)
-    #     ]
-    #     with multiprocessing.Pool(processes=12) as pool:
-    #         results2 = pool.starmap(makeKeyWordList, lists)
-    #     results = results + results2
+    # lists = []
+    # page = 0
 
-    # res = 0
-    # i = 0
+    # for x in range(idx_lower, idx_upper, gaps):
+    #     lists.append((x,x+gaps, page))
+    #     page = page+1
+    #     if page > 11:
+    #         page = 0
+
+
+
+    # # lists = [
+    # #         (x, x + gaps)
+    # #         for x in range(idx_lower, idx_upper, gaps)
+    # # ]
+
+
+
+    # with multiprocessing.Pool(processes=proccesses) as pool:
+    #     results = pool.starmap(makeKeyWordList, lists)
+
+    # print(results)
+
+    # sums=0
+    # sums_idx=0
     # for result in results:
-    #     if result > 0:
-    #         res = res + result
-    #         i = i + 1
-
-    # print(results, res / i, i)
+    #     if result!=-1:
+    #         sums = result[0]+sums
+    #         sums_idx=sums_idx+1
+    # print(sums/sums_idx,sums_idx,len(results))
 
     # print("Took ", time() - ts)
 
     # results = makeKeyWordList(
     #     newspaperList[1][0], newspaperList[1][1], 0, 400)
-    results = makeKeyWordList(
-        'ultimate-merged3.csv', newspaperList[1][1], 0, 400)
+    results = makeKeyWordList(30000, 30500,16)
     print(results)
