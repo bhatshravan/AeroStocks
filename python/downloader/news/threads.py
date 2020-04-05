@@ -9,6 +9,9 @@ import economic as ecl
 import deccan as dcl
 import firstpost as fpl
 
+import multiprocessing
+
+
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -34,10 +37,10 @@ class DownloadWorker(Thread):
                 # mtl.downloadMtlAll(url, x)
 
                 # Economic times
-                # ecl.downloadEconomicAll(link, x)
+                ecl.downloadEconomicAll(link, x)
 
                 # FirstPost
-                fpl.downloadFirstPostAll(link, x)
+                # fpl.downloadFirstPostAll(link, x)
 
                 # Deccan
                 # dcl.downloadDeccanAll(link, x)
@@ -46,7 +49,7 @@ class DownloadWorker(Thread):
                 self.queue.task_done()
 
 
-def main():
+def threads():
     ts = time()
 
     # Moneycontrol
@@ -54,9 +57,10 @@ def main():
 
     # Economic
     # pages = [x for x in range(43647, 43914)]
+    # pages = [x for x in range(40179, 43921)]
 
     # FirstPost
-    pages = [x for x in range(2, 560)]
+    # pages = [x for x in range(2, 560)]
 
     # Deccan
     # date1 = date(2019, 9, 2)
@@ -76,5 +80,46 @@ def main():
     logging.info('Took %s', time() - ts)
 
 
+def processes():
+    lists = []
+    page = 0
+    # 43921
+
+    #economic
+    # for x in range(40909, 43921):
+    #     lists.append((x, page))
+    #     page = page+1
+    #     if page > 11:
+    #         page = 0
+
+    # Deccan
+    # date1 = date(2012, 1, 1)
+    # date2 = date(2020, 3, 31)
+    # pages = [d.strftime('%Y/%m/%d') for d in (date1 + timedelta(days=i)
+    #                                           for i in range((date2 - date1).days + 1))]
+
+    # for pagess in pages:
+    #     lists.append((pagess, page))    
+    #     page = page+1
+    #     if page > 11:
+    #         page = 0
+
+    # FirstPost
+    for x in range(2, 3202):
+        lists.append((x, page))
+        page = page+1
+        if page > 11:
+            page = 0
+
+    print("\n\nLists:", lists)
+
+    with multiprocessing.Pool(processes=12) as pool:
+        # pool.starmap(ecl.downloadEconomicAll, lists)
+        # pool.starmap(dcl.downloadDeccanAll, lists)
+        pool.starmap(fpl.downloadFirstPostAll, lists)
+
+
 if __name__ == '__main__':
-    main()
+    # main()
+    processes()
+# headline,url,date,realdate,category

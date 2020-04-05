@@ -9,6 +9,7 @@ node_modules/
 documentation/Survey_Paper/certificates/
 python/data/stocks/alphavantage/*
 python/data/news/*/raw/*.*
+python/data/classifier/*
 python/data/news/*/20*
 python/data/news
 

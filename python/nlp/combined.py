@@ -161,6 +161,8 @@ def downloadRawsAndPolarity(row, newsPaper):
                 raw_file_data = downloadDeccanOne(url)
             elif(newsPaper == "economic"):
                 raw_file_data = downloadEconomicOne(url)
+            elif(newsPaper == "firstpost"):
+                raw_file_data = downloadFirstPostOne(url)
             else:
                 raw_file_data = downloadMtlOne(url, row[2], row[3])
 
@@ -192,8 +194,8 @@ def downloadInputFile(inputFile, newsPaper):
         if(row[0] == ""):
             continue
         prints = prints+1
-        # downloadRawsAndPolarity(row, newsPaper)
-        getPolarityScore(row, newsPaper)
+        downloadRawsAndPolarity(row, newsPaper)
+        # getPolarityScore(row, newsPaper)
 
     print("Positive:{}, Negative:{}, Neutral:{}, Total={}".format(p, n, e, (p+n+e)))
 

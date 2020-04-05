@@ -12,38 +12,41 @@ def cleanhtml(raw_html):
 
 
 def downloadFirstPostAll(curpg, file_page):
+    try:
 
-    page = 'https://www.firstpost.com/category/business/page/'+str(curpg)
+        page = 'https://www.firstpost.com/category/business/page/'+str(curpg)
+        print(page)
+        response = requests.get(page)
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    response = requests.get(page)
-    soup = BeautifulSoup(response.content, "html.parser")
+        output_file = open("../../data/news/firstpost/lists/all-" +
+                        str(file_page)+".csv", "a")
 
-    output_file = open("../../data/news/firstpost/lists/all-" +
-                       str(file_page)+".csv", "a")
+        uls = soup.find('ul', {'class': 'articles-list'})
 
-    uls = soup.find('ul', {'class': 'articles-list'})
+        posts = uls.find_all('li')
 
-    posts = uls.find_all('li')
+        for post in posts:
 
-    for post in posts:
+            link = post.a['href']
+            post = post.find('div', {'class': 'info-wrap'})
+            headline_title = post.find(
+                'p', {'class': 'list-title'}).get_text().replace(",", "--")
 
-        link = post.a['href']
-        post = post.find('div', {'class': 'info-wrap'})
-        headline_title = post.find(
-            'p', {'class': 'list-title'}).get_text().replace(",", "--")
+            date = post.find('p', {'class': 'text-muted'}).text
 
-        date = post.find('p', {'class': 'text-muted'}).text
+            date = dts.firstpost(date)
 
-        date = dts.firstpost(date)
-
-        outs = headline_title+","+link+","+date+"\n"
-        try:
-            output_file.write(outs)
-            print(outs)
-        except:
-            print("Error")
-    output_file.close()
-
+            outs = headline_title+","+link+","+date+"\n"
+            try:
+                output_file.write(outs)
+                # print(outs)
+            except:
+                print("Error")
+                p22=0
+        output_file.close()
+    except:
+        p=22
 
 def downloadFirstPostOne(url):
     response = requests.get(url)

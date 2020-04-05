@@ -36,34 +36,37 @@ def daterange(start_date, end_date):
 
 
 def downloadDeccanAll(currentDate, file_page):
+    try:
 
-    response = requests.post(url, json={'arcDate': currentDate})
-    soup = BeautifulSoup(response.content, "html.parser")
+        response = requests.post(url, json={'arcDate': currentDate})
+        print(url,currentDate)
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    headlines = soup.find_all('h2')
-    contents = soup.find_all('ul', {'class': 'group'})
+        headlines = soup.find_all('h2')
+        contents = soup.find_all('ul', {'class': 'group'})
 
-    output_file = open("../../data/news/deccan/lists/all-" +
-                       str(file_page)+".csv", "a")
+        output_file = open("../../data/news/deccan/lists/all-" +
+                        str(file_page)+".csv", "a")
 
-    currentDate = currentDate.replace("/", "-")
-    for idx, content in enumerate(contents):
-        contentLinks = content.findChildren('li')
-        for contentLink in contentLinks:
-            try:
-                tag = (headlines[idx].string).replace(",", "--")
-                headline = (contentLink.string).strip().replace(",", "--")
-                contentList = [headline,
-                               "https://www.deccanherald.com"+contentLink.a['href'], currentDate, currentDate, tag]
-                outs = ','.join(contentList)
-                outs = outs+"\n"
-                output_file.write(outs)
-                print(outs)
-            except:
-                continue
+        currentDate = currentDate.replace("/", "-")
+        for idx, content in enumerate(contents):
+            contentLinks = content.findChildren('li')
+            for contentLink in contentLinks:
+                try:
+                    tag = (headlines[idx].string).replace(",", "--")
+                    headline = (contentLink.string).strip().replace(",", "--")
+                    contentList = [headline,
+                                "https://www.deccanherald.com"+contentLink.a['href'], currentDate, currentDate, tag]
+                    outs = ','.join(contentList)
+                    outs = outs+"\n"
+                    output_file.write(outs)
+                    # print(outs)
+                except:
+                    continue
 
-    output_file.close()
-
+        output_file.close()
+    except:
+        pp=12
 
 # def main():
 #     m1 = m2 = ""

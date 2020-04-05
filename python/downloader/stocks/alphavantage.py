@@ -8,7 +8,7 @@ import random
 # stocks_list = ["BAJAJ-AUTO", "EICHERMOT", "HEROMOTOCO", "M%26M", "MARUTI", "TATAMOTORS", "AXISBANK", "HDFCBANK", "ICICIBANK", "INDUSINDBK", "KOTAKBANK", "SBIN", "GRASIM", "ULTRACEMCO", "SHREECEM", "UPL", "LT", "ASIANPAINT", "HINDUNILVR", "BRITANNIA", "ITC", "TITAN", "BPCL", "GAIL",
 #                "IOC", "ONGC", "RELIANCE", "NTPC", "POWERGRID", "COALINDIA", "BAJFINANCE", "BAJAJFINSV", "HDFC", "NESTLEIND", "HCLTECH", "INFY", "TCS", "TECHM", "WIPRO", "ADANIPORTS", "ZEEL", "HINDALCO", "JSWSTEEL", "TATASTEEL", "VEDL", "CIPLA", "DRREDDY", "SUNPHARMA", "BHARTIARTL", "INFRATEL"]
 
-stocks_list = ["BAJAJFINSERV"]
+stocks_list = ["ITC"]
 # Misc
 api_key = ["D4V3YEYJGNXZ27PL", "BEZAPQ60MX6M0MTV", "C73M71O6LA04D9KI",
            "4D5AD7GG5BUJ0R9Y", "5LIB86FZXJJ5YQD3", "LK8JHRNLLTU90Q9C"]
@@ -70,8 +70,10 @@ def downloadAllDaily():
 def downloadIntraDay(stock):
     rand_key = api_key[random.randrange(0, len(api_key))]
     #rand_key = api_key[random.choice([0,1,2])]
-    url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3A" + \
-        stock+"&apikey="+rand_key+"&datatype=csv&interval=5min&outputsize="+outputsize
+    # url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3A" + \
+    #     stock+"&apikey="+rand_key+"&datatype=csv&interval=5min&outputsize="+outputsize
+    url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE&apikey=" + \
+        rand_key+"&datatype=csv&outputsize="+outputsize
 
     print(url)
 
@@ -81,11 +83,12 @@ def downloadIntraDay(stock):
 
     content = page.read()
     # print(content)
-    f = open("../../data/stocks/alphavantage/"+stock+"-Intra.csv", "wb")
+    # f = open("../../data/stocks/alphavantage/"+stock+"-Intra.csv", "wb")
+    f = open("../../data/stocks/NSE.csv", "wb")
     f.write(content)
     f.close()
 
 
 if __name__ == '__main__':
-    downloadAllDaily()
-    # downloadIntraDay("ICICIBANK")
+    # downloadAllDaily()
+    downloadIntraDay("ICICIBANK")

@@ -13,8 +13,8 @@ stock_list = ["ADANIPORTS.NS", "ASIANPAINT.NS", "AXISBANK.NS", "BAJAJ-AUTO.NS", 
 def getStockData(ticker):
     msft = yf.Ticker(ticker)
     # print(msft.info)
-    hist = msft.history(period="1d", interval="10m")
+    hist = msft.history(period="1y")
     print(hist)
 
 
-getStockData("COALINDIA.NS")
+getStockData("NSE.NS")

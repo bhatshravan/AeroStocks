@@ -13,34 +13,41 @@ def cleanhtml(raw_html):
 
 def downloadEconomicAll(curpg, file_page):
 
-    page = 'https://economictimes.indiatimes.com/archivelist/starttime-' + \
-        str(curpg)+'.cms'
-    response = requests.get(page)
-    soup = BeautifulSoup(response.content, "html.parser")
+    try:
 
-    output_file = open("../../data/news/economic/lists/all-" +
-                       str(file_page)+".csv", "a")
-    pagetext = soup.find('span', attrs={'class': 'pagetext'})
+        page = 'https://economictimes.indiatimes.com/archivelist/starttime-' + \
+            str(curpg)+'.cms'
+        response = requests.get(page)
+        print(page)
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    date = soup.find('td', {'class': 'contentbox5'})
-    date = dts.economic2(date.get_text().replace(
-        "Archives", "").replace(">", "").strip())
+        output_file = open("../../data/news/economic/lists/all-" +
+                        str(file_page)+".csv", "a")
+        pagetext = soup.find('span', attrs={'class': 'pagetext'})
 
-    for headline in pagetext.find_all('li'):
+        date = soup.find('td', {'class': 'contentbox5'})
+        date = dts.economic2(date.get_text().replace(
+            "Archives", "").replace(">", "").strip())
 
-        headline_title = headline.get_text().replace(",", "--")
-        link = headline.a['href']
+        for headline in pagetext.find_all('li'):
 
-        headline_title = str(headline_title)
-        outs = headline_title+",https://economictimes.indiatimes.com" + \
-            str(link)+","+date+"\n"
-        try:
-            output_file.write(outs)
-            print(outs)
+            headline_title = headline.get_text().replace(",", "--")
+            link = headline.a['href']
 
-        except:
-            print("Error")
-    output_file.close()
+            headline_title = str(headline_title)
+            if headline_title == "":
+                continue
+            outs = headline_title+",https://economictimes.indiatimes.com" + \
+                str(link)+","+date+"\n"
+
+            try:
+                output_file.write(outs)
+
+            except:
+                print("Error")
+        output_file.close()
+    except:
+        p=22
 
 
 def downloadEconomicOne(url):

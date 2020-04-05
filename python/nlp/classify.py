@@ -15,6 +15,16 @@ import random
 import combined as combined
 from time import time
 import multiprocessing
+import sys
+
+maxInt = sys.maxsize
+
+while True:
+    try:
+        csv.field_size_limit(maxInt)
+        break
+    except OverflowError:
+        maxInt = int(maxInt/10)
 
 stock_dict = {
     "Bajaj Auto": {"company": "Bajaj", "symbol": "BAJAJ-AUTO", "sector": "Automobile"},
@@ -158,6 +168,9 @@ sectorList = ['Automobile', 'Banking', 'Financial Services', 'Cement', 'Chemical
 stockList = ["Bajaj Auto", "Eicher Motors", "Hero MotoCorp", "Mahindra", "Maruti Suzuki", "Tata Motors", "Axis Bank", "HDFC Bank", "ICICI Bank", "IndusInd Bank", "Kotak Mahindra Bank", "State Bank of India", "Grasim Industries", "UltraTech Cement", "Shree Cement", "United Phosphorus Limited", "Larsen & Toubro", "Asian Paints Ltd", "Hindustan Unilever", "Britannia Industries", "ITC Limited", "Titan Company", "BPCL",
              "GAIL", "IOC", "ONGC", "Reliance Industries", "NTPC Limited", "PowerGrid Corporation of India", "Coal India", "Bajaj Finance", "Bajaj Finserv", "HDFC", "Nestle India Ltd", "HCL Technologies", "Infosys", "Tata Consultancy Services", "Tech Mahindra", "Wipro", "Adani Ports", "Zee Entertainment Enterprises", "Hindalco", "JSW Steel", "Tata Steel", "Vedanta", "Cipla", "Dr Reddy Lab", "Sun Pharmaceutical", "Airtel", "Infratel"]
 
+write_to_file = 1
+in_csv = "../data/news/economic/economic-8yr.csv"
+
 stockPds = {}
 for index in stock_dict:
     symbol = stock_dict[index.strip()]["symbol"]
@@ -197,28 +210,26 @@ def getPolarityScore(row):
     raw_file_name = "../data/news/" + newsPaper + "/raw/" + raw_news_file + ".txt"
     url = row[1]
 
-    # print(raw_file_name)
+    # if path.exists(raw_file_name):
+    #     raw_file = open(raw_file_name, "r", encoding="utf8").read()
+    #     raw_file_split = raw_file.split("-------")
+    #     raw_file_heading = raw_file_split[0]
+    #     raw_file_data = raw_file_split[1]
+    #     raw_file_heading = raw_file_heading.replace("--", ",")
+    #     vader_score = vaderParagraph(raw_file_heading, raw_file_data)
+    #     # news_data = raw_file_data.replace("\n", "")
+    #     news_data = raw_file_data.replace("\n", "")
+    #     keyWords, keySectors = getKeyWords(news_data)
 
-    if path.exists(raw_file_name):
-        raw_file = open(raw_file_name, "r", encoding="utf8").read()
-        raw_file_split = raw_file.split("-------")
-        raw_file_heading = raw_file_split[0]
-        raw_file_data = raw_file_split[1]
-        raw_file_heading = raw_file_heading.replace("--", ",")
-        vader_score = vaderParagraph(raw_file_heading, raw_file_data)
-        # news_data = raw_file_data.replace("\n", "")
-        news_data = raw_file_data.replace("\n", "")
-        keyWords, keySectors = getKeyWords(news_data)
-
-        return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
+    #     return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
     
 
-    # raw_file_heading = row[0].replace("--", ",")
-    # vader_score = vaderParagraph(raw_file_heading, raw_file_heading)
-    # news_data = raw_file_heading.replace("\n", "")
-    # keyWords, keySectors = getKeyWords(news_data)
+    raw_file_heading = row[0].replace("--", ",")
+    vader_score = vaderParagraph(raw_file_heading, raw_file_heading)
+    news_data = raw_file_heading.replace("\n", "")
+    keyWords, keySectors = getKeyWords(news_data)
 
-    # return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
+    return (raw_file_heading, url, vader_score, keyWords, keySectors, row[2])
 
 
 def getStockPrice(df, date):
@@ -271,9 +282,10 @@ def getCsvRows(idx_lower, idx_upper):
     # inputFileOpen = open(
     #     "../data/news/" + newsPaper + "/" + inputFile, "r", encoding="utf-8"
     # )
-    inputFileOpen = open(
-        "../data/news/ultimate-merged.csv", "r", encoding="utf-8"
-    )
+    # inputFileOpen = open(
+    #     "../data/news/ultimate-merged.csv", "r", encoding="utf-8"
+    # )
+    inputFileOpen = open(in_csv, "r", encoding="utf-8")
 
     inputFile = csv.reader(inputFileOpen)
 
@@ -302,7 +314,7 @@ def getCsvRows(idx_lower, idx_upper):
 
         entered_stock = False
 
-        if stocks_arr != []:
+        if stocks_arr != [] and vader_score!=0:
             entered_stock = True
             relevant_docs = relevant_docs + 1
 
@@ -349,8 +361,8 @@ def getCsvRows(idx_lower, idx_upper):
 
 
 def makeKeyWordList(idx_lower, idx_upper,xx):
-    output_file = open("final2/finals"+str(xx)+".csv","a")
-    # output_file2 = open("final2/finals2"+str(xx)+".csv","a")
+    output_file = open("../data/classifier/scores/score-"+str(xx)+".csv","a")
+
     outs = ""
     outs2 = ""
     cr=[0,0,0]
@@ -442,35 +454,29 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
             score_dict[date][index][2] = stock_assoc_dict[date][score_dict[date][index][5]]
             cR = score_dict[date][index]
             change = cR[3]
-            # outs = outs + str(date)+","+str(score)+","+str(cR[3])+","+str(cR[1])+","+str(cR[2])+","+str(cR[6])+"\n"
-
             score = cR[0]
 
-            if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
 
-
+            if cR[0]!=0 or cR[1]!=0 or cR[2]!=0:
                 outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
-                cr[1] = cr[1]+1
 
+            if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
+                # outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
                 if change > 0 and score > 0:
                     tp = tp + 1
                 elif change < 0 and score < 0:
                     tn = tn + 1
                 elif change < 0 and score > 0:
+                    # if(xx==12):
                     # print(score_dict[date][index])
                     fp = fp + 1
                 elif change > 0 and score < 0:
                     fn = fn + 1
 
-                outs2 = outs2 + str(date)+","+str(cR[6])+","+str(score)+","+str(cR[3])+"\n"
-
-            cR = score_dict[date][index]
-            score = cR[1]
-            change = cR[3]
-
-            # if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
-
-            #     cr[2] = cr[2]+1
+            # score = cR[1]
+            # change = cR[3]
+            # if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0 and cR[0]!=0:
+            #     outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
             #     if change > 0 and score > 0:
             #         tp = tp + 1
             #     elif change < 0 and score < 0:
@@ -481,13 +487,8 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
             #     elif change > 0 and score < 0:
             #         fn = fn + 1
 
-            # #     # outs2 = outs2 + str(date)+","+str(cR[6])+","+str(score)+","+str(cR[3])+"\n"
-
-
             # score = cR[2]
-
             # if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
-
             #     cr[0] = cr[0]+1
             #     if change > 0 and score > 0:
             #         tp = tp + 1
@@ -498,13 +499,12 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
             #     elif change > 0 and score < 0:
             #         fn = fn + 1
 
-            # outs2 = outs2 + str(date)+","+str(cR[6])+","+str(score)+","+str(cR[3])+"\n"
-
-    # output_file2.write(outs2)
-    outs = outs.replace("[","").replace("]","").replace("\"","").replace(", ",",")
     # print(outs)
-    output_file.write(outs)
-    output_file.close()
+    if (write_to_file==1):
+        outs = outs.replace("[","").replace("]","").replace("\"","").replace(", ",",")
+        # print("Outs:",outs)
+        output_file.write(outs)
+        output_file.close()
                 
                 
     print("\nConfusion matrix: \nTP: {}\tFP: {}\nFN: {}\tTN: {}".format(tp, fp, fn, tn))
@@ -522,7 +522,7 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
     # sensitivity = round((tp / (tp + fn)) * 100, 2)
     # precision = round((retrieved_docs / (relevant_docs + retrieved_docs)) * 100, 2)
     # recall = round((relevant_docs / (relevant_docs + retrieved_docs)) * 100, 2)
-    # print("Accuracy = {}% - {} {}".format(acc,idx_lower,idx_upper))
+    print("Accuracy = {}% - {} {}".format(acc,idx_lower,idx_upper))
     print("Retrieved = {}, Relevant = {}".format(retrieved_docs, relevant_docs))
     # print("Specificity = {}".format(specificity))
     # print("Date Num = {}".format(date_num))
@@ -540,41 +540,46 @@ def main():
     getStockPrice(getStockFile(index), "2019-07-28")
 
 
-# makeKeyWordList()
 if __name__ == "__main__":
+
     ts = time()
-    # results = []
-    # proccesses = 10
-    # # idx_upper = 112902
-    # # gaps = round((idx_upper/proccesses))
-    # idx_upper = 30000
-    # idx_lower = 0
+    write_to_file = 1
+
+    results = []
+    proccesses = 12 
+    in_csv  = "../data/news/economic/economic-8yr.csv"
+    # idx_upper =  int(600000/3) # 531233 # deccan
+    idx_upper = 900000
+    # idx_upper = 750000
+    idx_lower = 0
+    gaps = round(((idx_upper-idx_lower)/proccesses))
+    print(gaps)
     # gaps = 3000
 
-    # lists = []
-    # page = 0
+    lists = []
+    page = 0
 
-    # for x in range(idx_lower, idx_upper, gaps):
-    #     lists.append((x,x+gaps, page))
-    #     page = page+1
-    #     if page > (proccesses-1):
-    #         page = 0
+    for x in range(idx_lower, idx_upper, gaps):
+        lists.append((x,x+gaps, page))
+        page = page+1
+        if page > (proccesses-1):
+            page = 0
 
-    # with multiprocessing.Pool(processes=proccesses) as pool:
-    #     results = pool.starmap(makeKeyWordList, lists)
+    with multiprocessing.Pool(processes=proccesses) as pool:
+        results = pool.starmap(makeKeyWordList, lists)
 
-    # print(results)
-    # sums=0
-    # sums_idx=0
-    # for result in results:
-    #     if result!=-1 or result!=-2 or result!=-3:
-    #         sums = result[0]+sums
-    #         sums_idx=sums_idx+1
-    # sums = round(sums/sums_idx,2)
-    # print(sums,sums_idx,len(results))
+    print(results)
+    sums=0
+    sums_idx=0
+    for result in results:
+        if result!=-1 and result!=-2 and result!=-3:
+            sums = result[0]+sums
+            sums_idx=sums_idx+1
+    sums = round(sums/sums_idx,2)
+    print(sums,sums_idx,len(results))
 
-    results = makeKeyWordList(30000, 50000,22)
+    # results = makeKeyWordList(1000, 3000, 25)
     print(results)
     print("Took ", time() - ts)
 
-# date,stock,vader,secscore,assoc,perc,percword,sector,news
+# date,stock,vader,secscore,assoc,perc,percword,sector,index,news

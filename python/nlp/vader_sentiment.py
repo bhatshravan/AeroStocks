@@ -69,7 +69,7 @@ def vaderAtOnce(data):
         return("Negative", pos, neg, neu)
 
 
-def vaderParagraph(data):
+def vaderParagraph(heading, data):
 
     analyzer = SentimentIntensityAnalyzer()
 
@@ -82,21 +82,24 @@ def vaderParagraph(data):
         vs = analyzer.polarity_scores(sentence)
         paragraphSentiments += vs["compound"]
 
-    neg_words = ["plunge up to", "share price falls",
-                 "52-week low", "nosedives", "share price tanks", "-yr low"]
+    neg_words = ["plunge up to", "share price falls", "shares fall","shares dip","stock plunges","profit plunges","drops over","plummets"
+                 "52-week low", "nosedives", "share price tanks", "-yr low", "slides", "dips"]
+
+    spec_words = ["Buzzing stocks", "ideas from experts"]
 
     averageSentiment = round(paragraphSentiments / len(sentence_list), 4)
 
+    heading = heading.lower()
+
+    for words in spec_words:
+        if words in heading:
+            return(0)
+
     for words in neg_words:
-        if words in data.lower():
+        if words in heading:
             if(averageSentiment > 0):
                 averageSentiment = -1*averageSentiment
-
-            # print("Man:", averageSentiment)
             return(averageSentiment)
-
-    # print(str(averageSentiment))
-
     return ((averageSentiment))
 
 

@@ -5,6 +5,7 @@ from threading import Thread
 from time import time
 from datetime import datetime, timedelta, date
 import combined as combined
+import classify as classify
 import csv
 from slugify import slugify
 import os.path
@@ -26,11 +27,15 @@ class DownloadWorker(Thread):
 
     def run(self):
         while True:
-            row, newspaper = self.queue.get()
+            # row, newspaper = self.queue.get()
+            idx_lower, idx_upper = self.queue.get()
+
             x = self.x
             try:
-                combined.downloadRawsAndPolarity(row, newspaper)
+                # combined.downloadRawsAndPolarity(row, newspaper)
                 # combined.getPolarityScore(row, newspaper)
+                classify.makeKeyWordList(
+                    'economic-merged.csv', "economic", idx_lower, idx_upper)
             finally:
                 self.queue.task_done()
 
@@ -38,34 +43,35 @@ class DownloadWorker(Thread):
 def main():
     ts = time()
 
-    newspaper = "economic"
-    inputFile = "economic-merged.csv"
-
+    # Downloading
+    # newspaper = "firstpost"
+    # inputFile = "firstpost-merged.csv"
     # newspaper = "moneycontrol"
     # inputFile = "moneyctl-merged-buisness.csv"
 
-    inputFileOpen = open('../data/news/'+newspaper+"/"+inputFile, 'rt')
-    inputFile = csv.reader(inputFileOpen)
+    # inputFileOpen = open('../data/news/'+newspaper+"/"+inputFile, 'rt')
+    # inputFile = csv.reader(inputFileOpen)
 
     queue = Queue()
-    for x in range(15):
+    for x in range(8):
         worker = DownloadWorker(queue, x)
         worker.daemon = True
         worker.start()
 
-    for idx, row in enumerate(inputFile):
-        # if(idx > 900):
-        #     break
+    # for idx, row in enumerate(inputFile):
+    #     # if(idx > 900):
+    #     #     break
 
-        # if(prints >= 100):
-        #     prints = 0
-        #     print("Positive:{}, Negative:{}, Neutral:{}, Total={}".format(
-        #         p, n, e, (p+n+e)))
+    #     if(row[0] == ""):
+    #         continue
+    #     logger.info('Queueing {}'.format(row[0][0:120]))
+    #     queue.put((row, newspaper))
+    i = 10000
+    while (i < 11000):
 
-        if(row[0] == ""):
-            continue
-        logger.info('Queueing {}'.format(row[0][0:120]))
-        queue.put((row, newspaper))
+        logger.info('Queueing {}'.format(i))
+        queue.put((i, i+100))
+        i = i+100
 
     queue.join()
     logging.info('Took %s', time() - ts)
