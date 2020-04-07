@@ -3,7 +3,7 @@ import glob
 
 
 def mergeLists(newspaper):
-    outfilename = "../data/classifier/scores75.csv"
+    outfilename = "../data/classifier/scores76.csv"
 
     with open(outfilename, 'wb') as outfile:
         for filename in glob.glob('../data/classifier/scores/*'):

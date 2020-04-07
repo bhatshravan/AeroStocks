@@ -168,8 +168,8 @@ sectorList = ['Automobile', 'Banking', 'Financial Services', 'Cement', 'Chemical
 stockList = ["Bajaj Auto", "Eicher Motors", "Hero MotoCorp", "Mahindra", "Maruti Suzuki", "Tata Motors", "Axis Bank", "HDFC Bank", "ICICI Bank", "IndusInd Bank", "Kotak Mahindra Bank", "State Bank of India", "Grasim Industries", "UltraTech Cement", "Shree Cement", "United Phosphorus Limited", "Larsen & Toubro", "Asian Paints Ltd", "Hindustan Unilever", "Britannia Industries", "ITC Limited", "Titan Company", "BPCL",
              "GAIL", "IOC", "ONGC", "Reliance Industries", "NTPC Limited", "PowerGrid Corporation of India", "Coal India", "Bajaj Finance", "Bajaj Finserv", "HDFC", "Nestle India Ltd", "HCL Technologies", "Infosys", "Tata Consultancy Services", "Tech Mahindra", "Wipro", "Adani Ports", "Zee Entertainment Enterprises", "Hindalco", "JSW Steel", "Tata Steel", "Vedanta", "Cipla", "Dr Reddy Lab", "Sun Pharmaceutical", "Airtel", "Infratel"]
 
-write_to_file = 1
-in_csv = "../data/news/economic/economic-8yr.csv"
+write_to_file = 0
+in_csv = "../data/news/firstpost/firstpost-8yr.csv"
 
 stockPds = {}
 for index in stock_dict:
@@ -243,9 +243,11 @@ def getStockPrice(df, date):
             close_val = df.at[date, "close"][0]
             perc_change = round(100 * (close_val - open_val) / open_val, 2)
         except:
-            date = addDay(date)
-            # return (0, 0, 0, "invalid")
-            return (0, "invalid")
+            try:
+                date = addDay(date)
+            except:
+                return (0, 0, 0, "invalid")
+            # return (0, "invalid")
 
     effect = ""
     if perc_change > 0:
@@ -459,6 +461,8 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
 
             if cR[0]!=0 or cR[1]!=0 or cR[2]!=0:
                 outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
+                print(cR[0],cR[2],cR[3])
+
 
             if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
                 # outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
@@ -543,42 +547,42 @@ def main():
 if __name__ == "__main__":
 
     ts = time()
-    write_to_file = 1
+    write_to_file = 0
 
-    results = []
-    proccesses = 12 
-    in_csv  = "../data/news/economic/economic-8yr.csv"
-    # idx_upper =  int(600000/3) # 531233 # deccan
-    idx_upper = 900000
-    # idx_upper = 750000
-    idx_lower = 0
-    gaps = round(((idx_upper-idx_lower)/proccesses))
-    print(gaps)
-    # gaps = 3000
+    # results = []
+    # proccesses = 12
+    # in_csv  = "../data/news/firstpost/firstpost-8yr.csv"
+    # # idx_upper =  int(600000/3) # 531233 # deccan
+    # idx_upper = 5000
+    # # idx_upper = 750000
+    # idx_lower = 0
+    # gaps = round(((idx_upper-idx_lower)/proccesses))
+    # print(gaps)
+    # # gaps = 3000
 
-    lists = []
-    page = 0
+    # lists = []
+    # page = 0
 
-    for x in range(idx_lower, idx_upper, gaps):
-        lists.append((x,x+gaps, page))
-        page = page+1
-        if page > (proccesses-1):
-            page = 0
+    # for x in range(idx_lower, idx_upper, gaps):
+    #     lists.append((x,x+gaps, page))
+    #     page = page+1
+    #     if page > (proccesses-1):
+    #         page = 0
 
-    with multiprocessing.Pool(processes=proccesses) as pool:
-        results = pool.starmap(makeKeyWordList, lists)
+    # with multiprocessing.Pool(processes=proccesses) as pool:
+    #     results = pool.starmap(makeKeyWordList, lists)
 
-    print(results)
-    sums=0
-    sums_idx=0
-    for result in results:
-        if result!=-1 and result!=-2 and result!=-3:
-            sums = result[0]+sums
-            sums_idx=sums_idx+1
-    sums = round(sums/sums_idx,2)
-    print(sums,sums_idx,len(results))
+    # print(results)
+    # sums=0
+    # sums_idx=0
+    # for result in results:
+    #     if result!=-1 and result!=-2 and result!=-3:
+    #         sums = result[0]+sums
+    #         sums_idx=sums_idx+1
+    # sums = round(sums/sums_idx,2)
+    # print(sums,sums_idx,len(results))
 
-    # results = makeKeyWordList(1000, 3000, 25)
+    results = makeKeyWordList(1000, 5000, 28)
     print(results)
     print("Took ", time() - ts)
 
