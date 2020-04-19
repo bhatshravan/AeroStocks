@@ -5,10 +5,10 @@ import random
 
 
 # Stocks lst
-# stocks_list = ["BAJAJ-AUTO", "EICHERMOT", "HEROMOTOCO", "M%26M", "MARUTI", "TATAMOTORS", "AXISBANK", "HDFCBANK", "ICICIBANK", "INDUSINDBK", "KOTAKBANK", "SBIN", "GRASIM", "ULTRACEMCO", "SHREECEM", "UPL", "LT", "ASIANPAINT", "HINDUNILVR", "BRITANNIA", "ITC", "TITAN", "BPCL", "GAIL",
-#                "IOC", "ONGC", "RELIANCE", "NTPC", "POWERGRID", "COALINDIA", "BAJFINANCE", "BAJAJFINSV", "HDFC", "NESTLEIND", "HCLTECH", "INFY", "TCS", "TECHM", "WIPRO", "ADANIPORTS", "ZEEL", "HINDALCO", "JSWSTEEL", "TATASTEEL", "VEDL", "CIPLA", "DRREDDY", "SUNPHARMA", "BHARTIARTL", "INFRATEL"]
+stocks_list = ["BAJAJ-AUTO", "EICHERMOT", "HEROMOTOCO", "M%26M", "MARUTI", "TATAMOTORS", "AXISBANK", "HDFCBANK", "ICICIBANK", "INDUSINDBK", "KOTAKBANK", "SBIN", "GRASIM", "ULTRACEMCO", "SHREECEM", "UPL", "LT", "ASIANPAINT", "HINDUNILVR", "BRITANNIA", "ITC", "TITAN", "BPCL", "GAIL",
+               "IOC", "ONGC", "RELIANCE", "NTPC", "POWERGRID", "COALINDIA", "BAJFINANCE", "BAJAJFINSV", "HDFC", "NESTLEIND", "HCLTECH", "INFY", "TCS", "TECHM", "WIPRO", "ADANIPORTS", "ZEEL", "HINDALCO", "JSWSTEEL", "TATASTEEL", "VEDL", "CIPLA", "DRREDDY", "SUNPHARMA", "BHARTIARTL", "INFRATEL"]
 
-stocks_list = ["ITC"]
+stocks_list = ["TATAMOTORS"]
 # Misc
 api_key = ["D4V3YEYJGNXZ27PL", "BEZAPQ60MX6M0MTV", "C73M71O6LA04D9KI",
            "4D5AD7GG5BUJ0R9Y", "5LIB86FZXJJ5YQD3", "LK8JHRNLLTU90Q9C"]
@@ -62,7 +62,8 @@ def downloadAllDaily():
             sopped = True
             if sopped == False:
                 start_time = time.time()
-            time.sleep(30)
+            time.sleep(15)
+        print(endlist)
         print("Finsihed downloading\n\n")
     # print(endlist)
 
@@ -90,5 +91,5 @@ def downloadIntraDay(stock):
 
 
 if __name__ == '__main__':
-    # downloadAllDaily()
-    downloadIntraDay("ICICIBANK")
+    downloadAllDaily()
+    # downloadIntraDay("NSE")

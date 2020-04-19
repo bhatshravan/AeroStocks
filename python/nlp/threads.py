@@ -32,10 +32,10 @@ class DownloadWorker(Thread):
 
             x = self.x
             try:
-                # combined.downloadRawsAndPolarity(row, newspaper)
+                combined.downloadRawsAndPolarity(row, newspaper)
                 # combined.getPolarityScore(row, newspaper)
-                classify.makeKeyWordList(
-                    'economic-merged.csv', "economic", idx_lower, idx_upper)
+                # classify.makeKeyWordList(
+                #     'economic-merged.csv', "economic", idx_lower, idx_upper)
             finally:
                 self.queue.task_done()
 
@@ -44,13 +44,13 @@ def main():
     ts = time()
 
     # Downloading
-    # newspaper = "firstpost"
-    # inputFile = "firstpost-merged.csv"
+    newspaper = "firstpost"
+    inputFile = "firstpost-merged.csv"
     # newspaper = "moneycontrol"
     # inputFile = "moneyctl-merged-buisness.csv"
 
-    # inputFileOpen = open('../data/news/'+newspaper+"/"+inputFile, 'rt')
-    # inputFile = csv.reader(inputFileOpen)
+    inputFileOpen = open('../data/news/'+newspaper+"/"+inputFile, 'rt')
+    inputFile = csv.reader(inputFileOpen)
 
     queue = Queue()
     for x in range(8):
@@ -58,14 +58,14 @@ def main():
         worker.daemon = True
         worker.start()
 
-    # for idx, row in enumerate(inputFile):
-    #     # if(idx > 900):
-    #     #     break
+    for idx, row in enumerate(inputFile):
+        # if(idx > 900):
+        #     break
 
-    #     if(row[0] == ""):
-    #         continue
-    #     logger.info('Queueing {}'.format(row[0][0:120]))
-    #     queue.put((row, newspaper))
+        if(row[0] == ""):
+            continue
+        logger.info('Queueing {}'.format(row[0][0:120]))
+        queue.put((row, newspaper))
     i = 10000
     while (i < 11000):
 

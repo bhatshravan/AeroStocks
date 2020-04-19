@@ -82,6 +82,8 @@ def vaderParagraph(heading, data):
         vs = analyzer.polarity_scores(sentence)
         paragraphSentiments += vs["compound"]
 
+    pos_words = ["rally"]
+
     neg_words = ["plunge up to", "share price falls", "shares fall","shares dip","stock plunges","profit plunges","drops over","plummets"
                  "52-week low", "nosedives", "share price tanks", "-yr low", "slides", "dips"]
 
@@ -100,6 +102,13 @@ def vaderParagraph(heading, data):
             if(averageSentiment > 0):
                 averageSentiment = -1*averageSentiment
             return(averageSentiment)
+    
+    for words in pos_words:
+        if words in heading:
+            if(averageSentiment < 0):
+                averageSentiment = -1*averageSentiment
+            return(averageSentiment)
+
     return ((averageSentiment))
 
 

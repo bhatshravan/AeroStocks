@@ -1,0 +1,87 @@
+Started: 172100 344200
+Started: 688400 860500
+Started: 0 172100
+Started: 344200 516300
+0 iterations done
+Started: 860500 1032600
+Started: 516300 688400
+Started: 1032600 1204700
+Started: 1204700 1376800
+Started: 1376800 1548900
+Started: 1548900 1721000
+Started: 1721000 1893100
+Started: 1893100 2065200
+
+Confusion matrix: 
+TP: 676	FP: 623
+FN: 165	TN: 158
+Accuracy = 51.42% - 1032600 1204700
+Retrieved = 172101, Relevant = 10321
+1892000 iterations done
+688000 iterations done
+
+Confusion matrix: 
+TP: 531	FP: 594
+FN: 147	TN: 194
+Accuracy = 49.45% - 1204700 1376800
+Retrieved = 172101, Relevant = 8959
+516000 iterations done
+
+Confusion matrix: 
+TP: 497	FP: 571
+FN: 149	TN: 210
+Accuracy = 49.54% - 688400 860500
+Retrieved = 172101, Relevant = 9821
+344000 iterations done
+
+Confusion matrix: 
+TP: 665	FP: 673
+FN: 121	TN: 222
+Accuracy = 52.77% - 1376800 1548900
+Retrieved = 172101, Relevant = 10027
+
+Confusion matrix: 
+TP: 460	FP: 586
+FN: 125	TN: 179
+Accuracy = 47.33% - 860500 1032600
+Retrieved = 172101, Relevant = 9105
+172000 iterations done
+
+Confusion matrix: 
+TP: 587	FP: 494
+FN: 175	TN: 234
+Accuracy = 55.1% - 516300 688400
+Retrieved = 172101, Relevant = 9724
+
+Confusion matrix: 
+TP: 620	FP: 575
+FN: 214	TN: 241
+Accuracy = 52.18% - 344200 516300
+Retrieved = 172101, Relevant = 10509
+
+Confusion matrix: 
+TP: 740	FP: 803
+FN: 172	TN: 316
+Accuracy = 51.99% - 1548900 1721000
+Retrieved = 172101, Relevant = 10716
+
+Confusion matrix: 
+TP: 499	FP: 506
+FN: 174	TN: 237
+Accuracy = 51.98% - 172100 344200
+Retrieved = 172101, Relevant = 9670
+
+Confusion matrix: 
+TP: 701	FP: 700
+FN: 146	TN: 279
+Accuracy = 53.67% - 1721000 1893100
+Retrieved = 172101, Relevant = 10332
+
+Confusion matrix: 
+TP: 532	FP: 533
+FN: 179	TN: 242
+Accuracy = 52.09% - 0 172100
+Retrieved = 172101, Relevant = 9846
+[(52.09, 0, 172100), (51.98, 172100, 344200), (52.18, 344200, 516300), (55.1, 516300, 688400), (49.54, 688400, 860500), (47.33, 860500, 1032600), (51.42, 1032600, 1204700), (49.45, 1204700, 1376800), (52.77, 1376800, 1548900), (51.99, 1548900, 1721000), (53.67, 1721000, 1893100), (51.53, 1893100, 2065200)]
+51.59 12 12
+Took  4047.1630902290344

@@ -234,9 +234,11 @@ def getPolarityScore(row):
 
 def getStockPrice(df, date):
 
+    addDays = 0
     open_val = -1
     perc_change = 0
     close_val = 0
+    effect = ""
     while open_val < 0:
         try:
             open_val = df.at[date, "open"][0]
@@ -245,11 +247,11 @@ def getStockPrice(df, date):
         except:
             try:
                 date = addDay(date)
+                addDays = addDays+1
             except:
                 return (0, 0, 0, "invalid")
-            # return (0, "invalid")
+            # return (0, 0, 0, "invalid")
 
-    effect = ""
     if perc_change > 0:
         effect = "positive"
     elif perc_change < 0:
@@ -257,6 +259,8 @@ def getStockPrice(df, date):
     else:
         effect = "neutral"
 
+    if(addDays>0):
+        effect=effect+"-xx-"+str(addDays)+"-y-"+str(date)
     # print(perc_change, open_val, close_val, effect)
     # return (perc_change, open_val, close_val, effect)
     return (perc_change, effect)
@@ -363,7 +367,7 @@ def getCsvRows(idx_lower, idx_upper):
 
 
 def makeKeyWordList(idx_lower, idx_upper,xx):
-    output_file = open("../data/classifier/scores/score-"+str(xx)+".csv","a")
+    output_file = open("../data/classifier/scores-deccan/score-"+str(xx)+".csv","a")
 
     outs = ""
     outs2 = ""
@@ -461,7 +465,7 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
 
             if cR[0]!=0 or cR[1]!=0 or cR[2]!=0:
                 outs = outs + str(date)+","+str(index)+","+str(cR)+"\n"
-                print(cR[0],cR[2],cR[3])
+                # print(cR[0],cR[2],cR[3])
 
 
             if score!=0 and cR[4]!="invalid" and cR[4]!="neutral" and change!=0:
@@ -546,44 +550,46 @@ def main():
 
 if __name__ == "__main__":
 
+
     ts = time()
     write_to_file = 0
 
-    # results = []
-    # proccesses = 12
-    # in_csv  = "../data/news/firstpost/firstpost-8yr.csv"
-    # # idx_upper =  int(600000/3) # 531233 # deccan
-    # idx_upper = 5000
-    # # idx_upper = 750000
-    # idx_lower = 0
-    # gaps = round(((idx_upper-idx_lower)/proccesses))
-    # print(gaps)
-    # # gaps = 3000
+    results = []
+    proccesses = 12
+    in_csv  = "../data/news/eight/eight-sorted.csv"
+    # idx_upper =  int(600000/3) # 531233 # deccan
+    idx_upper = 2065200
+    # idx_upper = 2065
+    # idx_upper = 750000
+    idx_lower = 0
+    gaps = round(((idx_upper-idx_lower)/proccesses))
+    print(gaps)
+    # gaps = 3000
 
-    # lists = []
-    # page = 0
+    lists = []
+    page = 0
 
-    # for x in range(idx_lower, idx_upper, gaps):
-    #     lists.append((x,x+gaps, page))
-    #     page = page+1
-    #     if page > (proccesses-1):
-    #         page = 0
+    for x in range(idx_lower, idx_upper, gaps):
+        lists.append((x,x+gaps, page))
+        page = page+1
+        if page > (proccesses-1):
+            page = 0
 
-    # with multiprocessing.Pool(processes=proccesses) as pool:
-    #     results = pool.starmap(makeKeyWordList, lists)
+    with multiprocessing.Pool(processes=proccesses) as pool:
+        results = pool.starmap(makeKeyWordList, lists)
 
-    # print(results)
-    # sums=0
-    # sums_idx=0
-    # for result in results:
-    #     if result!=-1 and result!=-2 and result!=-3:
-    #         sums = result[0]+sums
-    #         sums_idx=sums_idx+1
-    # sums = round(sums/sums_idx,2)
-    # print(sums,sums_idx,len(results))
-
-    results = makeKeyWordList(1000, 5000, 28)
     print(results)
+    sums=0
+    sums_idx=0
+    for result in results:
+        if result!=-1 and result!=-2 and result!=-3:
+            sums = result[0]+sums
+            sums_idx=sums_idx+1
+    sums = round(sums/sums_idx,2)
+    print(sums,sums_idx,len(results))
+
+    # results = makeKeyWordList(1000, 5000, 28)
+    # print(results)
     print("Took ", time() - ts)
 
 # date,stock,vader,secscore,assoc,perc,percword,sector,index,news

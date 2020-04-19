@@ -8,43 +8,47 @@ error = 0
 
 
 def downloadMtlAll(url, page):
-    global error
-    print("------\n", url, "--------\n")
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
+    try:
+        global error
+        url = "https://www.moneycontrol.com/news/business/page-"+str(url)
+        # print("------\n", url, "--------\n")
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    i = 0
-    b = []
-    a = []
+        i = 0
+        b = []
+        a = []
 
-    b.append('')
-    a.append('')
-    output_file = open(
-        "../../data/news/moneycontrol/lists/mixed-"+str(page)+".csv", "a")
-    for LiIds in range(1, 25):
-        LiId = "newslist-"+str(LiIds)
+        b.append('')
+        a.append('')
+        output_file = open(
+            "../../data/news/moneycontrol/lists/mixed-"+str(page)+".csv", "a")
+        for LiIds in range(1, 25):
+            LiId = "newslist-"+str(LiIds)
 
-        try:
-            sp = soup.find('li', {"id": LiId})
-            title = sp.find('h2').get_text().replace(
-                "\n", "").replace(",", "--").strip()
-            link = sp.find('a').get('href')
-            date = sp.find('span').get_text()
-            date = dts.moneyctl(date)
+            try:
+                sp = soup.find('li', {"id": LiId})
+                title = sp.find('h2').get_text().replace(
+                    "\n", "").replace(",", "--").strip()
+                link = sp.find('a').get('href')
+                date = sp.find('span').get_text()
+                date = dts.moneyctl(date)
 
-        except:
-            error = error+1
-            continue
+            except:
+                error = error+1
+                continue
 
-        outs = str(title)+","+str(link)+","+str(date)+"\n"
+            outs = str(title)+","+str(link)+","+str(date)+"\n"
 
-        print(outs)
-        try:
-            output_file.write(outs)
-        except:
-            error = error+1
-            print("Error encoding to file")
-    output_file.close()
+            # print(outs)
+            try:
+                output_file.write(outs)
+            except:
+                error = error+1
+                print("Error encoding to file: ",page)
+        output_file.close()
+    except:
+        print("Error: ",url)
 
 
 def downloadMtlUrl(url):

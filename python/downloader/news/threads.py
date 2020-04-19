@@ -105,7 +105,14 @@ def processes():
     #         page = 0
 
     # FirstPost
-    for x in range(2, 3202):
+    # for x in range(2, 3202):
+    #     lists.append((x, page))
+    #     page = page+1
+    #     if page > 11:
+    #         page = 0
+
+    # Monecontrol
+    for x in range(1, 25000):
         lists.append((x, page))
         page = page+1
         if page > 11:
@@ -116,7 +123,8 @@ def processes():
     with multiprocessing.Pool(processes=12) as pool:
         # pool.starmap(ecl.downloadEconomicAll, lists)
         # pool.starmap(dcl.downloadDeccanAll, lists)
-        pool.starmap(fpl.downloadFirstPostAll, lists)
+        # pool.starmap(fpl.downloadFirstPostAll, lists)
+        pool.starmap(mtl.downloadMtlAll, lists)
 
 
 if __name__ == '__main__':

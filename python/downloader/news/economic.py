@@ -41,11 +41,12 @@ def downloadEconomicAll(curpg, file_page):
                 str(link)+","+date+"\n"
 
             try:
-                output_file.write(outs)
+                # output_file.write(outs)
+                print(outs)
 
             except:
                 print("Error")
-        output_file.close()
+        # output_file.close()
     except:
         p=22
 
@@ -62,10 +63,10 @@ def downloadEconomicOne(url):
     return (news_article)
 
 
-# if __name__ == '__main__':
-#     # for i in range(43914, 43915):
-#     for i in range(43914, 43915):
-#         downloadEconomicAll(i, i)
+if __name__ == '__main__':
+    # for i in range(43914, 43915):
+    for i in range(43914, 43915):
+        downloadEconomicAll(i, i)
     # downloadEconomicOne(
     #     'https://economictimes.indiatimes.com/markets/stocks/news/cadila-healthcare-gets-eir-from-usfda-for-its-ahmedabad-facility/articleshow/74063201.cms')
 # 43914

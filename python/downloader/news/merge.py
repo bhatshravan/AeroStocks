@@ -15,4 +15,4 @@ def mergeLists(newspaper):
 
 
 if __name__ == '__main__':
-    mergeLists('firstpost')
+    mergeLists('eight')
