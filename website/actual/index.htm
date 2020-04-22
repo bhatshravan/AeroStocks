@@ -51,20 +51,38 @@
       // })
 
       //ALPHAVANTAGE
-      fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-        "x-rapidapi-key": "fdb94fdf5fmsha889a078658ad2bp1b36abjsn36e87e69a883"
-      }
+      // fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
+      // "method": "GET",
+      // "headers": {
+      //   "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+      //   "x-rapidapi-key": "fdb94fdf5fmsha889a078658ad2bp1b36abjsn36e87e69a883"
+      // }
+      // })
+      // .then(response => {
+      //   console.log(response);
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      //   document.getElementById("alpha-summary").innerHTML = err;
+      // });
+
+      //BSE
+      //https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO
+
+      fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+      .then(response => response.json())
+      .then(json => {
+        console.log(json["Time Series (5min)"]["2020-04-21 05:13:50"]["4. close"]);
+        document.getElementById("sensex-price").innerHTML = json["Time Series (5min)"]["2020-04-21 05:13:50"]["4. close"];
       })
-      .then(response => {
-        console.log(response);
+
+      //NSE
+      fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+      .then(response => response.json())
+      .then(json => {
+        console.log(json["Time Series (5min)"]["2020-04-21 05:13:50"]["4. close"]);
+        document.getElementById("nifty-price").innerHTML = json["Time Series (5min)"]["2020-04-21 05:13:50"]["4. close"];
       })
-      .catch(err => {
-        console.log(err);
-        document.getElementById("alpha-summary").innerHTML = err;
-      });
 
       //GOLD RATE API CALL
       // var gold_rate;
@@ -156,7 +174,7 @@
                         class="img-radius"
                         alt="User-Profile-Image"
                       />
-                      <span>Nitin Mukesh</span>
+                      <span>Warren Buffet</span>
                     </div>
                   </div>
                 </li>
@@ -204,7 +222,7 @@
                       <div class="live-status bg-success"></div>
                     </a>
                     <div class="media-body">
-                      <div class="f-13 chat-header">Nitin Mukesh</div>
+                      <div class="f-13 chat-header">AeroStocks</div>
                     </div>
                   </div>
                   <div
@@ -299,7 +317,7 @@
         <!-- Sidebar inner chat start-->
         <div class="showChat_inner">
           <div class="media chat-inner-header">
-            <a class="back_chatBox"> <i class="feather icon-chevron-left"></i> Nitin Mukesh </a>
+            <a class="back_chatBox"> <i class="feather icon-chevron-left"></i> AeroStocks </a>
           </div>
           <div class="media chat-messages">
             <a class="media-left photo-table" href="#!">
@@ -378,7 +396,7 @@
                             <div class="card-block">
                               <div class="row align-items-end">
                                 <div class="col-8">
-                                  <h4 class="text-white">Stock prices</h4>
+                                  <h4 class="text-white" id="sensex-price"></h4>
                                   <h6 class="text-white m-b-0">Sensex</h6>
                                 </div>
                                 
@@ -396,15 +414,18 @@
                             <div class="card-block">
                               <div class="row align-items-end">
                                 <div class="col-8">
-                                  <h4 class="text-white" id="alpha-summary"></h4>
-                                  <h6 class="text-white m-b-0">Stock price</h6>
+                                  <h4 class="text-white" id="alpha-summary" id="nifty-price"></h4>
+                                  <h6 class="text-white m-b-0">Nifty price</h6>
                                 </div>
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0">
-                                <i class="feather icon-clock text-white f-14 m-r-10"></i>update :
-                                2:15 am
+                              <p class="text-white m-b-0">Last update:
+                                <b class="" id="get_time3"></b>
+                                <script>
+                                  var d = new Date(); 
+                                  document.getElementById("get_time3").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
+                                </script>
                               </p>
                             </div>
                           </div>
