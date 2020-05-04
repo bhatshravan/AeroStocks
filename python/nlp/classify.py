@@ -434,7 +434,7 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
                     score7 = score7+ str(news_score)+" : "+final_dict[date][index]["headline"][idx].replace("\n","").replace(",","--")+" | "
 
 
-            # score_dict[date][index][7] = score7
+            score_dict[date][index][7] = score7
 
             if index != "sector" and index in final_dict[date]:
                 score_dict[date][index][0] = round(
@@ -507,7 +507,7 @@ def makeKeyWordList(idx_lower, idx_upper,xx):
             #     elif change > 0 and score < 0:
             #         fn = fn + 1
 
-    # print(outs)
+    print(outs)
     if (write_to_file==1):
         outs = outs.replace("[","").replace("]","").replace("\"","").replace(", ",",")
         # print("Outs:",outs)
@@ -558,8 +558,8 @@ if __name__ == "__main__":
     proccesses = 12
     in_csv  = "../data/news/eight/eight-sorted.csv"
     # idx_upper =  int(600000/3) # 531233 # deccan
-    idx_upper = 2065200
-    # idx_upper = 2065
+    # idx_upper = 2065200
+    idx_upper = 2065
     # idx_upper = 750000
     idx_lower = 0
     gaps = round(((idx_upper-idx_lower)/proccesses))
