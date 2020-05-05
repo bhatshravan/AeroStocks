@@ -69,32 +69,49 @@
       //BSE
       //https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO
 
-      fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
-      .then(response => response.json())
-      .then(json => {
-        var a = json["Time Series (5min)"];
-        var keys = [];
-        for (let k in a) {
-          keys.push(k);
-        }
-        var bse_price = a[keys[keys.length-1]]["4. close"];
-        console.log(bse_price);
-        document.getElementById("sensex-price").innerHTML = Number(bse_price).toFixed(2);
-      })
+      // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+      // .then(response => response.json())
+      // .then(json => {
+      //   var a = json["Time Series (5min)"];
+      //   var keys = [];
+      //   for (let k in a) {
+      //     keys.push(k);
+      //   }
+      //   var bse_price = a[keys[keys.length-1]]["4. close"];
+      //   console.log(bse_price);
+      //   document.getElementById("sensex-price").innerHTML = Number(bse_price).toFixed(2);
+      // })
+
+        fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+          .then(response => response.json())
+          .then(json => {
+            //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+            var bse_price = json["sectoral_indices"]["data"][1]["last_price"];
+            document.getElementById("sensex-price").innerHTML = bse_price;
+          })
+        //data = JSON.parse(document.body.innerText)
 
       //NSE
-      fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
-      .then(response => response.json())
-      .then(json => {
-        var a = json["Time Series (5min)"];
-        var keys = [];
-        for (let k in a) {
-          keys.push(k);
-        }
-        var nse_price = a[keys[keys.length-1]]["4. close"];
-        console.log(nse_price);
-        document.getElementById("nifty-price").innerHTML = Number(nse_price).toFixed(2);
-      })
+      // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+      // .then(response => response.json())
+      // .then(json => {
+      //   var a = json["Time Series (5min)"];
+      //   var keys = [];
+      //   for (let k in a) {
+      //     keys.push(k);
+      //   }
+      //   var nse_price = a[keys[keys.length-1]]["4. close"];
+      //   console.log(nse_price);
+      //   document.getElementById("nifty-price").innerHTML = Number(nse_price).toFixed(2);
+      // })
+
+      fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+          .then(response => response.json())
+          .then(json => {
+            //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+            var nse_price = json["sectoral_indices"]["data"][0]["last_price"];
+            document.getElementById("nifty-price").innerHTML = nse_price;
+          })
 
       //GOLD RATE API CALL
       // var gold_rate;
@@ -390,7 +407,10 @@
                   <li class=" ">
                     <a href="form-select.htm">
                       <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                      <span class="pcoded-mtext">Dashboard</span>
+                      <span class="pcoded-mtext">Dashboard</span><br/>
+                      <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                      <span class="pcoded-mtext-2">Individual companies graph</span>
+                      
                     </a>
                   </li>
                 </ul>
