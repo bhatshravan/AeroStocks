@@ -50,6 +50,8 @@
       //   document.getElementById("dollar_rate").innerHTML = json.quotes.USDINR.toFixed(2);
       // })
 
+        //src="..\files\assets\images\avatar-4.jpg"
+      
       //ALPHAVANTAGE
       // fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
       // "method": "GET",
@@ -133,6 +135,86 @@
       // };
       
     </script>
+    <style>
+      * {
+  box-sizing: border-box;
+  
+}
+
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-wrap {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 4rem;
+  background-color: rgba(#000, 0.9);
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+
+.ticker {
+  display: inline-block;
+  height: 4rem;
+  line-height: 4rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
+}
+.ticker__item {
+  display: inline-block;
+
+  padding: 0 2rem;
+  font-size: 2rem;
+  color: white;
+}
+
+body {
+  padding-bottom: 5rem;
+}
+h1,
+h2,
+p {
+  padding: 0 5%;
+}
+
+
+    </style>
   </head>
 
   <body>
@@ -418,9 +500,10 @@
             </nav>
             <div class="pcoded-content">
               <div class="pcoded-inner-content">
+                <p>this gets printed</p>
+                <div class="page-body">  
                 <div class="main-body">
                   <div class="page-wrapper">
-                    <div class="page-body">
                       <div class="row">
                         <!-- task, page, download counter  start -->
                         <div class="col-xl-3 col-md-6">
@@ -889,7 +972,7 @@
                                                   class="img-radius img-40 align-top m-r-15"
                                                 />
                                                 <div class="d-inline-block">
-                                                  <h6>Jeny William</h6>
+                                                  <h6>User Info</h6>
                                                   <p class="text-muted m-b-0">Graphic Designer</p>
                                                 </div>
                                               </a>
@@ -915,13 +998,13 @@
                                 <div class="card-block text-center text-white">
                                   <div class="m-b-25">
                                     <img
-                                      src="..\files\assets\images\avatar-4.jpg"
+                                      
                                       class="img-radius"
                                       alt="User-Profile-Image"
                                     />
                                   </div>
-                                  <h6 class="f-w-600">Jeny William</h6>
-                                  <p>Web Designer</p>
+                                  <h6 class="f-w-600">Warren Buffet</h6>
+                                  <p>Investor</p>
                                   <i class="feather icon-edit m-t-10 f-16"></i>
                                 </div>
                               </div>
