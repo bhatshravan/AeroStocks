@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css"/>
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
    
     <script>
@@ -170,10 +171,13 @@
 
 .ticker-wrap {
   position: relative;
+  top: 0;
+  width: 100%;
   overflow: hidden;
   height: 4rem;
   background-color: rgba(#000, 0.9);
   color: black;
+  margin-top: 40;
   padding: 20px;
   padding-left: 100%;
   box-sizing: content-box;
@@ -194,7 +198,7 @@
   -webkit-animation-name: ticker;
   animation-name: ticker;
   -webkit-animation-duration: 30s;
-  animation-duration: 30s;
+  animation-duration: 15s;
 }
 .ticker__item {
   display: inline-block;
@@ -203,6 +207,7 @@
   font-size: 2rem;
   color: white;
   background-color: black;
+  border: 1px solid turquoise;
 
 }
 
@@ -508,12 +513,15 @@ h1,h2,p {
                   
                   <div class="page-wrapper">
                     <div class="row">
+                      <div class="display_ticker">
+                        <p>NEWS TICKER</p>
                     <div class="ticker-wrap col-xl-12 col-md-12">
                       <div class="ticker">
-                        <div class="ticker__item">Letterpress chambray brunch.</div>
-                        <div class="ticker__item">Vice mlkshk crucifix beard chillwave meditation hoodie asymmetrical Helvetica.</div>
-                        <div class="ticker__item">Ugh PBR&B kale chips Echo Park.</div>
-                        <div class="ticker__item">Gluten-free mumblecore chambray mixtape food truck. </div></div></div></div>
+                        <div class="ticker__item" id="ticker_display"><a href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms" target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
+                        <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
+                        <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">Infosys shares price down by 4%</a></div>
+                        <div class="ticker__item"><a href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst" target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers, auto stocks </a></div>
+                      </div></div></div></div>
                         <div class="row">
                         <!-- task, page, download counter  start -->
                         <div class="col-xl-3 col-md-6">
