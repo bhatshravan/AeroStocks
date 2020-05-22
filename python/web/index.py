@@ -13,10 +13,18 @@ app = Flask(__name__)
 
 @app.route('/topnews')
 def topnews():
-    url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=45bb840c98934815a19ec6784fc50a19&category=business"
+    url = "http://192.168.0.122:8081/top-headlines.json"
+#     url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=45bb840c98934815a19ec6784fc50a19&category=business&pageSize=70"
     response = requests.get(url)
     data = response.json()
     return str(data["articles"])
+
+# def topnews2():
+#     url = "http://192.168.0.122:8081/top-headlines.json"
+#     response = requests.get(url)
+#     data = response.json()
+#     for datas in data["articles"]:
+#         print(datas)
 
 
 @app.route('/')
@@ -47,13 +55,13 @@ def getstocks2():
 
 @app.route('/getprediction')
 def getmodel():
-    vader = request.args.get('vader')
+    vader = float(request.args.get('vader'))
     secscore = request.args.get('secscore')
     assoc = request.args.get('assoc')
     model = tf.keras.models.load_model('../classifier/models/model2.h5')
-    predictions = model.predict([[0.3,0.9,2]])
-    # return(str(predictions[0][0]))
-    return(str(language))
+    predictions = model.predict([[float(vader),float(secscore),float(assoc)]])
+    # return(str(vader))
+    return("Input:"+str(vader)+"\nScore:"+str(predictions[0][0]))
 
 if __name__ == '__main__':
 	app.run(debug=True, port=8080)
