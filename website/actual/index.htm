@@ -31,10 +31,16 @@
     <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css" />
     <!-- ion icon css -->
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="..\files\assets\icon\ion-icon\css\ionicons.min.css"
-    />
+    rel="stylesheet"
+    type="text/css"
+    href="..\files\assets\icon\ion-icon\css\ionicons.min.css"
+  />
+  
+  <!-- <link
+  rel="stylesheet"
+  type="text/css"
+  href="../files/assets/icon/feather/css/feather.css"
+/> -->
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
     <!-- Style.css -->
@@ -528,22 +534,18 @@ h1,h2,p {
                         <div class="col-xl-3 col-md-6">
                           <div class="card bg-c-yellow update-card">
                             <div class="card-block">
-                              <div class="row align-items-end">
-                                <div class="col-8">
+                              <div class="row align-items-center">
+                                <div class="col-12">
                                   <h4 class="text-white" id="sensex-price"></h4>
-                                  <h6 class="text-white m-b-0">Sensex</h6>
+                                  <!-- <h6 class="text-white m-b-0">Sensex</h6> -->
                                 </div>
-                                
+                                <!-- <div class="col-4">
+                                  <i class="ion-ionic" height="50"></i>
+                              </div> -->
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0">Last update:
-                                <b class="" id="get_time4"></b>
-                                <script>
-                                  var d = new Date(); 
-                                  document.getElementById("get_time4").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-                                </script> 
-                              </p>
+                              <h6>Sensex</h6>
                             </div>
                           </div>
                         </div>
@@ -551,19 +553,14 @@ h1,h2,p {
                           <div class="card bg-c-green update-card">
                             <div class="card-block">
                               <div class="row align-items-end">
-                                <div class="col-8">
+                                <div class="col-12">
                                   <h4 class="text-white" id="nifty-price"></h4>
-                                  <h6 class="text-white m-b-0">Nifty price</h6>
                                 </div>
                               </div>
                             </div>
-                            <div class="card-footer">
-                              <p class="text-white m-b-0">Last update:
-                                <b class="" id="get_time3"></b>
-                                <script>
-                                  var d = new Date(); 
-                                  document.getElementById("get_time3").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-                                </script>
+                            <div class="card-footer align-center align-content-center align-items-center">
+                              <p class="text-white m-b-0 align-center">
+                                Nifty
                               </p>
                             </div>
                           </div>
@@ -572,22 +569,14 @@ h1,h2,p {
                           <div class="card bg-c-pink update-card">
                             <div class="card-block">
                               <div class="row align-items-end">
-                                <div class="col-8">
-                                  <h4 class="text-white" id="gold_rate"></h4>
-                                  <h6 class="text-white m-b-0">Gold price/g</h6>
-                                </div>
-                                <div class="col-4 text-right">
-                                  <canvas id="update-chart-3" height="50"></canvas>
+                                <div class="col-12">
+                                  <h4 class="text-white" id="gold_rate">₹3000</h4>
                                 </div>
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0">Last update:
-                                <b class="" id="get_time"></b>
-                                <script>
-                                  var d = new Date(); 
-                                  document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-                                </script>
+                              <p class="text-white m-b-0">
+                                Gold price/g
                               </p>
                             </div>
                           </div>
@@ -597,21 +586,12 @@ h1,h2,p {
                             <div class="card-block">
                               <div class="row align-items-end">
                                 <div class="col-8">
-                                  <h4 class="text-white" id="dollar_rate"> </h4>
-                                  <h6 class="text-white m-b-0">Dollar Rate</h6>
-                                </div>
-                                <div class="col-4 text-right">
-                                  <canvas id="update-chart-4" height="50"></canvas>
+                                  <h4 class="text-white" id="dollar_rate">₹74.65</h4>
                                 </div>
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0" >Last update:
-                                <b class="" id="get_time2"></b>
-                                <script>
-                                  var d = new Date(); 
-                                  document.getElementById("get_time2").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? ("0"+String(d.getMinutes())) : d.getMinutes());
-                                </script>
+                              <p class="text-white m-b-0">Dollar Rate
                               </p>
                             </div>
                           </div>
