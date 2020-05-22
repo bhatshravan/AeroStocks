@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Stock Market</title>
@@ -31,16 +31,10 @@
     <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css" />
     <!-- ion icon css -->
     <link
-    rel="stylesheet"
-    type="text/css"
-    href="..\files\assets\icon\ion-icon\css\ionicons.min.css"
-  />
-  
-  <!-- <link
-  rel="stylesheet"
-  type="text/css"
-  href="../files/assets/icon/feather/css/feather.css"
-/> -->
+      rel="stylesheet"
+      type="text/css"
+      href="..\files\assets\icon\ion-icon\css\ionicons.min.css"
+    />
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
     <!-- Style.css -->
@@ -49,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
    
     <script>
-      //DOLLAR PRICE API CALL
+      // DOLLAR PRICE API CALL
       // fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
       // .then(response => response.json())
       // .then(json => {
@@ -122,7 +116,6 @@
             document.getElementById("nifty-price").innerHTML = '₹'+nse_price;
           })
 
-      
       //GOLD RATE API CALL
       // var gold_rate;
       // //1/gold_rate*37.25*76.50/1000
@@ -135,12 +128,12 @@
       //   })
 
       //display time below the card
-      //var d = new Date(); 
-      //console.log(d.getHours()+":"+d.getMinutes());
-      //displayTime();
-      // window.onload = function displayTime() {
-      //   document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-      // };
+      var d = new Date(); 
+      console.log(d.getHours()+":"+d.getMinutes());
+      displayTime();
+      window.onload = function displayTime() {
+        document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
+      };
       
     </script>
     <style>
@@ -165,8 +158,8 @@
 
 @keyframes ticker {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(-100, 0, 0);
+    transform: translate3d(-100, 0, 0);
     visibility: visible;
   }
 
@@ -177,17 +170,18 @@
 }
 
 .ticker-wrap {
+  border-radius: 10px;
   position: relative;
   top: 0;
-  width: 100%;
   overflow: hidden;
   height: 4rem;
   background-color: rgba(#000, 0.9);
-  color: black;
+  color: white;
   margin-top: 40;
-  padding: 20px;
+  padding: 20px 0;
   padding-left: 100%;
   box-sizing: content-box;
+  z-index: 1;
 }
 
 .ticker {
@@ -197,6 +191,7 @@
   white-space: nowrap;
   padding-right: 100%;
   box-sizing: content-box;
+  
 
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
@@ -209,12 +204,13 @@
 }
 .ticker__item {
   display: inline-block;
-
   padding: 0 2rem;
   font-size: 2rem;
   color: white;
-  background-color: black;
-  border: 1px solid turquoise;
+  /* background-color: rgb(103,196,159); */
+  background-color: #ADEFD1FF;
+  border: 1px solid black;
+  border-radius: 25px;
 
 }
 
@@ -504,6 +500,8 @@ h1,h2,p {
                       <span class="pcoded-mtext">Dashboard</span><br/>
                       <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                       <span class="pcoded-mtext-2">Individual companies graph</span>
+                      <span><a class="pcoded-mtext-3" href="individual.html">Individual companies graph</a>
+                      </span>
                       
                     </a>
                   </li>
@@ -521,31 +519,27 @@ h1,h2,p {
                   <div class="page-wrapper">
                     <div class="row">
                       <div class="display_ticker">
-                        <p>NEWS TICKER</p>
-                    <div class="ticker-wrap col-xl-12 col-md-12">
+                        <p class="name-display">BREAKING NEWS</p>
+                    <div class="ticker-wrap">
                       <div class="ticker">
                         <div class="ticker__item" id="ticker_display"><a href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms" target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
                         <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
                         <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">Infosys shares price down by 4%</a></div>
                         <div class="ticker__item"><a href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst" target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers, auto stocks </a></div>
-                      </div></div></div></div>
+                      </div></div></div></div><br/>
                         <div class="row">
                         <!-- task, page, download counter  start -->
                         <div class="col-xl-3 col-md-6">
                           <div class="card bg-c-yellow update-card">
                             <div class="card-block">
-                              <div class="row align-items-center">
+                              <div class="row align-items-end">
                                 <div class="col-12">
                                   <h4 class="text-white" id="sensex-price"></h4>
-                                  <!-- <h6 class="text-white m-b-0">Sensex</h6> -->
                                 </div>
-                                <!-- <div class="col-4">
-                                  <i class="ion-ionic" height="50"></i>
-                              </div> -->
                               </div>
                             </div>
                             <div class="card-footer">
-                              <h6>Sensex</h6>
+                              <p>Sensex</p>
                             </div>
                           </div>
                         </div>
@@ -553,14 +547,19 @@ h1,h2,p {
                           <div class="card bg-c-green update-card">
                             <div class="card-block">
                               <div class="row align-items-end">
-                                <div class="col-12">
+                                <div class="col-8">
                                   <h4 class="text-white" id="nifty-price"></h4>
+                                  <h6 class="text-white m-b-0">Nifty price</h6>
                                 </div>
                               </div>
                             </div>
-                            <div class="card-footer align-center align-content-center align-items-center">
-                              <p class="text-white m-b-0 align-center">
-                                Nifty
+                            <div class="card-footer">
+                              <p class="text-white m-b-0">Last update:
+                                <b class="" id="get_time3"></b>
+                                <script>
+                                  var d = new Date(); 
+                                  document.getElementById("get_time3").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
+                                </script>
                               </p>
                             </div>
                           </div>
@@ -569,14 +568,22 @@ h1,h2,p {
                           <div class="card bg-c-pink update-card">
                             <div class="card-block">
                               <div class="row align-items-end">
-                                <div class="col-12">
-                                  <h4 class="text-white" id="gold_rate">₹3000</h4>
+                                <div class="col-8">
+                                  <h4 class="text-white" id="gold_rate"></h4>
+                                  <h6 class="text-white m-b-0">Gold price/g</h6>
+                                </div>
+                                <div class="col-4 text-right">
+                                  <canvas id="update-chart-3" height="50"></canvas>
                                 </div>
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0">
-                                Gold price/g
+                              <p class="text-white m-b-0">Last update:
+                                <b class="" id="get_time"></b>
+                                <script>
+                                  var d = new Date(); 
+                                  document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
+                                </script>
                               </p>
                             </div>
                           </div>
@@ -586,12 +593,21 @@ h1,h2,p {
                             <div class="card-block">
                               <div class="row align-items-end">
                                 <div class="col-8">
-                                  <h4 class="text-white" id="dollar_rate">₹74.65</h4>
+                                  <h4 class="text-white" id="dollar_rate"> </h4>
+                                  <h6 class="text-white m-b-0">Dollar Rate</h6>
+                                </div>
+                                <div class="col-4 text-right">
+                                  <canvas id="update-chart-4" height="50"></canvas>
                                 </div>
                               </div>
                             </div>
                             <div class="card-footer">
-                              <p class="text-white m-b-0">Dollar Rate
+                              <p class="text-white m-b-0" >Last update:
+                                <b class="" id="get_time2"></b>
+                                <script>
+                                  var d = new Date(); 
+                                  document.getElementById("get_time2").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? ("0"+String(d.getMinutes())) : d.getMinutes());
+                                </script>
                               </p>
                             </div>
                           </div>
@@ -604,7 +620,7 @@ h1,h2,p {
                             <div class="card-header">
                               <h5>Nifty graph</h5><br/><br/>
                               <!-- TradingView Widget BEGIN -->
-                              <div class="tradingview-widget-container">
+                              <!-- <div class="tradingview-widget-container">
                                 <div id="tradingview_d0ed5"></div>
                                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
@@ -626,7 +642,7 @@ h1,h2,p {
                               }
                                 );
                                 </script>
-                              </div>
+                              </div> -->
                               <!-- TradingView Widget END -->
                               <span class="text-muted">
                                 </span>
