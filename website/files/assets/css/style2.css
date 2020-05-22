@@ -4,7 +4,7 @@
     padding: 0 0;
     position: relative;
     left: 10px;
-    width: 930px;
+    width: 1200px;
     background-color: #00203FFF;
 }   
 
@@ -26,4 +26,8 @@
     padding-top: 20px;
     text-decoration: underline;
 
+}
+
+.navbar {
+    font-family: Helvetica;
 }
