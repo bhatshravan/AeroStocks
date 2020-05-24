@@ -121,7 +121,7 @@ Dish TV
 Divi's Laboratories
 Dixon Technologies
 DLF
-Dr. Lal Pathlabs
+Dr. Lal
 Dr. Reddy's Laboratories
 eClerx Services
 Edelweiss Financial Services
@@ -190,7 +190,7 @@ HCL Technologies
 HDFC Asset Management Company
 HDFC Bank
 HDFC Life Insurance Co
-HEG
+ HEG
 Heidelberg Cement
 Heritage Foods
 Hero Motocorp
@@ -306,7 +306,6 @@ Marico
 Maruti Suzuki
 Mas Financial Services
 Max Financial Services
-Max
 Meghmani Organics
 Metropolis Healthcare
 Minda Corporation
@@ -318,7 +317,7 @@ Moil
 Motherson Sumi Systems
 Motilal Oswal Financial Services
 Mphasis
-MRF
+ MRF
 Multi Commodity Exchange
 Muthoot Finance
 Narayana Hrudayalaya
@@ -329,7 +328,7 @@ Nava Bharat Ventures
 Navin Fluorine International
 Navneet Education
 NBCC
-NCC
+ NCC 
 Nesco
 Nestle
 Network 18 Media & Investments
@@ -337,7 +336,7 @@ NHPC
 NIIT Technologies
 Nilkamal
 Nippon Life
-NLC
+ NLC 
 NMDC
 NOCIL
 Oberoi Realty
@@ -368,9 +367,9 @@ Prestige Estates Projects
 Prism Johnson
 Procter & Gamble Health
 Procter & Gamble Hygiene & Health Care
-PTC
+ PTC 
 Punjab National Bank
-PVR
+ PVR 
 Quess
 Radico Khaitan
 Rail Vikas Nigam
@@ -381,7 +380,7 @@ Rashtriya Chemicals & Fertilizers
 Ratnamani Metals & Tubes
 Raymond
 RBL Bank
-REC
+ REC 
 Redington
 Relaxo Footwears
 Reliance Capital
