@@ -306,7 +306,6 @@ FMCG
 Automobile
 Financial
 Financial
-Financial
 Chemicals
 Healthcare
 Automobile

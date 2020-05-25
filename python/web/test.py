@@ -39,7 +39,6 @@ sectors = []
 with open('./sectors.txt') as f:
     sectors = f.read().splitlines()
 
-# model = tf.keras.models.load_model('../classifier/models/model2.h5')
 
 
 # Returns a sentiment score
@@ -92,9 +91,12 @@ def getKeyWords(data):
     return(companyList, sectorList)
 
 
+import tensorflow as tf
+model = tf.keras.models.load_model('../classifier/models/model2.h5')
+
 def main():
     today = str(date.today())
-    print("Today's date:", today)
+    # print("Today's date:", today)
 
     company_dict = {}
     assoc_dict = {}
@@ -121,7 +123,6 @@ def main():
 
         rows.append([headline, datas["url"], pubDate,
                      headlineCompanies, vaderScore])
-        # print("{0}  -  {1} - {2} - {3}".format(headline,vaderScore,headlineCompanies,headlineSector))
 
         for companyRetrieved in headlineCompanies:
             if companyRetrieved[0] in company_dict:
@@ -163,10 +164,8 @@ def main():
             "vader": row[4],
             "prediction": "none"
         }
-        if len(row[3]) < 1:
-            continue
 
-        else:
+        if len(row[3]) > 0:
             sector_score = 0.0
             assoc_score = float(assoc_dict_final[row[3][0][1]])
             company_score = float(company_dict_final[row[3][0][0]])
@@ -175,8 +174,8 @@ def main():
                 sector_score = sector_dict_final[row[3][0][1]]
 
             predictions = 0.0
-            # predictions = round((model.predict(
-            #     [[float(company_score), float(sector_score), float(assoc_score)]])[0][0])*1, 2)
+            predictions = round((model.predict(
+                [[float(company_score), float(sector_score), float(assoc_score)]])[0][0])*1, 2)
             if(predictions == 0.0 or predictions == -0.0):
                 predictions = row[4]
 
@@ -188,8 +187,30 @@ def main():
             # print(row[0], " - Vader: ", row[3][0][0],
             #       " - Prediction:", (predictions*10))
         jsonData["news"].append(x)
-    print(json.dumps(jsonData))
+    return (json.dumps(jsonData))
 
+def downloadMtlNews():
+    url = "https://www.moneycontrol.com/news/business/page-1"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    jsonOutput = {'news':[]}
 
-main()
-# print(companies, sectors)
+    for LiIds in range(1, 25):
+        LiId = "newslist-"+str(LiIds)
+        try:
+            sp = soup.find('li', {"id": LiId})
+            title = sp.find('h2').get_text().replace(
+                "\n", "").replace(",", "--").strip()
+            link = sp.find('a').get('href')
+            date = sp.find('span').get_text()
+
+            jsonOutput['news'].append({
+                "headline":title,
+                "link":link
+            })
+
+        except:
+            continue
+
+    return json.dumps(jsonOutput)
+# main()

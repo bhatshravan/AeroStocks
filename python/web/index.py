@@ -5,6 +5,7 @@ import json
 import urllib.request
 import os
 import random
+import test as getNewsApi
 import tensorflow as tf
 
 # template_dir = os.path.abspath('../../website/templates/')
@@ -13,24 +14,21 @@ app = Flask(__name__)
 
 @app.route('/topnews')
 def topnews():
-    url = "http://192.168.0.122:8081/top-headlines.json"
-#     url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=45bb840c98934815a19ec6784fc50a19&category=business&pageSize=70"
-    response = requests.get(url)
-    data = response.json()
-    return str(data["articles"])
+    data = getNewsApi.main()
+    return data
 
-# def topnews2():
-#     url = "http://192.168.0.122:8081/top-headlines.json"
-#     response = requests.get(url)
-#     data = response.json()
-#     for datas in data["articles"]:
-#         print(datas)
+
+@app.route('/mtlnews')
+def mtlnews():
+    data = getNewsApi.downloadMtlNews()
+    return data
+
 
 
 @app.route('/')
 def root():
     # return render_template('index.html') 
-    return "Hello world"
+    return "Stock Market"
 
 @app.route('/getstocks')
 def getstocks():
@@ -65,4 +63,3 @@ def getmodel():
 
 if __name__ == '__main__':
 	app.run(debug=True, port=8080)
-    # getmodel()
