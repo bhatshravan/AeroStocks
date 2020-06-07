@@ -154,8 +154,9 @@ def main():
     # print("Company: ", company_dict_final)
     # print("Assoc: ", assoc_dict_final)
 
-    jsonData = {"news": []}
+    jsonData = {"news": [],"companies":{},"sectors":{}}
 
+    print()
     for row in rows:
         x = {
             "headline": row[0],
@@ -164,6 +165,8 @@ def main():
             "vader": row[4],
             "prediction": "none"
         }
+        y={}
+        z={}
 
         if len(row[3]) > 0:
             sector_score = 0.0
@@ -184,9 +187,24 @@ def main():
                 "company": row[3][0][0],
                 "sector": row[3][0][1]
             }
+            jsonData["companies"][row[3][0][0]]={
+                "company":row[3][0][0],
+                "vader":float(company_score),
+                "sector":float(sector_score),
+                "assoc":float(assoc_score)
+            }
+            
+            jsonData["sectors"][row[3][0][1]]= {
+                "name":row[3][0][1],
+                "sector":float(sector_score)
+            }
             # print(row[0], " - Vader: ", row[3][0][0],
             #       " - Prediction:", (predictions*10))
         jsonData["news"].append(x)
+        # if(y!={}):
+        #     jsonData["companies"].append(y)
+        # if(z!={}):
+        #     jsonData["sectors"].append(z)
     return (json.dumps(jsonData))
 
 def downloadMtlNews():

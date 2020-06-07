@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Stock Market</title>
@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css"/>
     <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
-   
+
     <script>
       // DOLLAR PRICE API CALL
       // fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
@@ -52,7 +52,7 @@
       // })
 
         //src="..\files\assets\images\avatar-4.jpg"
-      
+
       //ALPHAVANTAGE
       // fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
       // "method": "GET",
@@ -128,18 +128,18 @@
       //   })
 
       //display time below the card
-      var d = new Date(); 
+      var d = new Date();
       console.log(d.getHours()+":"+d.getMinutes());
       displayTime();
       window.onload = function displayTime() {
         document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
       };
-      
+
     </script>
     <style>
       * {
   box-sizing: border-box;
-  
+
 }
 
 
@@ -191,7 +191,7 @@
   white-space: nowrap;
   padding-right: 100%;
   box-sizing: content-box;
-  
+
 
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
@@ -302,221 +302,22 @@ h1,h2,p {
           </div>
         </nav>
 
-        <!-- Sidebar chat start -->
-        <div id="sidebar" class="users p-chat-user showChat">
-          <div class="had-container">
-            <div class="card card_main p-fixed users-main">
-              <div class="user-box">
-                <div class="chat-inner-header">
-                  <div class="back_chatBox">
-                    <div class="right-icon-control">
-                      <input
-                        type="text"
-                        class="form-control  search-text"
-                        placeholder="Search Friend"
-                        id="search-friends"
-                      />
-                      <div class="form-icon">
-                        <i class="icofont icofont-search"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="main-friend-list">
-                  <div
-                    class="media userlist-box"
-                    data-id="1"
-                    data-status="online"
-                    data-username="Nitin Mukesh"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Nitin Mukesh"
-                  >
-                    <a class="media-left" href="#!">
-                      <img
-                        class="media-object img-radius img-radius"
-                        src="..\files\assets\images\avatar-3.jpg"
-                        alt="Generic placeholder image "
-                      />
-                      <div class="live-status bg-success"></div>
-                    </a>
-                    <div class="media-body">
-                      <div class="f-13 chat-header">AeroStocks</div>
-                    </div>
-                  </div>
-                  <div
-                    class="media userlist-box"
-                    data-id="2"
-                    data-status="online"
-                    data-username="Lary Doe"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Lary Doe"
-                  >
-                    <a class="media-left" href="#!">
-                      <img
-                        class="media-object img-radius"
-                        src="..\files\assets\images\avatar-2.jpg"
-                        alt="Generic placeholder image"
-                      />
-                      <div class="live-status bg-success"></div>
-                    </a>
-                    <div class="media-body">
-                      <div class="f-13 chat-header">Lary Doe</div>
-                    </div>
-                  </div>
-                  <div
-                    class="media userlist-box"
-                    data-id="3"
-                    data-status="online"
-                    data-username="Alice"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Alice"
-                  >
-                    <a class="media-left" href="#!">
-                      <img
-                        class="media-object img-radius"
-                        src="..\files\assets\images\avatar-4.jpg"
-                        alt="Generic placeholder image"
-                      />
-                      <div class="live-status bg-success"></div>
-                    </a>
-                    <div class="media-body">
-                      <div class="f-13 chat-header">Alice</div>
-                    </div>
-                  </div>
-                  <div
-                    class="media userlist-box"
-                    data-id="4"
-                    data-status="online"
-                    data-username="Alia"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Alia"
-                  >
-                    <a class="media-left" href="#!">
-                      <img
-                        class="media-object img-radius"
-                        src="..\files\assets\images\avatar-3.jpg"
-                        alt="Generic placeholder image"
-                      />
-                      <div class="live-status bg-success"></div>
-                    </a>
-                    <div class="media-body">
-                      <div class="f-13 chat-header">Alia</div>
-                    </div>
-                  </div>
-                  <div
-                    class="media userlist-box"
-                    data-id="5"
-                    data-status="online"
-                    data-username="Suzen"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Suzen"
-                  >
-                    <a class="media-left" href="#!">
-                      <img
-                        class="media-object img-radius"
-                        src="..\files\assets\images\avatar-2.jpg"
-                        alt="Generic placeholder image"
-                      />
-                      <div class="live-status bg-success"></div>
-                    </a>
-                    <div class="media-body">
-                      <div class="f-13 chat-header">Suzen</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Sidebar inner chat start-->
-        <div class="showChat_inner">
-          <div class="media chat-inner-header">
-            <a class="back_chatBox"> <i class="feather icon-chevron-left"></i> AeroStocks </a>
-          </div>
-          <div class="media chat-messages">
-            <a class="media-left photo-table" href="#!">
-              <img
-                class="media-object img-radius img-radius m-t-5"
-                src="..\files\assets\images\avatar-3.jpg"
-                alt="Generic placeholder image"
-              />
-            </a>
-            <div class="media-body chat-menu-content">
-              <div class="">
-                <p class="chat-cont">
-                  I'm just looking around. Will you tell me something about yourself?
-                </p>
-                <p class="chat-time">8:20 a.m.</p>
-              </div>
-            </div>
-          </div>
-          <div class="media chat-messages">
-            <div class="media-body chat-menu-reply">
-              <div class="">
-                <p class="chat-cont">
-                  I'm just looking around. Will you tell me something about yourself?
-                </p>
-                <p class="chat-time">8:20 a.m.</p>
-              </div>
-            </div>
-            <div class="media-right photo-table">
-              <a href="#!">
-                <img
-                  class="media-object img-radius img-radius m-t-5"
-                  src="..\files\assets\images\avatar-4.jpg"
-                  alt="Generic placeholder image"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="chat-reply-box p-b-20">
-            <div class="right-icon-control">
-              <input
-                type="text"
-                class="form-control search-text"
-                placeholder="Share Your Thoughts"
-              />
-              <div class="form-icon">
-                <i class="feather icon-navigation"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Sidebar inner chat end-->
         <div class="pcoded-main-container">
           <div class="pcoded-wrapper">
             <nav class="pcoded-navbar">
               <div class="pcoded-inner-navbar main-menu">
-                <!-- <div class="pcoded-navigatio-lavel">Navigation</div> -->
               <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu active pcoded-trigger">
+                <li class="">
                   <a href="javascript:void(0)">
                       <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                       <span class="pcoded-mtext">Dashboard</span>
                   </a>
-                  <ul class="pcoded-submenu">
-                      <li class="active">
-                          <a href="">
-                              <span class="pcoded-mtext">Default</span>
-                          </a>
-                      </li>
-                      <!-- <li class="">
-                          <a href="">
-                              <span class="pcoded-mtext">CRM</span>
-                          </a>
-                      </li> -->
-                      <li class=" ">
-                          <a href="individual.html">
-                              <span class="pcoded-mtext">Company graphs</span>
-                              <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
-                          </a>
-                      </li>
-                  </ul>
+                </li>
+                <li class=" ">
+                    <a href="sticky.htm">
+                        <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
+                        <span class="pcoded-mtext">Sticky Notes</span>
+                    </a>
                 </li>
             </ul>
 
@@ -534,7 +335,7 @@ h1,h2,p {
                         <span class="pcoded-mtext-2"><a  href="individual.html">Individual companies graph</a>
                         </span>
                       </li>
-                      
+
                     </a>
                   </li>
                 </ul> -->
@@ -542,12 +343,12 @@ h1,h2,p {
             </nav>
             <div class="pcoded-content">
               <div class="pcoded-inner-content">
-              
 
 
-                <div class="page-body">  
+
+                <div class="page-body">
                 <div class="main-body">
-                  
+
                   <div class="page-wrapper">
                     <div class="row">
                       <div class="display_ticker">
@@ -589,7 +390,7 @@ h1,h2,p {
                               <p class="text-white m-b-0">Last update:
                                 <b class="" id="get_time3"></b>
                                 <script>
-                                  var d = new Date(); 
+                                  var d = new Date();
                                   document.getElementById("get_time3").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
                                 </script>
                               </p>
@@ -613,7 +414,7 @@ h1,h2,p {
                               <p class="text-white m-b-0">Last update:
                                 <b class="" id="get_time"></b>
                                 <script>
-                                  var d = new Date(); 
+                                  var d = new Date();
                                   document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
                                 </script>
                               </p>
@@ -637,7 +438,7 @@ h1,h2,p {
                               <p class="text-white m-b-0" >Last update:
                                 <b class="" id="get_time2"></b>
                                 <script>
-                                  var d = new Date(); 
+                                  var d = new Date();
                                   document.getElementById("get_time2").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? ("0"+String(d.getMinutes())) : d.getMinutes());
                                 </script>
                               </p>
@@ -691,7 +492,7 @@ h1,h2,p {
                             </div>
                           </div>
                         </div>
-                        
+
                         <!--  sale analytics end -->
 
                         <div class="col-xl-8 col-md-12">
@@ -1045,7 +846,7 @@ h1,h2,p {
                                 <div class="card-block text-center text-white">
                                   <div class="m-b-25">
                                     <img
-                                      
+
                                       class="img-radius"
                                       alt="User-Profile-Image"
                                     />
@@ -1140,19 +941,16 @@ h1,h2,p {
                             <div class="card-block">
                               <div class="row align-items-center">
                                 <div class="col-auto">
-                                  <i class="feather icon-mail f-34 text-c-blue social-icon"></i>
+                                  <i class="feather icon-mail f-20 text-c-blue social-icon"></i>
                                 </div>
-                                <!-- <div class="col">
-                                  <h6 class="m-b-0">Mail</h6>
-                                  <p>231.2w downloads</p>
-                                  <p class="m-b-0">
-                                    Lorem Ipsum is simply dummy text of the printing
-                                  </p>
-                                </div> -->
+                                <div class="col">
+                                  <h3 class="m-b-15">Economic Times</h3>
+                                  <p class="m-b-15"></p>
+                                </div>
                               </div>
                             </div>
                             <a href="#!" class="download-icon"
-                              ><i class="feather icon-arrow-down"></i
+                              ><i class="feather icon-arrow-right"></i
                             ></a>
                           </div>
                         </div>

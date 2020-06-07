@@ -4,11 +4,11 @@
     padding: 0 0;
     position: relative;
     left: 10px;
-    width: 1200px;
+    width: 100%;
     background-color: #00203FFF;
-}   
+}
 
-.name-display{
+.name-display {
     font-family: Helvetica;
     font-size: 25px;
     color: white;
