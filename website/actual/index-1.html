@@ -32,45 +32,47 @@
   <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
   <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css" />
   <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
+  <!-- themify icon -->
+  <link rel="stylesheet" type="text/css" href="..\files\assets\icon\themify-icons\themify-icons.css">
 
   <script>
     // DOLLAR PRICE API CALL
-    // fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json.quotes.USDINR);
-    //     document.getElementById("dollar_rate").innerHTML = '₹' + json.quotes.USDINR.toFixed(2);
-    //   })
+    fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
+      .then(response => response.json())
+      .then(json => {
+        console.log(json.quotes.USDINR);
+        document.getElementById("dollar_rate").innerHTML = '₹' + json.quotes.USDINR.toFixed(2);
+      })
 
-    // fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json["sectoral_indices"]["data"][1]["last_price"]);
-    //     var bse_price = json["sectoral_indices"]["data"][1]["last_price"];
-    //     document.getElementById("sensex-price").innerHTML = '₹' + bse_price;
-    //   });
+    fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+      .then(response => response.json())
+      .then(json => {
+        console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+        var bse_price = json["sectoral_indices"]["data"][1]["last_price"];
+        document.getElementById("sensex-price").innerHTML = '₹' + bse_price;
+      });
 
-    // //GOLD RATE API CALL
-    // // //1/gold_rate*37.25*76.50/1000
-    // var gold_rate;
-    // fetch(
-    //     "https://metals-api.com/api/latest?access_key=cp5d01aavjgq2w0w3m0bl2fzki6va9ew43m4y5r5cm8hgczguhr34o7vynr3&base=USD&symbols=XAU"
-    //   )
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json.rates.XAU)
-    //     gold_rate = ((1 / json.rates.XAU) * 37.25 * 76.50) / 1000
-    //     document.getElementById("gold_rate").innerHTML = '₹' + gold_rate.toFixed(2);
-    //   })
+    //GOLD RATE API CALL
+    // //1/gold_rate*37.25*76.50/1000
+    var gold_rate;
+    fetch(
+        "https://metals-api.com/api/latest?access_key=cp5d01aavjgq2w0w3m0bl2fzki6va9ew43m4y5r5cm8hgczguhr34o7vynr3&base=USD&symbols=XAU"
+      )
+      .then(response => response.json())
+      .then(json => {
+        console.log(json.rates.XAU)
+        gold_rate = ((1 / json.rates.XAU) * 37.25 * 76.50) / 1000
+        document.getElementById("gold_rate").innerHTML = '₹' + gold_rate.toFixed(2);
+      })
 
 
-    // fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
-    //     var nse_price = json["sectoral_indices"]["data"][0]["last_price"];
-    //     document.getElementById("nifty-price").innerHTML = '₹' + nse_price;
-    //   });
+    fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+      .then(response => response.json())
+      .then(json => {
+        //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+        var nse_price = json["sectoral_indices"]["data"][0]["last_price"];
+        document.getElementById("nifty-price").innerHTML = '₹' + nse_price;
+      });
 
 
 
@@ -329,14 +331,6 @@
               </li>
             </ul>
             <ul class="nav-right">
-              <!-- <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                                        <i class="feather icon-message-square"></i>
-                                        <span class="badge bg-c-green">3</span>
-                                    </div>
-                                </div>
-                            </li> -->
               <li class="user-profile header-notification">
                 <div class="dropdown-primary dropdown">
                   <div class="dropdown-toggle">
@@ -410,333 +404,338 @@
           </nav>
           <div class="pcoded-content">
             <div class="pcoded-inner-content">
-
-
-
               <div class="page-body">
                 <div class="main-body">
-
-                  <div class="page-wrapper">
-                    <div class="row">
-                      <div class="display_ticker">
-                        <p class="name-display">BREAKING NEWS</p>
-                        <div class="ticker-wrap">
-                          <div class="ticker">
-                            <div class="ticker__item" id="ticker_display"><a
-                                href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms"
-                                target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
-                            <div class="ticker__item"><a
-                                href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
-                                target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
-                            <div class="ticker__item"><a
-                                href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
-                                target="_blank">Infosys shares price down by 4%</a></div>
-                            <div class="ticker__item"><a
-                                href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
-                                target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers,
-                                auto stocks </a></div>
-                          </div>
+                  <div class="page-wrapper" ><div class="col-sm-12">
+                    <!-- <center>
+                      <h1 style="font-weight:'bold';color:rgb(11, 78, 106)">Dividend <i class="ti-crown text-c-yellow"></i> Kings
+                      </h1><br/>
+                    </center> -->
+                    <!-- <div class="card">
+                        <div class="card-header">
+                        </div>
+                      </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="display_ticker">
+                      <p class="name-display">BREAKING NEWS</p>
+                      <div class="ticker-wrap">
+                        <div class="ticker">
+                          <div class="ticker__item" id="ticker_display"><a
+                              href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms"
+                              target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
+                          <div class="ticker__item"><a
+                              href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
+                              target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
+                          <div class="ticker__item"><a
+                              href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
+                              target="_blank">Infosys shares price down by 4%</a></div>
+                          <div class="ticker__item"><a
+                              href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
+                              target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers,
+                              auto stocks </a></div>
                         </div>
                       </div>
-                    </div><br />
+                    </div>
+                  </div><br />
 
-                    <div class="row" id="tickers" style="padding:20;margin:20;">
-                      <div class="col-xl-12 col-md-12">
-                        <!-- TradingView Widget BEGIN -->
-                        <div class="tradingview-widget-container">
-                          <div class="tradingview-widget-container__widget"></div><br /><br />
+                  <div class="row" id="tickers" style="padding:20;margin:20;">
+                    <div class="col-xl-12 col-md-12">
+                      <!-- TradingView Widget BEGIN -->
+                      <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div><br /><br />
 
-                          <script type="text/javascript"
-                            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                            {
-                              "symbols": [{
-                                  "proName": "FOREXCOM:SPXUSD",
-                                  "title": "S&P 500"
-                                },
-                                {
-                                  "proName": "FOREXCOM:NSXUSD",
-                                  "title": "Nasdaq 100"
-                                },
-                                {
-                                  "proName": "FX_IDC:EURUSD",
-                                  "title": "EUR/USD"
-                                },
-                                {
-                                  "proName": "BITSTAMP:BTCUSD",
-                                  "title": "BTC/USD"
-                                },
-                                {
-                                  "proName": "BITSTAMP:ETHUSD",
-                                  "title": "ETH/USD"
-                                }
-                              ],
-                              "colorTheme": "light",
-                              "isTransparent": false,
-                              "displayMode": "adaptive",
-                              "locale": "in"
-                            }
-                          </script>
-                        </div>
-                        <!-- TradingView Widget END -->
+                        <script type="text/javascript"
+                          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                          {
+                            "symbols": [{
+                                "proName": "FOREXCOM:SPXUSD",
+                                "title": "S&P 500"
+                              },
+                              {
+                                "proName": "FOREXCOM:NSXUSD",
+                                "title": "Nasdaq 100"
+                              },
+                              {
+                                "proName": "FX_IDC:EURUSD",
+                                "title": "EUR/USD"
+                              },
+                              {
+                                "proName": "BITSTAMP:BTCUSD",
+                                "title": "BTC/USD"
+                              },
+                              {
+                                "proName": "BITSTAMP:ETHUSD",
+                                "title": "ETH/USD"
+                              }
+                            ],
+                            "colorTheme": "light",
+                            "isTransparent": false,
+                            "displayMode": "adaptive",
+                            "locale": "in"
+                          }
+                        </script>
                       </div>
-                    </div><br />
-                    <div class="row">
-                      <!-- task, page, download counter  start -->
-                      <div class="col-xl-3 col-md-6">
-                        <div class="card bg-c-yellow update-card">
-                          <div class="card-block">
-                            <div class="row align-items-end">
-                              <div class="col-12">
-                                <h4 class="text-white" id="sensex-price">₹34769.41</h4>
-                              </div>
+                      <!-- TradingView Widget END -->
+                    </div>
+                  </div><br />
+                  <div class="row">
+                    <!-- task, page, download counter  start -->
+                    <div class="col-xl-3 col-md-6">
+                      <div class="card bg-c-yellow update-card">
+                        <div class="card-block">
+                          <div class="row align-items-end">
+                            <div class="col-12">
+                              <h4 class="text-white" id="sensex-price">₹34769.41</h4>
                             </div>
                           </div>
-                          <div class="card-footer">
-                            <p class="text-white m-b-0">Sensex</p>
-                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <p class="text-white m-b-0">Sensex</p>
                         </div>
                       </div>
-                      <div class="col-xl-3 col-md-6">
-                        <div class="card bg-c-green update-card">
-                          <div class="card-block">
-                            <div class="row align-items-end">
-                              <div class="col-12">
-                                <h4 class="text-white" id="nifty-price">₹10279.90</h4>
-                              </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                      <div class="card bg-c-green update-card">
+                        <div class="card-block">
+                          <div class="row align-items-end">
+                            <div class="col-12">
+                              <h4 class="text-white" id="nifty-price">₹10279.90</h4>
                             </div>
                           </div>
-                          <div class="card-footer">
-                            <p class="text-white m-b-0">Nifty Price
-                            </p>
-                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <p class="text-white m-b-0">Nifty Price
+                          </p>
                         </div>
                       </div>
-                      <div class="col-xl-3 col-md-6">
-                        <div class="card bg-c-pink update-card">
-                          <div class="card-block">
-                            <div class="row align-items-end">
-                              <div class="col-12">
-                                <h4 class="text-white" id="gold_rate">₹4825.67</h4>
-                              </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                      <div class="card bg-c-pink update-card">
+                        <div class="card-block">
+                          <div class="row align-items-end">
+                            <div class="col-12">
+                              <h4 class="text-white" id="gold_rate">₹4825.67</h4>
                             </div>
                           </div>
-                          <div class="card-footer">
-                            <p class="text-white m-b-0">Gold price/g
-                            </p>
-                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <p class="text-white m-b-0">Gold price/g
+                          </p>
                         </div>
                       </div>
-                      <div class="col-xl-3 col-md-6">
-                        <div class="card bg-c-lite-green update-card">
-                          <div class="card-block">
-                            <div class="row align-items-end">
-                              <div class="col-12">
-                                <h4 class="text-white" id="dollar_rate">₹75.45</h4>
-                              </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                      <div class="card bg-c-lite-green update-card">
+                        <div class="card-block">
+                          <div class="row align-items-end">
+                            <div class="col-12">
+                              <h4 class="text-white" id="dollar_rate">₹75.45</h4>
                             </div>
                           </div>
-                          <div class="card-footer">
-                            <p class="text-white m-b-0">Dollar Rate
-                            </p>
-                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <p class="text-white m-b-0">Dollar Rate
+                          </p>
                         </div>
                       </div>
-                      <!-- task, page, download counter  end -->
+                    </div>
+                    <!-- task, page, download counter  end -->
 
-                      <!--  sale analytics start -->
-                      <div class="col-xl-12 col-md-12">
-                        <div class="card">
-                          <div class="card-header">
-                            <h5>Sensex graph</h5>
-                            <div class="card-header-right">
-                              <ul class="list-unstyled card-option">
-                                <li><i class="feather icon-maximize full-card"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
-                              </ul>
-                            </div>
+                    <!--  sale analytics start -->
+                    <div class="col-xl-12 col-md-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h5>Sensex graph</h5>
+                          <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                              <li><i class="feather icon-maximize full-card"></i></li>
+                              <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
                           </div>
-                          <div class="card-block">
-                            <div class="tradingview-widget-container">
-                              <div id="tradingview_2449e"></div>
+                        </div>
+                        <div class="card-block">
+                          <div class="tradingview-widget-container">
+                            <div id="tradingview_2449e"></div>
 
-                              <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                              <script type="text/javascript">
-                                new TradingView.MediumWidget({
-                                  "symbols": [
-                                    [
-                                      "Sensex",
-                                      "BSE:SENSEX|12m"
-                                    ],
-                                    [
-                                      "Infosys",
-                                      "BSE:INFY|12m"
-                                    ],
-                                    [
-                                      "Reliance",
-                                      "BSE:RELIANCE|12m"
-                                    ],
-                                    [
-                                      "Microsoft",
-                                      "MSFT"
-                                    ]
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                              new TradingView.MediumWidget({
+                                "symbols": [
+                                  [
+                                    "Sensex",
+                                    "BSE:SENSEX|12m"
                                   ],
-                                  "chartOnly": false,
-                                  "width": "100%",
-                                  "height": 400,
-                                  "locale": "in",
-                                  "colorTheme": "light",
-                                  "gridLineColor": "#F0F3FA",
-                                  "trendLineColor": "#2196F3",
-                                  "fontColor": "#787B86",
-                                  "underLineColor": "#E3F2FD",
-                                  "isTransparent": false,
-                                  "autosize": true,
-                                  "container_id": "tradingview_2449e"
-                                });
-                              </script>
-                            </div>
-                            <!-- TradingView Widget END -->
+                                  [
+                                    "Infosys",
+                                    "BSE:INFY|12m"
+                                  ],
+                                  [
+                                    "Reliance",
+                                    "BSE:RELIANCE|12m"
+                                  ],
+                                  [
+                                    "Microsoft",
+                                    "MSFT"
+                                  ]
+                                ],
+                                "chartOnly": false,
+                                "width": "100%",
+                                "height": 400,
+                                "locale": "in",
+                                "colorTheme": "light",
+                                "gridLineColor": "#F0F3FA",
+                                "trendLineColor": "#2196F3",
+                                "fontColor": "#787B86",
+                                "underLineColor": "#E3F2FD",
+                                "isTransparent": false,
+                                "autosize": true,
+                                "container_id": "tradingview_2449e"
+                              });
+                            </script>
                           </div>
+                          <!-- TradingView Widget END -->
                         </div>
                       </div>
+                    </div>
 
-                      <div class="col-xl-12 col-md-12">
-                        <div class="card user-activity-card">
-                          <div class="card-header">
-                            <h5>Recent News</h5>
-                            <div class="card-header-right">
-                              <ul class="list-unstyled card-option">
-                                <li><i class="feather icon-maximize full-card"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
-                              </ul>
-                            </div>
+                    <div class="col-xl-12 col-md-12">
+                      <div class="card user-activity-card">
+                        <div class="card-header">
+                          <h5>Recent News</h5>
+                          <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                              <li><i class="feather icon-maximize full-card"></i></li>
+                              <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
                           </div>
-                          <div class="card-block table-border-style">
-                            <div class="col-xl-12">
-                              <table class="table table-hover table-responsive">
-                                <thead>
-                                  <!-- <tr>
+                        </div>
+                        <div class="card-block table-border-style">
+                          <div class="col-xl-12">
+                            <table class="table table-hover table-responsive">
+                              <thead>
+                                <!-- <tr>
                                     <th>#</th>
                                     <th>News</th>
                                   </tr> -->
-                                </thead>
-                                <tbody id="recentNews">
-                                </tbody>
-                              </table>
-                            </div>
+                              </thead>
+                              <tbody id="recentNews">
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
-
-                      <div class="col-xl-12 col-md-12">
-                        <div class="card">
-                          <div class="card-header">
-                            <h5>Recent data</h5>
-                            <div class="card-header-right">
-                              <ul class="list-unstyled card-option">
-                                <li><i class="feather icon-maximize full-card"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="card-block">
-                            <!-- TradingView Widget BEGIN -->
-                            <div class="tradingview-widget-container">
-                              <div class="tradingview-widget-container__widget"></div>
-                              <script type="text/javascript"
-                                src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
-                                {
-                                  "colorTheme": "light",
-                                  "dateRange": "12m",
-                                  "exchange": "BSE",
-                                  "showChart": true,
-                                  "locale": "in",
-                                  "width": "100%",
-                                  "height": 600,
-                                  "largeChartUrl": "",
-                                  "isTransparent": false,
-                                  "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
-                                  "plotLineColorFalling": "rgba(33, 150, 243, 1)",
-                                  "gridLineColor": "rgba(240, 243, 250, 1)",
-                                  "scaleFontColor": "rgba(120, 123, 134, 1)",
-                                  "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
-                                  "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-                                  "symbolActiveColor": "rgba(33, 150, 243, 0.12)"
-                                }
-                              </script>
-                            </div>
-                            <!-- TradingView Widget END -->
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <!-- social download  start -->
-                      <div class="col-xl-4 col-md-6">
-                        <div class="card social-card bg-simple-c-blue">
-                          <div class="card-block">
-                            <div class="row align-items-center">
-                              <div class="col-auto">
-                                <i class="feather icon-mail f-34 text-c-blue social-icon"></i>
-                              </div>
-                              <div class="col">
-                                <h3 class="m-b-12">Economic Times</h3>
-                                <p class="m-b-15"></p>
-                              </div>
-                            </div>
-                          </div>
-                          <a href="http://economictimes.indiatimes.com/" target="_blank" class="download-icon"><i
-                              class="feather icon-arrow-right"></i></a>
-                        </div>
-                      </div>
-                      <div class="col-xl-4 col-md-6">
-                        <div class="card social-card bg-simple-c-pink">
-                          <div class="card-block">
-                            <div class="row align-items-center">
-                              <div class="col-auto">
-                                <i class="feather icon-mail f-34 text-c-pink social-icon"></i>
-                              </div>
-                              <div class="col">
-                                <h3 class="m-b-12">Money control</h3>
-                                <p class="m-b-15"></p>
-                              </div>
-                            </div>
-                          </div>
-                          <a href="http://moneycontrol.com/" target="_blank" class="download-icon"><i
-                              class="feather icon-arrow-right"></i></a>
-                        </div>
-                      </div>
-                      <div class="col-xl-4 col-md-6">
-                        <div class="card social-card bg-simple-c-green">
-                          <div class="card-block">
-                            <div class="row align-items-center">
-                              <div class="col-auto">
-                                <i class="feather icon-mail f-34 text-c-green social-icon"></i>
-                              </div>
-                              <div class="col">
-                                <h3 class="m-b-12">First post<br /></h3>
-                                <p class="m-b-15"></p>
-                              </div>
-                            </div>
-                          </div>
-                          <a href="https://www.firstpost.com/" target="_blank" class="download-icon"><i
-                              class="feather icon-arrow-right"></i></a>
-                        </div>
-                      </div>
-                      <!-- social download  end -->
                     </div>
+
+                    <div class="col-xl-12 col-md-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h5>Recent data</h5>
+                          <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                              <li><i class="feather icon-maximize full-card"></i></li>
+                              <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card-block">
+                          <!-- TradingView Widget BEGIN -->
+                          <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                              src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+                              {
+                                "colorTheme": "light",
+                                "dateRange": "12m",
+                                "exchange": "BSE",
+                                "showChart": true,
+                                "locale": "in",
+                                "width": "100%",
+                                "height": 600,
+                                "largeChartUrl": "",
+                                "isTransparent": false,
+                                "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+                                "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+                                "gridLineColor": "rgba(240, 243, 250, 1)",
+                                "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                                "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                                "symbolActiveColor": "rgba(33, 150, 243, 0.12)"
+                              }
+                            </script>
+                          </div>
+                          <!-- TradingView Widget END -->
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- social download  start -->
+                    <div class="col-xl-4 col-md-6">
+                      <div class="card social-card bg-simple-c-blue">
+                        <div class="card-block">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <i class="feather icon-mail f-34 text-c-blue social-icon"></i>
+                            </div>
+                            <div class="col">
+                              <h3 class="m-b-12">Economic Times</h3>
+                              <p class="m-b-15"></p>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="http://economictimes.indiatimes.com/" target="_blank" class="download-icon"><i
+                            class="feather icon-arrow-right"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                      <div class="card social-card bg-simple-c-pink">
+                        <div class="card-block">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <i class="feather icon-mail f-34 text-c-pink social-icon"></i>
+                            </div>
+                            <div class="col">
+                              <h3 class="m-b-12">Money control</h3>
+                              <p class="m-b-15"></p>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="http://moneycontrol.com/" target="_blank" class="download-icon"><i
+                            class="feather icon-arrow-right"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                      <div class="card social-card bg-simple-c-green">
+                        <div class="card-block">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <i class="feather icon-mail f-34 text-c-green social-icon"></i>
+                            </div>
+                            <div class="col">
+                              <h3 class="m-b-12">First post<br /></h3>
+                              <p class="m-b-15"></p>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="https://www.firstpost.com/" target="_blank" class="download-icon"><i
+                            class="feather icon-arrow-right"></i></a>
+                      </div>
+                    </div>
+                    <!-- social download  end -->
                   </div>
                 </div>
+              </div>
 
-                <!-- <div id="styleSelector">
+              <!-- <div id="styleSelector">
 
                                 </div> -->
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Warning Section Starts -->
@@ -811,6 +810,7 @@
       type="text/javascript"
       src="..\files\assets\pages\dashboard\custom-dashboard.js"
     ></script> -->
+  <!-- icici bank price is down and all financial services are affected -->
   <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
 </body>
 

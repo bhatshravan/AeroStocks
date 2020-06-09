@@ -1,3 +1,4 @@
+import tensorflow as tf
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, render_template, send_from_directory
@@ -40,7 +41,6 @@ with open('./sectors.txt') as f:
     sectors = f.read().splitlines()
 
 
-
 # Returns a sentiment score
 def vaderParagraph(data):
     analyzer = SentimentIntensityAnalyzer()
@@ -50,8 +50,8 @@ def vaderParagraph(data):
         vs = analyzer.polarity_scores(sentence)
         paragraphSentiments += vs["compound"]
     pos_words = ["rally", "rallies"]
-    neg_words = ["plunge up to", "share price falls", "shares fall", "shares dip", "stock plunges", "profit plunges", "drops over", "plummets"
-                 "52-week low", "nosedives", "share price tanks", "-yr low", "slides", "dips", "lead fall", "revenue falls"]
+    neg_words = ["plunge up to", "share price falls", "shares fall", "shares prices fall", "shares dip", "stock plunges", "profit plunges", "drops over", "plummets"
+                 "52-week low", "nosedives", "share price tanks", "-yr low", "slides", "dips", "lead fall", "revenue falls", "down"]
     spec_words = ["Buzzing stocks", "ideas from experts"]
     averageSentiment = round(paragraphSentiments / len(sentence_list), 4)
     data = data.lower()
@@ -72,6 +72,8 @@ def vaderParagraph(data):
             if(averageSentiment == 0.0):
                 averageSentiment = 0.3
             return(averageSentiment)
+
+    print(data,averageSentiment)
     return ((averageSentiment))
 
 
@@ -91,8 +93,14 @@ def getKeyWords(data):
     return(companyList, sectorList)
 
 
-import tensorflow as tf
 model = tf.keras.models.load_model('../classifier/models/model2.h5')
+
+
+def predictVader(data1, data2, data3):
+    predictions = round((model.predict(
+        [[float(data1), data2, data3]])[0][0])*1, 2)
+    return predictions
+
 
 def main():
     today = str(date.today())
@@ -115,14 +123,15 @@ def main():
         pubDate = datas["publishedAt"].split("T")[0]
 
         # if pubDate==today:
-        row = [datas["title"], datas["url"], pubDate, datas["source"]["name"]]
+        row = [datas["title"], datas["url"], pubDate,
+               datas["source"]["name"], datas["content"]]
 
         headline = datas["title"]
         vaderScore = vaderParagraph(headline)
         headlineCompanies, headlineSector = getKeyWords(headline)
 
         rows.append([headline, datas["url"], pubDate,
-                     headlineCompanies, vaderScore])
+                     headlineCompanies, vaderScore, datas["content"]])
 
         for companyRetrieved in headlineCompanies:
             if companyRetrieved[0] in company_dict:
@@ -154,19 +163,21 @@ def main():
     # print("Company: ", company_dict_final)
     # print("Assoc: ", assoc_dict_final)
 
-    jsonData = {"news": [],"companies":{},"sectors":{}}
+    jsonData = {"news": [], "companies": [], "sectors": []}
 
-    print()
+    doneCompany = []
+    doneSectors = []
     for row in rows:
         x = {
             "headline": row[0],
             "url": row[1],
             "date": row[2],
             "vader": row[4],
-            "prediction": "none"
+            "prediction": "none",
+            "description": row[5]
         }
-        y={}
-        z={}
+        y = {}
+        z = {}
 
         if len(row[3]) > 0:
             sector_score = 0.0
@@ -187,17 +198,22 @@ def main():
                 "company": row[3][0][0],
                 "sector": row[3][0][1]
             }
-            jsonData["companies"][row[3][0][0]]={
-                "company":row[3][0][0],
-                "vader":float(company_score),
-                "sector":float(sector_score),
-                "assoc":float(assoc_score)
-            }
-            
-            jsonData["sectors"][row[3][0][1]]= {
-                "name":row[3][0][1],
-                "sector":float(sector_score)
-            }
+
+            if(row[3][0][0] not in doneCompany):
+                jsonData["companies"].append({
+                    "company": row[3][0][0],
+                    "vader": float(company_score),
+                    "sector": float(sector_score),
+                    "assoc": float(assoc_score)
+                })
+                doneCompany.append(row[3][0][0])
+
+            if(row[3][0][1] not in doneSectors):
+                jsonData["sectors"].append({
+                    "name": row[3][0][1],
+                    "sector": float(sector_score)
+                })
+                doneSectors.append(row[3][0][1])
             # print(row[0], " - Vader: ", row[3][0][0],
             #       " - Prediction:", (predictions*10))
         jsonData["news"].append(x)
@@ -207,11 +223,12 @@ def main():
         #     jsonData["sectors"].append(z)
     return (json.dumps(jsonData))
 
+
 def downloadMtlNews():
-    url = "https://www.moneycontrol.com/news/business/page-1"
+    url = "https://www.moneycontrol.com/news/page-1"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
-    jsonOutput = {'news':[]}
+    jsonOutput = {'news': []}
 
     for LiIds in range(1, 25):
         LiId = "newslist-"+str(LiIds)
@@ -223,8 +240,8 @@ def downloadMtlNews():
             date = sp.find('span').get_text()
 
             jsonOutput['news'].append({
-                "headline":title,
-                "link":link
+                "headline": title,
+                "link": link
             })
 
         except:

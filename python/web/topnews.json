@@ -1,750 +1,144 @@
 {
-"news": [
-{
-"headline": "Guardians of the world economy stagger from rescue to recovery - Times of India",
-"url": "https://timesofindia.indiatimes.com/business/international-business/guardians-of-the-world-economy-stagger-from-rescue-to-recovery/articleshow/76247483.cms",
-"date": "2020-06-07",
-"vader": 0.5106,
-"prediction": "none"
-},
-{
-"headline": "Reliance Jio: Abu Dhabi Investment Authority new investor in Jio Platforms as RIL unit raises total of nearly Rs 1 lakh crore - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/business/reliance-jio-abu-dhabi-investment-authority-new-investor-in-jio-platforms-as-ril-unit-raises-total-of-nearly-rs-1-lakh-crore-5371271.html",
-"date": "2020-06-07",
-"vader": 0.0772,
-"prediction": "none"
-},
-{
-"headline": "Trade Setup for Monday: Top 15 things to know before Opening Bell - Moneycontrol.com",
-"url": "https://www.moneycontrol.com/news/business/markets/trade-setup-for-monday-top-15-things-to-know-before-opening-bell-91-5369661.html",
-"date": "2020-06-07",
-"vader": 0.2023,
-"prediction": "none"
-},
-{
-"headline": "HDFC Bank nets 2.5 lakh new customers through instant account opening in lockdown - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/business/hdfc-bank-nets-2-5-lakh-new-customers-through-instant-account-opening-in-lockdown-5371521.html",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": {
-"score": -0.03,
-"company": "ACC",
-"sector": "Construction"
-}
-},
-{
-"headline": "Ahead of Market: 12 things that will decide stock action on Monday - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-12-things-that-will-decide-stock-action-on-monday/articleshow/76246268.cms",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "When job loss helps build a dream career - Livemint",
-"url": "https://www.livemint.com/companies/news/when-job-loss-helps-build-a-dream-career-11591531842899.html",
-"date": "2020-06-07",
-"vader": 0.3182,
-"prediction": "none"
-},
-{
-"headline": "Planning a Hyundai car? Check out latest offers and discounts for June - Hindustan Times",
-"url": "https://auto.hindustantimes.com/auto/news/planning-a-hyundai-car-check-out-latest-offers-and-discounts-for-june-41591526697672.html",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Tata 2020 May Sales Analysis - Altroz, Tiago, Nexon, Harrier, Tigor - GaadiWaadi.com",
-"url": "https://gaadiwaadi.com/tata-2020-may-sales-analysis-altroz-tiago-nexon-harrier-tigor/",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Emirates, Etihad extend temporary salary cuts to September - Mumbai Mirror",
-"url": "https://mumbaimirror.indiatimes.com/coronavirus/news/emirates-etihad-extend-temporary-salary-cuts-to-september/articleshow/76245060.cms",
-"date": "2020-06-07",
-"vader": -0.128,
-"prediction": "none"
-},
-{
-"headline": "India\u2019s biggest asset sale to attract China-wary oil majors - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/indias-biggest-asset-sale-to-attract-china-wary-oil-majors/articleshow/76241574.cms",
-"date": "2020-06-07",
-"vader": 0.6124,
-"prediction": {
-"score": -0.03,
-"company": "Oil",
-"sector": "Energy"
-}
-},
-{
-"headline": "Top 10 firms add Rs 2.46 lakh cr in market cap; RIL biggest gainer - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/top-10-firms-add-rs-2-46-lakh-cr-in-market-cap-ril-biggest-gainer/articleshow/76244580.cms",
-"date": "2020-06-07",
-"vader": 0.2023,
-"prediction": "none"
-},
-{
-"headline": "Equity MFs give 25% returns during lockdown amid market recovery - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/equity-mfs-give-25-returns-during-lockdown-amid-market-recovery/articleshow/76244455.cms",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Index Outlook | Sensex, Nifty 50 pause above key supports - BusinessLine",
-"url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/index-outlook-sensex-nifty-50-pause-above-key-supports/article31767508.ece",
-"date": "2020-06-07",
-"vader": 0.6369,
-"prediction": {
-"score": 0.08,
-"company": "nifty",
-"sector": "indicies"
-}
-},
-{
-"headline": "Petrol, diesel price increased amid Coronavirus crisis; check details - Kalinga TV",
-"url": "https://kalingatv.com/state/petrol-diesel-price-increased-amid-coronavirus-crisis-check-details/",
-"date": "2020-06-07",
-"vader": -0.4588,
-"prediction": "none"
-},
-{
-"headline": "Sebi censures Astrazeneca Pharma's promoter, Elliot Group - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/sebi-censures-astrazeneca-pharmas-promoter-elliot-group/articleshow/76244060.cms",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": {
-"score": -0.03,
-"company": "Astrazeneca Pharma",
-"sector": "Healthcare"
-}
-},
-{
-"headline": "Sovereign gold bonds open for subscription tomorrow. Key details here - Livemint",
-"url": "https://www.livemint.com/money/personal-finance/sovereign-gold-bonds-open-for-subscription-today-key-details-here-11591510312939.html",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "AstraZeneca Approaches Rival Drugmaker Gilead about Potential Merger: Report - News18",
-"url": "https://www.news18.com/news/business/astrazeneca-approaches-rival-drugmaker-gilead-about-potential-merger-report-2657695.html",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Reliance Jio offers free Disney+ Hotstar VIP subscription to prepaid subscribers: Here are the details - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/business/reliance-jio-offers-free-disney-hotstar-vip-subscription-to-prepaid-subscribers-here-are-the-details-5370121.html",
-"date": "2020-06-07",
-"vader": 0.8091,
-"prediction": "none"
-},
-{
-"headline": "Skoda Vision IN SUV patent images leaked - Team-BHP",
-"url": "https://www.team-bhp.com/news/skoda-vision-suv-patent-images-leaked",
-"date": "2020-06-07",
-"vader": -0.0772,
-"prediction": "none"
-},
-{
-"headline": "Bharti Airtel and Vodafone First Recharge Plans Start at Rs 197: Check Details - TelecomTalk",
-"url": "https://telecomtalk.info/airtel-vodafone-first-recharge-plans/276378/",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": {
-"score": 0.03,
-"company": "Bharti Airtel",
-"sector": "Communication"
-}
-},
-{
-"headline": "Edelweiss group acquires Navayuga group\u2019s road assets in north- east India for $150 million - Moneycontrol.com",
-"url": "https://www.moneycontrol.com/news/business/companies/edelweiss-group-acquires-navayuga-groups-road-assets-in-north-east-india-for-150-million-5370251.html",
-"date": "2020-06-07",
-"vader": 0.1779,
-"prediction": "none"
-},
-{
-"headline": "Coronavirus (Covid-19) vaccine latest update: Production of Oxford-AstraZeneca vaccine begins; US says 2 billion doses \u2018ready to go\u2019 - The Indian Express",
-"url": "https://indianexpress.com/article/coronavirus/corona-covid-19-vaccine-update-june-oxford-astrazeneca-moderna-serum-institute-of-india-6447030/",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": {
-"score": -0.03,
-"company": "ACC",
-"sector": "Construction"
-}
-},
-{
-"headline": "China-Spec Kia Seltos Comes With Panoramic Sunroof, Bigger Than Indian Version - GaadiWaadi.com",
-"url": "https://gaadiwaadi.com/china-spec-kia-seltos-comes-with-panoramic-sunroof-bigger-than-indian-version/",
-"date": "2020-06-07",
-"vader": -0.6369,
-"prediction": "none"
-},
-{
-"headline": "FPIs invest Rs 18,589 cr in first week of June as market sentiment improves - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/india/fpis-invest-rs-18589-cr-in-1st-week-of-june-as-market-sentiment-improves-5369921.html",
-"date": "2020-06-07",
-"vader": 0.4215,
-"prediction": "none"
-},
-{
-"headline": "EESL Plans To Install 2000 Electric Vehicle Charging Facilities Across India By 2021 - CarandBike",
-"url": "https://www.carandbike.com/news/eesl-plans-to-install-around-2000-electric-vehicle-charging-facilities-across-india-in-2020-21-2242097",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "China May exports slip back into contraction, imports worst in four years - Investing.com",
-"url": "https://www.investing.com/news/economic-indicators/china-exports-in-may-fall-33-yearonyear-imports-shrink-167-2194488",
-"date": "2020-06-07",
-"vader": -0.6249,
-"prediction": "none"
-},
-{
-"headline": "Indian Overseas Bank reduces interest rates on loans - Moneycontrol.com",
-"url": "https://www.moneycontrol.com/news/business/companies/indian-overseas-bank-reduces-interest-rates-on-loans-5370091.html",
-"date": "2020-06-07",
-"vader": 0.4588,
-"prediction": {
-"score": 0.05,
-"company": "Indian Overseas Bank",
-"sector": "Financial"
-}
-},
-{
-"headline": "Startup Street: A Glimpse Into How Covid-19 Hit Fintech Funding - BloombergQuint",
-"url": "https://www.bloombergquint.com/business/startup-street-a-glimpse-into-how-covid-19-hit-fintech-funding",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Volkswagen CEO praised Elon Musk\u2019s SpaceX success to motivate top executives - Hindustan Times",
-"url": "https://auto.hindustantimes.com/auto/news/volkswagen-ceo-praised-elon-musk-s-spacex-success-to-motivate-top-executives-41591512811580.html",
-"date": "2020-06-07",
-"vader": 0.8834,
-"prediction": "none"
-},
-{
-"headline": "Economy to take further hit after likely 5% contraction, 10% permanent GDP loss if these risks materialise - The Financial Express",
-"url": "https://news.google.com/__i/rss/rd/articles/CBMimQFodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9lY29ub215L2Vjb25vbXktdG8tdGFrZS1mdXJ0aGVyLWhpdC1hZnRlci1saWtlbHktNS1jb250cmFjdGlvbi0xMC1wZXJtYW5lbnQtZ2RwLWxvc3MtaWYtdGhlc2Utcmlza3MtbWF0ZXJpYWxpc2UvMTk4MzgyMi_SAZ4BaHR0cHM6Ly93d3cuZmluYW5jaWFsZXhwcmVzcy5jb20vZWNvbm9teS9lY29ub215LXRvLXRha2UtZnVydGhlci1oaXQtYWZ0ZXItbGlrZWx5LTUtY29udHJhY3Rpb24tMTAtcGVybWFuZW50LWdkcC1sb3NzLWlmLXRoZXNlLXJpc2tzLW1hdGVyaWFsaXNlLzE5ODM4MjIvbGl0ZS8?oc=5",
-"date": "2020-06-07",
-"vader": -0.5267,
-"prediction": "none"
-},
-{
-"headline": "No better time to bet on India than now, says billionaire Gautam Adani - Business Standard",
-"url": "https://www.business-standard.com/article/economy-policy/no-better-time-to-bet-on-india-than-now-says-billionaire-gautam-adani-120060700229_1.html",
-"date": "2020-06-07",
-"vader": -0.3412,
-"prediction": "none"
-},
-{
-"headline": "Yes, Another Stock Market Crash Is Coming: How to Be Ready - The Motley Fool",
-"url": "https://www.fool.com/investing/2020/06/06/yes-another-stock-market-crash-is-coming-how-to-be.aspx",
-"date": "2020-06-07",
-"vader": -0.1027,
-"prediction": "none"
-},
-{
-"headline": "Read Amazon CEO\u2019s reply to an \u2018angry\u2019 customer\u2019s email - Gadgets Now",
-"url": "https://www.gadgetsnow.com/tech-news/read-amazon-ceos-reply-to-an-angry-customers-email/articleshow/76241286.cms",
-"date": "2020-06-07",
-"vader": 0.1779,
-"prediction": "none"
-},
-{
-"headline": "IOC says Unlock 1.0 to revive fuel sales soon - Moneycontrol.com",
-"url": "https://www.moneycontrol.com/news/business/companies/ioc-says-unlock-1-0-to-revive-fuel-sales-soon-5369851.html",
-"date": "2020-06-07",
-"vader": 0.34,
-"prediction": "none"
-},
-{
-"headline": "Kiran Mazumdar-Shaw has a message for women: \"Be 100% committed to your career, don't just give it a shot\" - Times Now",
-"url": "https://www.timesnownews.com/business-economy/industry/article/kiran-mazumdar-shaw-has-a-message-for-women-be-100-committed-to-your-career-dont-just-give-it-a-shot/602653",
-"date": "2020-06-07",
-"vader": 0.2732,
-"prediction": "none"
-},
-{
-"headline": "Vedanta reports massive Q4 loss as it attempts to take company private - Livemint",
-"url": "https://www.livemint.com/companies/news/vedanta-reports-massive-q4-loss-as-it-attempts-to-take-company-private-11591503499366.html",
-"date": "2020-06-07",
-"vader": -0.3182,
-"prediction": {
-"score": -0.06,
-"company": "Vedanta",
-"sector": "Metals"
-}
-},
-{
-"headline": "The week that was in 10 stocks: 204 names that rallied up to 90% - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/the-week-that-was-in-10-stocks-tata-motors-bajaj-finance-ril-and-stocks-that-rallied-up-to-90/articleshow/76241386.cms",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Oil Price Fundamental Daily Forecast \u2013 Is Too Much Emphasis Being Placed on Supply Cuts? Where's the Demand? - FX Empire",
-"url": "https://www.fxempire.com/forecasts/article/oil-price-fundamental-daily-forecast-is-too-much-emphasis-being-placed-on-supply-cuts-wheres-the-demand-653776",
-"date": "2020-06-07",
-"vader": -0.1413,
-"prediction": {
-"score": -0.04,
-"company": "Mphasis",
-"sector": "Technology"
-}
-},
-{
-"headline": "7 Million Tata Sky Subscribers to Notice Reduction in Channel Pack Prices - TelecomTalk",
-"url": "https://telecomtalk.info/7million-tata-sky-subscribers-reduction-channel/276273/",
-"date": "2020-06-07",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "These BS6 scooters have become costlier in India post lockdown - NewsBytes",
-"url": "https://www.newsbytesapp.com/timeline/auto/61895/290028/bs6-scooters-which-have-become-costlier-post-lockdown",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Yatra terminates Rs 2,300-cr merger pact with US software firm Ebix - Business Standard",
-"url": "https://www.business-standard.com/article/companies/yatra-terminates-rs-2-300-cr-merger-pact-with-us-software-firm-ebix-120060700046_1.html",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Rights issue, Aramco deal could make RIL debt-free 3 months before target - Business Standard",
-"url": "https://www.business-standard.com/article/companies/rights-issue-aramco-deal-could-make-ril-debt-free-3-months-before-target-120060700022_1.html",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Wildcraft eyes manufacturing in Telangana - Telangana Today",
-"url": "https://telanganatoday.com/wildcraft-eyes-manufacturing-in-telangana",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Airtel says no broadband outage after users reported issues - Livemint",
-"url": "https://www.livemint.com/industry/telecom/airtel-broadband-suffers-major-outage-users-clueless-11591468273352.html",
-"date": "2020-06-06",
-"vader": -0.296,
-"prediction": {
-"score": -0.02,
-"company": "Airtel",
-"sector": "Telecommunication"
-}
-},
-{
-"headline": "Karnataka Bank reports \u20b9285-cr. fraud - The Hindu",
-"url": "https://www.thehindu.com/business/karnataka-bank-reports-285-cr-fraud/article31768932.ece",
-"date": "2020-06-06",
-"vader": -0.2929,
-"prediction": {
-"score": -0.08,
-"company": "Karnataka Bank",
-"sector": "Financial"
-}
-},
-{
-"headline": "Crisil affirms Yes Bank Rs 18k crore bonds rating at BBB - The Financial Express",
-"url": "https://news.google.com/__i/rss/rd/articles/CBMiaWh0dHBzOi8vd3d3LmZpbmFuY2lhbGV4cHJlc3MuY29tL21hcmtldC9jcmlzaWwtYWZmaXJtcy15ZXMtYmFuay1ycy0xOGstY3JvcmUtYm9uZHMtcmF0aW5nLWF0LWJiYi8xOTgzNTg2L9IBbmh0dHBzOi8vd3d3LmZpbmFuY2lhbGV4cHJlc3MuY29tL21hcmtldC9jcmlzaWwtYWZmaXJtcy15ZXMtYmFuay1ycy0xOGstY3JvcmUtYm9uZHMtcmF0aW5nLWF0LWJiYi8xOTgzNTg2L2xpdGUv?oc=5",
-"date": "2020-06-06",
-"vader": 0.4019,
-"prediction": {
-"score": 0.03,
-"company": "Crisil",
-"sector": "Financial"
-}
-},
-{
-"headline": "Uday Kotak addresses the \u2018dragon\u2019 in the room - CNBCTV18",
-"url": "https://www.cnbctv18.com/economy/uday-kotak-addresses-the-dragon-in-the-room-6085481.htm/",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Paytm reaches out to state govts on contactless food ordering at restaurants - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/india/paytm-reaches-out-to-state-govts-on-contactless-food-ordering-at-restaurants-5369291.html",
-"date": "2020-06-06",
-"vader": 0.0516,
-"prediction": "none"
-},
-{
-"headline": "India's Solar Power Industry Is Hurting From Covid-19 | OilPrice.com - OilPrice.com",
-"url": "https://oilprice.com/Alternative-Energy/Solar-Energy/Indias-Solar-Power-Industry-Is-Hurting-From-Covid-19.html",
-"date": "2020-06-06",
-"vader": -0.4019,
-"prediction": {
-"score": -0.03,
-"company": "Oil",
-"sector": "Energy"
-}
-},
-{
-"headline": "Carborundum Universal standalone Q4 net at Rs 62.41 crore - Moneycontrol.com",
-"url": "https://www.moneycontrol.com/news/business/earnings/carborundum-universal-standalone-q4-net-at-rs-62-41-crore-5369061.html",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": {
-"score": -0.04,
-"company": "Carborundum Universal",
-"sector": "Metals"
-}
-},
-{
-"headline": "Jindal Stainless Q4 results: Firm posts net loss of Rs 22 crore - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/earnings/jindal-stainless-q4-results-firm-posts-net-loss-of-rs-22-crore/articleshow/76234829.cms",
-"date": "2020-06-06",
-"vader": -0.3182,
-"prediction": {
-"score": -0.06,
-"company": "Jindal Stainless",
-"sector": "Metals"
-}
-},
-{
-"headline": "Hackers Claim To Have Stolen ZEE5 User Data; Plan To Sell It - Inc42 Media",
-"url": "https://inc42.com/buzz/hackers-claim-to-have-stolen-zee5-user-data-plan-to-sell-it/",
-"date": "2020-06-06",
-"vader": -0.4939,
-"prediction": "none"
-},
-{
-"headline": "India\u2019s Foreign Exchange Reserves Rise By $3.43 Billion To $493.48 Billion - Swarajya",
-"url": "https://swarajyamag.com/insta/indias-foreign-exchange-reserves-rise-by-343-billion-to-49348-billion",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Divi's Labs Q4 results: Net profit up 33% at Rs 388 crore - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/earnings/divis-labs-q4-results-net-profit-up-33-at-rs-388-crore/articleshow/76233448.cms",
-"date": "2020-06-06",
-"vader": 0.4404,
-"prediction": "none"
-},
-{
-"headline": "L&T board approves A M Naiks reappointment as non-exec chairman for 3 yrs - Business Standard",
-"url": "https://www.business-standard.com/article/companies/l-t-board-approves-am-naik-s-reappointment-as-non-exec-chairman-for-3-yrs-120060600616_1.html",
-"date": "2020-06-06",
-"vader": 0.4019,
-"prediction": "none"
-},
-{
-"headline": "Why RBI policy is now a non-event for the common man - Moneycontrol",
-"url": "https://www.moneycontrol.com/news/business/why-rbi-policy-is-now-a-non-event-for-the-common-man-5368671.html",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Unlock 1.0: Sebi resumes agenda put on hold during curbs - Livemint",
-"url": "https://www.livemint.com/news/india/unlock-1-0-sebi-resumes-agendas-put-on-hold-during-curbs-11591423512593.html",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "A sword of Damocles on Franklin Templeton - News Intervention",
-"url": "https://www.newsintervention.com/a-sword-of-damocles-on-franklin-templeton/",
-"date": "2020-06-06",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Amazon In Talks To Buy $2 Billion Stake In Bharti Airtel: Report - NDTV Profit",
-"url": "https://www.ndtv.com/business/amazon-in-talks-to-buy-2-billion-stake-in-bharti-airtel-report-2240658",
-"date": "2020-06-06",
-"vader": 0.5574,
-"prediction": {
-"score": 0.03,
-"company": "Bharti Airtel",
-"sector": "Communication"
-}
-},
-{
-"headline": "IBC Amendment Ordinance 2020 : Ambiguities Leave More Questions Than Answers - Live Law",
-"url": "https://www.livelaw.in/columns/ibc-amendment-ordinance-2020-ambiguities-leave-more-questions-than-answers-157916",
-"date": "2020-06-06",
-"vader": -0.0516,
-"prediction": "none"
-},
-{
-"headline": "Taking EMI moratorium from SBI, ICICI Bank, Axis or any lender? Here\u2019s why you should try to stop - The Financial Express",
-"url": "https://news.google.com/__i/rss/rd/articles/CBMidmh0dHBzOi8vd3d3LmZpbmFuY2lhbGV4cHJlc3MuY29tL21vbmV5L2ltcGFjdC1vZi1lbWktbW9yYXRvcml1bS1wZXJpb2Qtc2JpLWljaWNpLWF4aXMtaGRmYy1iYW5rLW90aGVyLWxlbmRlcnMvMTk4MzA4OS_SAXtodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9tb25leS9pbXBhY3Qtb2YtZW1pLW1vcmF0b3JpdW0tcGVyaW9kLXNiaS1pY2ljaS1heGlzLWhkZmMtYmFuay1vdGhlci1sZW5kZXJzLzE5ODMwODkvbGl0ZS8?oc=5",
-"date": "2020-06-06",
-"vader": -0.148,
-"prediction": {
-"score": -0.06,
-"company": "ICICI Bank",
-"sector": "Financial"
-}
-},
-{
-"headline": "Tata Sons in strong financial position, says N Chandrasekaran - Economic Times",
-"url": "https://economictimes.indiatimes.com/news/company/corporate-trends/tata-sons-in-strong-financial-position-says-chandrasekaran/articleshow/76226178.cms",
-"date": "2020-06-06",
-"vader": 0.5106,
-"prediction": "none"
-},
-{
-"headline": "Sun Pharma to test plant-based drug for Covid-19 treatment - Times of India",
-"url": "https://timesofindia.indiatimes.com/india/sun-pharma-to-test-plant-based-drug-for-covid-19-treatment/articleshow/76221894.cms",
-"date": "2020-06-05",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "L&T, SBI cautious on recovery - Livemint",
-"url": "https://www.livemint.com/companies/news/l-t-sbi-cautious-on-recovery-11591381589163.html",
-"date": "2020-06-05",
-"vader": -0.1027,
-"prediction": "none"
-},
-{
-"headline": "Gold price drops on stronger US jobs data - MINING.COM - MINING.com",
-"url": "https://www.mining.com/gold-price-drops-on-stronger-us-jobs-data/",
-"date": "2020-06-05",
-"vader": 0.3818,
-"prediction": "none"
-},
-{
-"headline": "Banks to face action if loans to MSMEs are delayed: Anurag Thakur - BusinessLine",
-"url": "https://www.thehindubusinessline.com/money-and-banking/banks-to-face-action-if-loans-to-msmes-are-delayed-anurag-thakur/article31760638.ece",
-"date": "2020-06-05",
-"vader": -0.2263,
-"prediction": "none"
-},
-{
-"headline": "Toyota Hilux and Fortuner bow with beefed up looks - CNET",
-"url": "https://www.cnet.com/roadshow/news/toyota-tacoma-4runner-hilux-fortuner-reveal-update/",
-"date": "2020-06-05",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Jyothy Labs Q4 results: Net profit slips 60% to Rs 26.6 crore - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/earnings/jyothy-labs-q4-results-net-profit-slips-60-to-rs-26-6-crore/articleshow/76221389.cms",
-"date": "2020-06-05",
-"vader": 0.4404,
-"prediction": {
-"score": 0.05,
-"company": "Jyothy Labs",
-"sector": "FMCG"
-}
-},
-{
-"headline": "Investors should wait for higher offer price on Hexaware delisting, suggest analysts - Economic Times",
-"url": "https://economictimes.indiatimes.com/markets/stocks/news/investors-should-wait-for-higher-offer-price-on-hexaware-delisting-suggest-analysts/articleshow/76220929.cms",
-"date": "2020-06-05",
-"vader": 0.0,
-"prediction": "none"
-},
-{
-"headline": "Zomato Gives Up Grocery Plans As It Shifts Focus Entirely To Food Delivery - Inc42 Media",
-"url": "https://inc42.com/buzz/zomato-gives-up-grocery-plans-as-it-shifts-focus-entirely-to-food-delivery/",
-"date": "2020-06-05",
-"vader": 0.0,
-"prediction": "none"
-}
-],
-"companies": [
-{
-"company": "ACC",
-"vader": 0.0,
-"sector": 0.0,
-"assoc": 0.0
-},
-{
-"company": "Oil",
-"vader": 0.02,
-"sector": 0.0,
-"assoc": 0.02
-},
-{
-"company": "nifty",
-"vader": 0.64,
-"sector": 0.0,
-"assoc": 0.64
-},
-{
-"company": "Astrazeneca Pharma",
-"vader": 0.0,
-"sector": 0.0,
-"assoc": 0.0
-},
-{
-"company": "Bharti Airtel",
-"vader": 0.28,
-"sector": 0.0,
-"assoc": 0.28
-},
-{
-"company": "ACC",
-"vader": 0.0,
-"sector": 0.0,
-"assoc": 0.0
-},
-{
-"company": "Indian Overseas Bank",
-"vader": 0.46,
-"sector": 0.06,
-"assoc": 0.08
-},
-{
-"company": "Vedanta",
-"vader": -0.32,
-"sector": 0.0,
-"assoc": -0.21
-},
-{
-"company": "Mphasis",
-"vader": -0.14,
-"sector": 0.0,
-"assoc": -0.14
-},
-{
-"company": "Airtel",
-"vader": 0.09,
-"sector": 0.0,
-"assoc": 0.09
-},
-{
-"company": "Karnataka Bank",
-"vader": -0.29,
-"sector": 0.06,
-"assoc": 0.08
-},
-{
-"company": "Crisil",
-"vader": 0.4,
-"sector": 0.06,
-"assoc": 0.08
-},
-{
-"company": "Oil",
-"vader": 0.02,
-"sector": 0.0,
-"assoc": 0.02
-},
-{
-"company": "Carborundum Universal",
-"vader": 0.0,
-"sector": 0.0,
-"assoc": -0.21
-},
-{
-"company": "Jindal Stainless",
-"vader": -0.32,
-"sector": 0.0,
-"assoc": -0.21
-},
-{
-"company": "Bharti Airtel",
-"vader": 0.28,
-"sector": 0.0,
-"assoc": 0.28
-},
-{
-"company": "ICICI Bank",
-"vader": -0.15,
-"sector": 0.06,
-"assoc": 0.08
-},
-{
-"company": "Jyothy Labs",
-"vader": 0.44,
-"sector": 0.0,
-"assoc": 0.44
-}
-],
-"sectors": [
-{
-"name": "Construction",
-"sector": 0.0
-},
-{
-"name": "Energy",
-"sector": 0.0
-},
-{
-"name": "indicies",
-"sector": 0.0
-},
-{
-"name": "Healthcare",
-"sector": 0.0
-},
-{
-"name": "Communication",
-"sector": 0.0
-},
-{
-"name": "Construction",
-"sector": 0.0
-},
-{
-"name": "Financial",
-"sector": 0.06
-},
-{
-"name": "Metals",
-"sector": 0.0
-},
-{
-"name": "Technology",
-"sector": 0.0
-},
-{
-"name": "Telecommunication",
-"sector": 0.0
-},
-{
-"name": "Financial",
-"sector": 0.06
-},
-{
-"name": "Financial",
-"sector": 0.06
-},
-{
-"name": "Energy",
-"sector": 0.0
-},
-{
-"name": "Metals",
-"sector": 0.0
-},
-{
-"name": "Metals",
-"sector": 0.0
-},
-{
-"name": "Communication",
-"sector": 0.0
-},
-{
-"name": "Financial",
-"sector": 0.06
-},
-{
-"name": "FMCG",
-"sector": 0.0
-}
-]
-}
+    "news": [{"headline": "Sensex falls 414 points to close at 33,957; Nifty ends below 10,050 - Times of India", "url": "https://timesofindia.indiatimes.com/business/india-business/sensex-falls-414-points-to-close-at-33957-nifty-ends-below-10050/articleshow/76281744.cms", "date": "2020-06-09", "vader": 0.4019, "prediction": {"score": 0.04, "company": "nifty", "sector": "indicies"
+    }, "description": null
+    }, {"headline": "Parle-G records 'best sales' in 8 decades during COVID-19 lockdown - DNA India", "url": "https://www.dnaindia.com/business/report-parle-g-records-best-sales-in-8-decades-during-covid-19-lockdown-2827364", "date": "2020-06-09", "vader": 0.6369, "prediction": "none", "description": null
+    }, {"headline": "Jeff Bezos Is \"Happy To Lose\" This Amazon Customer - Meet Dave - NDTV", "url": "https://www.ndtv.com/offbeat/the-kind-of-customer-that-amazon-ceo-jeff-bezos-is-happy-to-lose-2243291", "date": "2020-06-09", "vader": 0.4357, "prediction": "none", "description": "Amazon CEO Jeff Bezos has spoken in support of the Black Lives Matter movement.\r\nAmazon CEO Jeff Bezos has shared a screenshot of a profanity-laced email he received over his stance on the Black Live\u2026 [+2173 chars]"
+    }, {"headline": "Futures fall as recovery rally pauses ahead of Fed meeting - Investing.com", "url": "https://www.investing.com/news/stock-market-news/futures-fall-as-recovery-rally-pauses-ahead-of-fed-meeting-2196319", "date": "2020-06-09", "vader": 0.3, "prediction": "none", "description": "By Medha Singh\r\n(Reuters) - U.S. stock index futures dropped on Tuesday, giving back some gains after the Nasdaq notched a record closing high in the previous session, with focus now on the Federal R\u2026 [+1388 chars]"
+    }, {"headline": "RE Meteor To Have Semi Digital Instrument Cluster & New Switchgear - GaadiWaadi.com", "url": "https://gaadiwaadi.com/re-meteor-to-have-semi-digital-instrument-cluster-new-switchgear/", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": "Royal Enfield has been testing the Meteor 350 for many months on Indian roads mainly around its production facility in Tamil Nadu. It is said to act as a replacement to the Thunderbird 350 that has b\u2026 [+1967 chars]"
+    }, {"headline": "Vodafone Idea share price plunges 16% after doubling up in last 7 days; should you buy or sell the stock? - The Financial Express", "url": "https://news.google.com/__i/rss/rd/articles/CBMilwFodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9tYXJrZXQvdm9kYWZvbmUtaWRlYS1zaGFyZS1wcmljZS1wbHVuZ2VzLTE2LWFmdGVyLWRvdWJsaW5nLXVwLWluLWxhc3QtNy1kYXlzLXNob3VsZC15b3UtYnV5LW9yLXNlbGwtdGhlLXN0b2NrLzE5ODYwMzQv0gGcAWh0dHBzOi8vd3d3LmZpbmFuY2lhbGV4cHJlc3MuY29tL21hcmtldC92b2RhZm9uZS1pZGVhLXNoYXJlLXByaWNlLXBsdW5nZXMtMTYtYWZ0ZXItZG91YmxpbmctdXAtaW4tbGFzdC03LWRheXMtc2hvdWxkLXlvdS1idXktb3Itc2VsbC10aGUtc3RvY2svMTk4NjAzNC9saXRlLw?oc=5", "date": "2020-06-09", "vader": 0.148, "prediction": {"score": -0.01, "company": "Vodafone Idea", "sector": "Communication"
+    }, "description": null
+    }, {"headline": "Exclusive | Emirates sacks 600 pilots in a day - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/companies/exclusive-emirates-sacks-600-pilots-in-a-day-5380771.html", "date": "2020-06-09", "vader": 0.128, "prediction": "none", "description": "Emirates, the state-owned Dubai-based airline, fired 600 pilots,\u00a0including some from India, on June 9 in what is being seen as one of the largest layoffs in the airline industry.\r\nThe Indian pilots h\u2026 [+1377 chars]"
+    }, {"headline": "Adani Green Energy locked in upper circuit on 8GW solar project from SECI - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/markets/adani-green-energy-locked-in-upper-circuit-on-8gw-solar-project-from-seci-5380841.html", "date": "2020-06-09", "vader": 0.2732, "prediction": {"score": 0.2732, "company": "Adani Green Energy", "sector": "Engineering"
+    }, "description": "Shares of Adani Green Energy (AGEL) were locked in 5 percent upper circuit at Rs 312.60 on June 9\u00a0on received a big solar project from SECI.\r\n\"....has won the first of its kind manufacturing linked s\u2026 [+2072 chars]"
+    }, {"headline": "What\u2019s causing the sharp drop in gold prices in India & globally? - Economic Times", "url": "https://economictimes.indiatimes.com/markets/commodities/news/whats-causing-the-sharp-drop-in-gold-price-in-india-globally/articleshow/76255391.cms", "date": "2020-06-09", "vader": -0.1366, "prediction": "none", "description": "NEW DELHI: A sharp fall in gold prices this past week took investors by surprise. But analysts say it was expected, as economies globally recover from lockdown and improving high-frequency data sets \u2026 [+3235 chars]"
+    }, {"headline": "5 blue-chip shares available at throw-away prices; coronavirus lockdown puts stocks on fire sale - The Financial Express", "url": "https://news.google.com/__i/rss/rd/articles/CBMimAFodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9tYXJrZXQvc2JpLWhkZmMtaXRjLWljaWNpLWJhbmstYmFqYWotZmluYW5jZS1ibHVlLWNoaXAtc3RvY2tzLXRvLWJ1eS1hdC10aHJvdy1hd2F5LXByaWNlcy1jb3JvbmF2aXJ1cy1sb2NrZG93bi8xOTg1OTQzL9IBnQFodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9tYXJrZXQvc2JpLWhkZmMtaXRjLWljaWNpLWJhbmstYmFqYWotZmluYW5jZS1ibHVlLWNoaXAtc3RvY2tzLXRvLWJ1eS1hdC10aHJvdy1hd2F5LXByaWNlcy1jb3JvbmF2aXJ1cy1sb2NrZG93bi8xOTg1OTQzL2xpdGUv?oc=5", "date": "2020-06-09", "vader": -0.0516, "prediction": "none", "description": null
+    }, {"headline": "Coronavirus (Covid-19) vaccine latest update: Imperial College promises low-cost access to vaccine; China\u2019s first jab by autumn - The Indian Express", "url": "https://indianexpress.com/article/coronavirus/coronavirus-covid-19-vaccine-june-update-imperial-college-astrazeneca-oxford-moderna-gilead-6450257/", "date": "2020-06-09", "vader": 0.3818, "prediction": "none", "description": "Coronavirus (Covid-19) vaccine latest update: A lab technician extracts a portion of a COVID-19 vaccine candidate during testing at the Chula Vaccine Research Center, run by Chulalongkorn University \u2026 [+7702 chars]"
+    }, {"headline": "India's sovereign rating downgrade created 6 'fallen angels': Moody's - Moneycontrol", "url": "https://www.moneycontrol.com/news/india/indias-sovereign-rating-downgrade-created-6-fallen-angels-moodys-5380261.html", "date": "2020-06-09", "vader": -0.128, "prediction": "none", "description": "India's sovereign rating downgrade has created six \"fallen angels\", or companies in the non-financial sector whose ratings have dipped to just one notch away from being considered junk, global rating\u2026 [+2050 chars]"
+    }, {"headline": "Maruti Suzuki S-Presso Offered With Benefits Of Up To Rs. 48,000 - CarandBike", "url": "https://www.carandbike.com/news/maruti-suzuki-s-presso-offered-with-benefits-of-up-to-rs-48-000-2243098", "date": "2020-06-09", "vader": 0.1909, "prediction": {"score": 0.05, "company": "Maruti Suzuki", "sector": "Automobile"
+    }, "description": "With the automotive industry slowly limping back towards normalcy, carmakers are offering attractive discounts and schemes, particularly on models which are affordable. Maruti Suzuki, India's largest\u2026 [+1829 chars]"
+    }, {"headline": "Fuel price hiked for third straight day: Petrol rises 54 paise, diesel dearer by 58 paise in Delhi - Hindustan Times", "url": "https://www.hindustantimes.com/india-news/fuel-price-hiked-for-third-straight-day-petrol-rises-54-paise-diesel-dearer-by-58-paise-in-delhi/story-TBiQU31GIZ5O1WP5XedStO.html", "date": "2020-06-09", "vader": 0.5859, "prediction": "none", "description": "Petrol was costlier by 54 paise a litre and diesel by 58 paise a litre on Tuesday, the third consecutive price hike after state-run fuel retailers ended an 82-day freeze on daily rate revision on Sun\u2026 [+4694 chars]"
+    }, {"headline": "Next-Generation BMW X6 SUV-Coupe Launch Date Announced - CarandBike", "url": "https://www.carandbike.com/news/next-generation-bmw-x6-suv-coupe-launch-date-announced-2243083", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": "BMW\u00a0will be launching the new generation X6 in the country on June 11, 2020. The car manufacturer has teased the 2020 BMW X6 ahead of its India debut on its official social media accounts. The third-\u2026 [+2288 chars]"
+    }, {"headline": "5paisa cuts DP charges by half to Rs 12.5, lowest in industry - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/markets/5paisa-cuts-dp-charges-by-half-to-rs-12-5-lowest-in-industry-5379801.html", "date": "2020-06-09", "vader": -0.7096, "prediction": "none", "description": "Discount broker 5paisa.com has reduced its DP transaction charges to Rs 12.5 from Rs 25, which it says is the lowest in the country.\r\nDP charges kick in whenever shares are sold from a Demat account.\u2026 [+1604 chars]"
+    }, {"headline": "Nestle chief Suresh Narayanan on WFH, learnings from COVID and why he washes dishes twice - CNBCTV18", "url": "https://www.cnbctv18.com/business/nestle-chief-suresh-narayanan-on-wfh-learnings-from-covid-and-why-he-washes-dishes-twice-6098121.htm/", "date": "2020-06-09", "vader": 0.0, "prediction": {"score": -0.01, "company": "Nestle", "sector": "FMCG"
+    }, "description": "In an interview with broking firm Jefferies, Nestle India chief Suresh Narayanan talked about his and the company\u2019s response to COVID-19, the changes brought about in working-from-home and how compan\u2026 [+6370 chars]"
+    }, {"headline": "BEML's internal data and employee credentials leaked on dark web: Report - ETtech.com", "url": "https://tech.economictimes.indiatimes.com/news/internet/bemls-internal-data-and-employee-credentials-leaked-on-dark-web-report/76279224", "date": "2020-06-09", "vader": -0.3182, "prediction": {"score": -0.07, "company": "BEML", "sector": "Engineering"
+    }, "description": "Internal documents of defence public sector undertaking BEML (Bharat Earth Movers Limited) have been leaked on marketplaces in the dark web, US-based cybersecurity research firm Cyble said on Tuesday\u2026 [+1530 chars]"
+    }, {"headline": "Buy State Bank of India; target of Rs 280: Motilal Oswal - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/stocks/buy-state-bank-of-india-target-of-rs-280-motilal-oswal-5379421.html", "date": "2020-06-09", "vader": 0.0, "prediction": {"score": -0.03, "company": "Bank of India", "sector": "Financial"
+    }, "description": "Motilal Oswal 's research report on State Bank of India\r\nSBIN reported a modest quarter with weak NII growth (affected by higher interest reversals on Agri slippages), although stake sale gains from \u2026 [+1002 chars]"
+    }, {"headline": "Coronavirus treatment latest update: AstraZeneca's blood cancer drug shows great promise in COVID-19 treatment, ICAR claims herbal extracts may treat coronavirus patients - Times of India", "url": "https://timesofindia.indiatimes.com/life-style/health-fitness/health-news/coronavirus-treatment-latest-update-astrazenecas-blood-cancer-drug-shows-great-promise-in-covid-19-treatment-icar-claims-herbal-extracts-may-treat-coronavirus-patients/photostory/76266418.cms", "date": "2020-06-09", "vader": 0.5719, "prediction": "none", "description": "In yet another fascinating discovery, the Indian Council of Agricultural Research (ICAR) has reportedly found a compound in herbal plants that may help in treating patients suffering from COVID-19. A\u2026 [+566 chars]"
+    }, {"headline": "Jeep Renegade (Creta/Seltos Rival) Spied On Test In India - GaadiWaadi.com", "url": "https://gaadiwaadi.com/jeep-renegade-creta-seltos-rival-spied-on-test-in-india/", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": "Jeep India\u2019s sales fortunes depend on a single product in the domestic market as the Compass is the only volume seller for the brand. The American SUV specialists failed to capitalise on the momentum\u2026 [+1973 chars]"
+    }, {"headline": "D-Street Buzz | ITC, HUL, Dabur boost Nifty FMCG index; Nestle fails to perform - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/markets/d-street-buzz-itc-hul-dabur-boost-nifty-fmcg-index-nestle-fails-to-perform-5379071.html", "date": "2020-06-09", "vader": 0.3818, "prediction": {"score": 0.03, "company": "Dabur", "sector": "FMCG"
+    }, "description": "Most FMCG stocks, including ITC, Hindustan Unilever (HUL) and Dabur, traded with healthy gains on June 9, keeping their sectoral indices in the green.\r\nThe Nifty FMCG index was 1.05 percent up at 29,\u2026 [+1510 chars]"
+    }, {"headline": "Google CEO Sundar Pichai to class of 2020: You will prevail; be open, be impatient, be hopeful - The Indian Express", "url": "https://indianexpress.com/article/technology/tech-news-technology/google-ceo-sundar-pichai-to-class-of-2020-6449935/", "date": "2020-06-09", "vader": 0.2732, "prediction": "none", "description": "By: Tech Desk | New Delhi | \r\nPublished: June 9, 2020 12:31:01 pm\r\nGoogle and Alphabet CEO Sundar Pichai addresses the class of 2020. (Image: YouTube/YouTube Originals)Amid the coronaviruspandemic, e\u2026 [+4576 chars]"
+    }, {"headline": "Pandemic leaves hiring plans in disarray - Economic Times", "url": "https://economictimes.indiatimes.com/jobs/pandemic-leaves-hiring-plans-in-disarray/articleshow/76269860.cms", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": "KOLKATA: Corporate India\u2019s hiring intentions for the upcoming quarter have weakened to the lowest in at least a decade and half amid uncertainties caused by the Covid-19 pandemic, a survey has found.\u2026 [+2167 chars]"
+    }, {"headline": "Home loan to get cheaper as SBI to cut MCLR by 25 bps from June 10 - Zee News", "url": "https://zeenews.india.com/personal-finance/home-loan-to-get-cheaper-as-sbi-to-cut-mclr-by-25-bps-from-june-10-2288888.html", "date": "2020-06-09", "vader": -0.2732, "prediction": "none", "description": "Mumbai: The country's largest lender State Bank of India (SBI)\u00a0 has announced that it will reduce marginal cost of fund based lending rate (MCLR) by 25 basis points across all tenors from June 10 (We\u2026 [+1591 chars]"
+    }, {"headline": "People of India vs Franklin Templeton: For distressed mutual fund investors, courts are the best alternative - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/mutual-funds/people-of-india-vs-franklin-templeton-for-distressed-mutual-fund-investors-courts-are-the-best-alternative-5379121.html", "date": "2020-06-09", "vader": 0.34, "prediction": "none", "description": "Franklin Templeton Mutual Fund is facing multiple litigation from investors across courts in India due to its decision to wind down six debt schemes. Writ petitions have been filed in Chennai, Delhi,\u2026 [+5637 chars]"
+    }, {"headline": "Yes Securities rejigs portfolio: Top stocks that were included and excluded - CNBCTV18", "url": "https://www.cnbctv18.com/market/yes-securities-rejigs-portfolio-top-stocks-that-were-included-and-excluded-hdfc-life-ultratech-cement-nippon-amc-icici-prudential-6098161.htm/", "date": "2020-06-09", "vader": 0.5106, "prediction": "none", "description": "Yes Securities has rejigged its portfolio for June after the equities consolidated in May. Indian shares corrected relatively lesser in May (down around 3-4 percent) as compared to April and March am\u2026 [+1660 chars]"
+    }, {"headline": "D-Street Buzz: Nifty Pharma outperforms led by Sun Pharma; Dr Reddy's Labs up 3% - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/stocks/d-street-buzz-nifty-pharma-outperforms-led-by-sun-pharma-dr-reddys-labs-up-3-5379151.html", "date": "2020-06-09", "vader": 0.4019, "prediction": {"score": 0.04, "company": "nifty", "sector": "indicies"
+    }, "description": "The Indian stock market is trading in the green supported by pharma and real estate stocks. Sensex is up 279.87 points or 0.81 percent at 34650.45, and the Nifty gained 81.40 points or 0.8 percent at\u2026 [+1625 chars]"
+    }, {"headline": "Maruti Suzuki partners with Mahindra Finance for easy car financing - CarWale", "url": "https://www.carwale.com/news/maruti-suzuki-partners-with-mahindra-finance-for-easy-car-financing/", "date": "2020-06-09", "vader": 0.4404, "prediction": {"score": 0.05, "company": "Maruti Suzuki", "sector": "Automobile"
+    }, "description": "- Buy now pay later scheme wherein payments commence after two months\r\n- Scheme applies to all Maruti Suzuki models\r\nMaruti Suzuki has partnered with Mahindra Finance to ease the finance availability\u2026 [+1352 chars]"
+    }, {"headline": "IBM Will Not Work on Facial Recognition Till There Are Reforms to Prevent Surveillance, Profiling & M... - News18", "url": "https://www.news18.com/news/tech/ibm-will-not-work-on-facial-recognition-till-there-are-reforms-to-prevent-surveillance-profiling-more-2660365.html", "date": "2020-06-09", "vader": 0.0258, "prediction": "none", "description": "Technology giant IBM announced that it will no longer offer facial recognition or analysis software as the companys new chief executive officer Arvind Krishna voiced support for policies to advance r\u2026 [+1906 chars]"
+    }, {"headline": "Buy Housing Development Finance Corporation; target of Rs 2215: Anand Rathi - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/stocks/buy-housing-development-finance-corporation-target-of-rs-2215-anand-rathi-5378101.html", "date": "2020-06-09", "vader": 0.0, "prediction": {"score": -0.03, "company": "Housing Development Finance", "sector": "Financial"
+    }, "description": "Anand Rathi 's research report on Housing Development Finance Corporation\r\nHousing Development Finance Corporation Limited (HDFC) reported consolidated revenues of Rs.166,000 million in Q4FY20, regis\u2026 [+1493 chars]"
+    }, {"headline": "Facebook sues Mumbai-based company for domain name fraud - Bangalore Mirror", "url": "https://bangaloremirror.indiatimes.com/others/sci-tech/facebook-sues-mumbai-based-company-for-domain-name-fraud/articleshow/76275750.cms", "date": "2020-06-09", "vader": -0.5859, "prediction": "none", "description": null
+    }, {"headline": "Affle India to acquire 100% stake in Singapore company; shares up 5% - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/stocks/affle-india-to-acquire-100-stake-in-singapore-company-shares-up-5-5377541.html", "date": "2020-06-09", "vader": 0.296, "prediction": "none", "description": "Affle India share price added 5 percent in early trade on June 9 after the company said it is going to acquire 100 percent stake in a Singapore based company.\r\nAffle International Pte. Ltd., a wholly\u2026 [+1473 chars]"
+    }, {"headline": "Buy SBI, target price Rs 270: HDFC Securities - Economic Times", "url": "https://economictimes.indiatimes.com/markets/stocks/recos/buy-sbi-target-price-rs-270-hdfc-securities/articleshow/76275318.cms", "date": "2020-06-09", "vader": 0.296, "prediction": "none", "description": "HDFC Securities has given a buy rating to State Bank of India with a SOTP-based target price of Rs 270 based on 0.75 times FY22E ABV + Rs 113 subsidiary value. The share price moved down by -0.16 per\u2026 [+2070 chars]"
+    }, {"headline": "Add Hindustan Unilever, target price Rs 2,400: ICICI Securities - Economic Times", "url": "https://economictimes.indiatimes.com/markets/stocks/recos/add-hindustan-unilever-target-price-rs-2400-icici-securities/articleshow/76274570.cms", "date": "2020-06-09", "vader": 0.296, "prediction": {"score": 0.02, "company": "Hindustan Unilever", "sector": "FMCG"
+    }, "description": "ICICI Securities has given an add rating to Hindustan Unilever Ltd (HUL) with a target price of Rs 2,400. The share price moved up by 1.15 per cent from its previous close of Rs 2087.60. The last tra\u2026 [+2877 chars]"
+    }, {"headline": "This is how carmakers are helping dealers to help them tide over Covid-19 crisis - Hindustan Times", "url": "https://auto.hindustantimes.com/auto/news/this-is-how-carmakers-are-helping-dealers-to-help-them-tide-over-covid-19-crisis-41591670865418.html", "date": "2020-06-09", "vader": -0.0516, "prediction": "none", "description": "Maruti Suzuki India and MG Motor are the only two passenger vehicle makers in the mass segment to offer above 5 per cent average fixed dealer margins, which is still short of 7 per cent of selling pr\u2026 [+4132 chars]"
+    }, {"headline": "Hero Moto Q4 Preview: Profit, revenue could see steep fall on lower volumes - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/earnings/hero-moto-q4-preview-profit-revenue-could-see-steep-fall-on-lower-volumes-5375931.html", "date": "2020-06-09", "vader": 0.6486, "prediction": "none", "description": "The COVID-19 crisis and nationwide lockdown in March is likely to have major impact on Hero Motocorp's Q4FY20 earnings. The company will announce earnings on June 9.\r\nBrokerages expect more than 30 p\u2026 [+1636 chars]"
+    }, {"headline": "Stocks to Watch: SBI, Titan, L&T, PVR, Hero MotoCorp, NBFCs, Affle India - Livemint", "url": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-sbi-titan-l-t-pvr-hero-motocorp-nbfcs-affle-india-11591669855028.html", "date": "2020-06-09", "vader": 0.5574, "prediction": {"score": 0.07, "company": "Hero Motocorp", "sector": "Automobile"
+    }, "description": "SBI: The country's largest lender State Bank of India (SBI) on Monday announced it will reduce marginal cost of fund-based lending rate (MCLR) by 25 basis points across all tenors from Wednesday. The\u2026 [+2793 chars]"
+    }, {"headline": "Why Developers Are Resisting Piyush Goyal\u2019s Call To Drop Home Prices - BloombergQuint", "url": "https://www.bloombergquint.com/bq-blue-exclusive/why-developers-are-resisting-piyush-goyals-call-to-drop-home-prices", "date": "2020-06-09", "vader": -0.2732, "prediction": "none", "description": ""
+    }, {"headline": "Compact Sedan May 2020 Sales Analysis - Dzire, Aura, Amaze, Tigor - GaadiWaadi.com", "url": "https://gaadiwaadi.com/compact-sedan-may-2020-sales-analysis-dzire-aura-amaze-tigor/", "date": "2020-06-09", "vader": 0.5423, "prediction": "none", "description": "The Dzire continued to be the most popular compact sedan in the month of May 2020. The success of the Maruti Suzuki sedan laid down a strong foundation in the segment but none could replicate similar\u2026 [+2377 chars]"
+    }, {"headline": "All You Need To Know Going Into Trade On June 9 - BloombergQuint", "url": "https://www.bloombergquint.com/markets/all-you-need-to-know-going-into-trade-on-june-9", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": ""
+    }, {"headline": "Another Bangladesh firm offers Remdesivir for $65 per vial - Mumbai Mirror", "url": "https://mumbaimirror.indiatimes.com/mumbai/other/another-bdesh-firm-offers-remdesivir-for-65-per-vial/articleshow/76272801.cms", "date": "2020-06-09", "vader": 0.0, "prediction": "none", "description": "As the government considers buying the life-saving drug Remdesivir\r\n from Bangladesh-based Eskayef Pharmaceuticals\r\n at $160 per vial, another Bangladesh\r\n firm has offered the drug for just $65. In \u2026 [+1650 chars]"
+    }, {"headline": "Why Saudi Arabia Will Lose The Next Oil Price War - OilPrice.com", "url": "https://oilprice.com/Energy/Energy-General/Why-Saudi-Arabia-Will-Lose-The-Next-Oil-Price-War.html", "date": "2020-06-09", "vader": -0.765, "prediction": {"score": -0.07, "company": "Oil", "sector": "Energy"
+    }, "description": null
+    }, {"headline": "Why Big Oil Is Investing In India - OilPrice.com", "url": "https://oilprice.com/Energy/Energy-General/Why-Big-Oil-Is-Investing-In-India.html", "date": "2020-06-08", "vader": 0.0, "prediction": {"score": -0.07, "company": "Oil", "sector": "Energy"
+    }, "description": null
+    }, {"headline": "Indian economy will shrink 5% in FY21, stimulus not enough: S&P Ratings - Business Standard", "url": "https://www.business-standard.com/article/economy-policy/indian-economy-will-shrink-5-in-fy21-stimulus-not-enough-s-p-ratings-120060801744_1.html", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "S&P Global Ratings on Monday said Indian economy will shrink 5 per cent in the current fiscal, saying the fiscal stimulus worth 1.2 per cent of GDP will not be enough to provide significant growt\u2026 [+1804 chars]"
+    }, {"headline": "Bharat Bond ETF to launch NFO to raise Rs 14,000 crore - Economic Times", "url": "https://economictimes.indiatimes.com/markets/bonds/bharat-bond-etf-to-launch-nfo-to-raise-rs-14000-crore/articleshow/76270217.cms", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "New Delhi: Bharat Bond Exchange Traded Fund (ETF), India\u2019s first bond exchange-traded fund, will launch a new fund offer (NFO) in July to raise Rs 14,000 crore in two new series.\r\nThe proceeds will b\u2026 [+673 chars]"
+    }, {"headline": "Axis, IIFL, ICICI arms are top suitors to buy L&T Mutual Fund - Livemint", "url": "https://www.livemint.com/mutual-fund/mf-news/axis-iifl-icici-arms-are-top-suitors-to-buy-l-t-mutual-fund-11591637616996.html", "date": "2020-06-08", "vader": 0.2023, "prediction": "none", "description": "MUMBAI :\r\nAxis Mutual Fund, IIFL Mutual Fund and ICICI Prudential Mutual Fund have emerged as the top three contenders to buy the mutual fund business of L&T Finance Holdings Ltd, three people aw\u2026 [+2433 chars]"
+    }, {"headline": "How to get Disney Plus Hotstar membership for free in India - Android Authority", "url": "https://www.androidauthority.com/disney-plus-hotstar-free-membership-1126802/", "date": "2020-06-08", "vader": 0.5574, "prediction": "none", "description": null
+    }, {"headline": "How the Samsung corruption scandal unfolded - Telegraph.co.uk", "url": "https://www.telegraph.co.uk/technology/2020/06/08/samsung-corruption-scandal-unfolded/", "date": "2020-06-08", "vader": -0.4404, "prediction": "none", "description": "Park Geun-hye, the countrys then-president, was forced to resign after it was alleged that she had given confidential documents to Choi Soon-sil.\r\nMs Choi, who had no official position in the South K\u2026 [+1872 chars]"
+    }, {"headline": "IndusInd investors will soon find out if all bank promoters are equal - Livemint", "url": "https://www.livemint.com/market/mark-to-market/are-all-bank-promoters-equal-indusind-bank-investors-will-soon-find-out-11591619906768.html", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "Are all bank promoters equal? The answer will be clear once the Reserve Bank of India (RBI) replies to IndusInd Banks promoters, the Hinduja Group, on a request to increase promoter holding.The Hindu\u2026 [+2559 chars]"
+    }, {"headline": "Paytm expands postpaid services to cover kirana stores, retail chains - Economic Times", "url": "https://economictimes.indiatimes.com/small-biz/startups/newsbuzz/paytm-expands-postpaid-services-to-cover-kirana-stores-retail-chains/articleshow/76267809.cms", "date": "2020-06-08", "vader": 0.1027, "prediction": "none", "description": "NEW DELHI: Paytm on Monday said it has expanded its 'Paytm Postpaid' offering to cover neighbourhood kirana stores and retail chains like Reliance Fresh, Haldiram, Apollo Pharmacy, Croma, Shoppers St\u2026 [+1788 chars]"
+    }, {"headline": "Global Economy To Plunge Into Worst Recession Since World War II: World Bank - NDTV", "url": "https://www.ndtv.com/world-news/coronavirus-impact-global-economy-to-plunge-into-worst-recession-since-world-war-ii-world-bank-2242874", "date": "2020-06-08", "vader": -0.8957, "prediction": "none", "description": "Emerging Markets and Developing Economies are expected to shrink by 2.5 per cent this year.\r\nWashington: The global economy, which has plunged into a severe contraction, will shrink by 5.2 per cent t\u2026 [+4772 chars]"
+    }, {"headline": "RBI Sets The Stage For Listed Residential Mortgage-Backed Securities - BloombergQuint", "url": "https://www.bloombergquint.com/business/rbi-sets-the-stage-for-listed-residence-mortgage-backed-securities", "date": "2020-06-08", "vader": 0.296, "prediction": "none", "description": ""
+    }, {"headline": "Titan Q4 Results: Profit Rises Despite Lockdown-Induced Disruption - BloombergQuint", "url": "https://www.bloombergquint.com/quarterly-earnings/titan-q4-results-profit-rises-despite-lockdown-induced-disruption", "date": "2020-06-08", "vader": 0.6136, "prediction": "none", "description": ""
+    }, {"headline": "Gold Edges Higher, Rebounding After Payrolls Shock By - Investing.com", "url": "https://www.investing.com/news/commodities-news/gold-edges-higher-2195318", "date": "2020-06-08", "vader": -0.3818, "prediction": "none", "description": "By Peter Nurse\u00a0\r\nInvesting.com - Gold prices pushed higher Monday, rebounding a touch after Fridays sharp losses on the back of the surprise jump in U.S. employment.\r\nAt 9:40 AM ET (1340 GMT), gold f\u2026 [+1240 chars]"
+    }, {"headline": "MG Motor India, Tata Power join hands to deploy superfast chargers for EVs at select locations - Moneycontrol", "url": "https://www.moneycontrol.com/news/business/mg-motor-india-tata-power-join-hands-to-deploy-superfast-chargers-for-evs-at-select-locations-5374031.html", "date": "2020-06-08", "vader": 0.296, "prediction": {"score": 0.12, "company": "Tata Power", "sector": "Energy"
+    }, "description": "MG Motor India on Monday said it has joined hands with Tata Power to set up superfast chargers for electric vehicles (EV) at the company's select MG dealerships and offer end-to-end charging solution\u2026 [+2357 chars]"
+    }, {"headline": "\u2018Bad Bank\u2019 not a good idea without resolving these issues first, explains Uday Kotak - The Financial Express", "url": "https://news.google.com/__i/rss/rd/articles/CBMilAFodHRwczovL3d3dy5maW5hbmNpYWxleHByZXNzLmNvbS9pbmR1c3RyeS9iYW5raW5nLWZpbmFuY2UvYmFkLWJhbmstbm90LWEtZ29vZC1pZGVhLXdpdGhvdXQtcmVzb2x2aW5nLXRoZXNlLWlzc3Vlcy1maXJzdC1leHBsYWlucy11ZGF5LWtvdGFrLzE5ODQ4NDMv0gGZAWh0dHBzOi8vd3d3LmZpbmFuY2lhbGV4cHJlc3MuY29tL2luZHVzdHJ5L2JhbmtpbmctZmluYW5jZS9iYWQtYmFuay1ub3QtYS1nb29kLWlkZWEtd2l0aG91dC1yZXNvbHZpbmctdGhlc2UtaXNzdWVzLWZpcnN0LWV4cGxhaW5zLXVkYXkta290YWsvMTk4NDg0My9saXRlLw?oc=5", "date": "2020-06-08", "vader": -0.5559, "prediction": "none", "description": null
+    }, {"headline": "EXCLUSIVE: Reliance Jio may have to pick between Google and Microsoft for its final tranche of investments - Business Insider India", "url": "https://www.businessinsider.in/business/news/reliance-jio-may-have-to-pick-between-google-and-microsoft-for-its-final-tranche-of-investments/articleshow/76261727.cms", "date": "2020-06-08", "vader": 0.3034, "prediction": "none", "description": "Mukesh Ambani\u2019s Reliance Jio has done the unthinkable \u2013 it has raised almost 1 lakh crore (almost $13 billion) in the middle of a global lockdown with eight investments in seven weeks. And Asia's ric\u2026 [+1724 chars]"
+    }, {"headline": "Inflows Into Equity Mutual Funds Fall For Second Straight Month In May - BloombergQuint", "url": "https://www.bloombergquint.com/mutual-funds/inflows-into-equity-mutual-funds-fall-for-second-straight-month-in-may", "date": "2020-06-08", "vader": 0.2263, "prediction": "none", "description": ""
+    }, {"headline": "Yes Bank case: ED searches five Mumbai locations linked to Cox & Kings - The Hindu", "url": "https://www.thehindu.com/news/national/yes-bank-case-ed-searches-five-mumbai-locations-linked-to-cox-kings/article31776713.ece", "date": "2020-06-08", "vader": 0.4019, "prediction": "none", "description": "The Enforcement Directorate on Monday conducted searches at five locations linked to Cox & Kings in Mumbai, in connection with a money laundering probe involving the Yes Bank and its former direc\u2026 [+3626 chars]"
+    }, {"headline": "Hero MotoCorp Q4 results preview: Analysts see over 30% decline in profit - Business Standard", "url": "https://www.business-standard.com/article/companies/hero-motocorp-q4-results-preview-analysts-see-over-30-decline-in-profit-120060800530_1.html", "date": "2020-06-08", "vader": 0.7579, "prediction": {"score": 0.07, "company": "Hero Motocorp", "sector": "Automobile"
+    }, "description": "Hero MotoCorp is set to announce its March quarter results for 2019-20 (Q4FY20) on Tuesday and analysts expect the country's largest two-wheeler maker to report over 20 per cent fall in top-line, led\u2026 [+3474 chars]"
+    }, {"headline": "AstraZeneca Shares Down 2% After Report it Approached Gilead Over Tie-up - News18", "url": "https://www.news18.com/news/business/astrazeneca-shares-down-2-after-report-it-approached-gilead-over-tie-up-2658883.html", "date": "2020-06-08", "vader": 0.296, "prediction": "none", "description": "Shares in Britain's AstraZeneca opened 2% lower on Monday after a report it had approached US rival Gilead Sciences about a possible merger to form one the world's largest drug companies.\r\nSuch a dea\u2026 [+1742 chars]"
+    }, {"headline": "Hexaware delisting: Analysts expect 30-40% upside in actual offer price - Livemint", "url": "https://www.livemint.com/companies/news/hexaware-delisting-analysts-expect-30-40-upside-in-actual-offer-price-11591597779502.html", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "MUMBAI: Hexaware Technologies' actual offer price to delist its shares could be at a 30-40% premium to the closing price prior to the announcement, according to analysts.According to Morgan Stanley, \u2026 [+2312 chars]"
+    }, {"headline": "Why Google faces a $5 billion class action lawsuit - Economic Times", "url": "https://economictimes.indiatimes.com/tech/internet/why-google-faces-a-5-billion-class-action-lawsuit/articleshow/76256422.cms", "date": "2020-06-08", "vader": -0.2263, "prediction": "none", "description": "Search engine behemoth Google found itself in the middle of a proposed class action lawsuit filed in California for invading the privacy of users even when they are browsing the web in what is called\u2026 [+1364 chars]"
+    }, {"headline": "YES Bank gains 11%, hits 10-week high as Crisil affirms bonds rating at BBB - Business Standard", "url": "https://www.business-standard.com/article/markets/yes-bank-gains-11-hits-10-weeks-high-as-crisil-affirms-bonds-rating-120060800341_1.html", "date": "2020-06-08", "vader": 0.7034, "prediction": {"score": 0.12, "company": "Crisil", "sector": "Financial"
+    }, "description": "Shares of YES Bank leaped 11 per cent to a 10-week high of Rs 31.95 on the BSE on Monday after rating firm Crisil reaffirmed BBB ratings on the bank\u2019s over Rs 18,000 crore bonds on the back of contin\u2026 [+2115 chars]"
+    }, {"headline": "Swiggy to shut down food delivery service Scootsy - Livemint", "url": "https://www.livemint.com/companies/news/swiggy-to-shut-down-food-delivery-service-scootsy-11591594735596.html", "date": "2020-06-08", "vader": 0.0, "prediction": {"score": -0.04, "company": "Swiggy", "sector": "Food delivery"
+    }, "description": "BENGALURU: City-based foodtech unicorn Swiggy plans to shut down its on-demand premium food delivery service Scootsy, which it acquired in 2018, to consolidate its operations in the premium food-deli\u2026 [+2113 chars]"
+    }, {"headline": "Don't expect any major private investments in India over next 1-1.5 years: L&T CEO - CNBCTV18", "url": "https://www.cnbctv18.com/infrastructure/dont-expect-any-major-private-investments-in-india-over-next-1-15-years-lt-ceo-6091041.htm/", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "Construction engineering major Larsen & Toubro's (L&T) managing director and CEO S N Subrahmanyan on Monday said that he does not expect any major private investments in India over the next 1\u2026 [+1934 chars]"
+    }, {"headline": "Gateway Distri Standalone March 2020 Net Sales at Rs 69.75 crore, down 31.45% Y-o-Y - Moneycontrol.com", "url": "https://www.moneycontrol.com/news/business/earnings/gateway-distri-standalone-march-2020-net-sales-at-rs-69-75-crore-down-31-45-y-o-y-5373211.html", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "Reported Standalone quarterly numbers for Gateway Distriparks are:Net Sales at Rs 69.75 crore in March 2020 down 31.45% from Rs. 101.75 crore in March 2019.\r\nQuarterly Net Profit at Rs. 35.06 crore i\u2026 [+391 chars]"
+    }, {"headline": "IBC suspension leaves door open for fraud: Experts - Economic Times", "url": "https://economictimes.indiatimes.com/news/economy/policy/ibc-suspension-leaves-door-open-for-fraud-experts/articleshow/76254693.cms", "date": "2020-06-08", "vader": -0.5859, "prediction": "none", "description": "The government\u2019s decision to suspend initiation of fresh insolvency proceedings for six months from March 25 might be a blessing for many companies impacted by the Covid-19 outbreak and the lockdown,\u2026 [+1627 chars]"
+    }, {"headline": "Ebix, Yatra, and the $337 million deal that got away - The Ken", "url": "https://the-ken.com/story/ebix-yatra-and-a-broken-deal/", "date": "2020-06-08", "vader": 0.0, "prediction": "none", "description": "What is The Ken?\r\nThe Ken is a subscription-only business journalism website and app that provides coverage across two editions - India and Southeast Asia.\r\nWhat kind of stories do you write?\r\nWe pub\u2026 [+2048 chars]"
+    }
+    ],
+    "companies": [{"company": "nifty", "vader": 0.4, "sector": 0.0, "assoc": 0.4
+    }, {"company": "Vodafone Idea", "vader": 0.15, "sector": 0.0, "assoc": 0.15
+    }, {"company": "Adani Green Energy", "vader": 0.27, "sector": 0.0, "assoc": -0.02
+    }, {"company": "Maruti Suzuki", "vader": 0.32, "sector": 0.0, "assoc": 0.49
+    }, {"company": "Nestle", "vader": 0.19, "sector": 0.38, "assoc": 0.29
+    }, {"company": "BEML", "vader": -0.32, "sector": 0.0, "assoc": -0.02
+    }, {"company": "Bank of India", "vader": 0.0, "sector": -0.15, "assoc": 0.2
+    }, {"company": "Dabur", "vader": 0.38, "sector": 0.38, "assoc": 0.29
+    }, {"company": "Housing Development Finance", "vader": 0.0, "sector": -0.15, "assoc": 0.2
+    }, {"company": "Hindustan Unilever", "vader": 0.3, "sector": 0.38, "assoc": 0.29
+    }, {"company": "Hero Motocorp", "vader": 0.66, "sector": 0.0, "assoc": 0.49
+    }, {"company": "Oil", "vader": -0.38, "sector": 0.27, "assoc": -0.16
+    }, {"company": "Tata Power", "vader": 0.3, "sector": 0.27, "assoc": -0.16
+    }, {"company": "Crisil", "vader": 0.7, "sector": -0.15, "assoc": 0.2
+    }, {"company": "Swiggy", "vader": 0.0, "sector": 0.0, "assoc": 0.14
+    }
+    ],
+    "sectors": [
+    {
+    "name": "indicies",
+    "sector": 0.0
+    },
+    {
+    "name": "Communication",
+    "sector": 0.0
+    },
+    {
+    "name": "Engineering",
+    "sector": 0.0
+    },
+    {
+    "name": "Automobile",
+    "sector": 0.0
+    },
+    {
+    "name": "FMCG",
+    "sector": 0.38
+    },
+    {
+    "name": "Financial",
+    "sector": -0.15
+    },
+    {
+    "name": "Energy",
+    "sector": 0.27
+    },
+    {
+    "name": "Food delivery",
+    "sector": 0.0
+    }
+    ]
+    }

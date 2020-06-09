@@ -39,6 +39,7 @@
       $.get(
         "http://localhost:8080/simulateHead?name=" + ls,
         function (data) {
+          console.log(data,data.score);
           $('#stage').html("Score: " + data.score);
           $('#stage2').html("Companies: " + data.company);
           $('#stage3').html("Sectors: " + data.sector);

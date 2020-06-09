@@ -33,7 +33,7 @@
   <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css" />
   <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
   <script>
-    fetch("http://localhost:8081/topnews.json")
+    fetch("http://localhost:8080/topnews")
       .then(response => response.json())
       .then(json => {
         var news = json["news"];
