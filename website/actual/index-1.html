@@ -1,283 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Stock Market</title>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
+
+<head>
+  <title>Stock Market</title>
+  <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 10]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="#" />
-    <meta name="keywords" content="Admin , Stock, Market, app" />
-    <meta name="author" content="#" />
-    <!-- Favicon icon -->
-    <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon" />
-    <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
-    <!-- Required Fremwork -->
-      <link rel="stylesheet"
-      type="text/css"
-      href="..\files\bower_components\bootstrap\css\bootstrap.min.css"
-    />
-    <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css" />
-    <!-- ion icon css -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="..\files\assets\icon\ion-icon\css\ionicons.min.css"
-    />
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
-    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css"/>
-    <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="#" />
+  <meta name="keywords" content="Admin , Stock, Market, app" />
+  <meta name="author" content="#" />
+  <!-- Favicon icon -->
+  <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon" />
+  <!-- Google font-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+  <!-- Required Fremwork -->
+  <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css" />
+  <!-- feather Awesome -->
+  <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css" />
+  <!-- ion icon css -->
+  <link rel="stylesheet" type="text/css" href="..\files\assets\icon\ion-icon\css\ionicons.min.css" />
+  <!-- ico font -->
+  <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
+  <!-- Style.css -->
+  <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
+  <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css" />
+  <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
 
-    <script>
-      // DOLLAR PRICE API CALL
-      // fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
-      // .then(response => response.json())
-      // .then(json => {
-      //   console.log(json.quotes.USDINR);
-      //   document.getElementById("dollar_rate").innerHTML = json.quotes.USDINR.toFixed(2);
-      // })
+  <script>
+    // DOLLAR PRICE API CALL
+    // fetch("http://apilayer.net/api/live?access_key=a39784e3f71603e861ce0256bc2aa8eb&currencies=INR&source=USD&format=1")
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json.quotes.USDINR);
+    //     document.getElementById("dollar_rate").innerHTML = '₹' + json.quotes.USDINR.toFixed(2);
+    //   })
 
-        //src="..\files\assets\images\avatar-4.jpg"
+    // fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+    //     var bse_price = json["sectoral_indices"]["data"][1]["last_price"];
+    //     document.getElementById("sensex-price").innerHTML = '₹' + bse_price;
+    //   });
 
-      //ALPHAVANTAGE
-      // fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
-      // "method": "GET",
-      // "headers": {
-      //   "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-      //   "x-rapidapi-key": "fdb94fdf5fmsha889a078658ad2bp1b36abjsn36e87e69a883"
-      // }
-      // })
-      // .then(response => {
-      //   console.log(response);
-      // })
-      // .catch(err => {
-      //   console.log(err);
-      //   document.getElementById("alpha-summary").innerHTML = err;
-      // });
-
-      //BSE
-      //https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO
-
-      // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
-      // .then(response => response.json())
-      // .then(json => {
-      //   var a = json["Time Series (5min)"];
-      //   var keys = [];
-      //   for (let k in a) {
-      //     keys.push(k);
-      //   }
-      //   var bse_price = a[keys[keys.length-1]]["4. close"];
-      //   console.log(bse_price);
-      //   document.getElementById("sensex-price").innerHTML = Number(bse_price).toFixed(2);
-      // })
-
-        fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
-          .then(response => response.json())
-          .then(json => {
-            //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
-            var bse_price = json["sectoral_indices"]["data"][1]["last_price"];
-            document.getElementById("sensex-price").innerHTML = '₹'+bse_price;
-          })
-        //data = JSON.parse(document.body.innerText)
-
-      //NSE
-      // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
-      // .then(response => response.json())
-      // .then(json => {
-      //   var a = json["Time Series (5min)"];
-      //   var keys = [];
-      //   for (let k in a) {
-      //     keys.push(k);
-      //   }
-      //   var nse_price = a[keys[keys.length-1]]["4. close"];
-      //   console.log(nse_price);
-      //   document.getElementById("nifty-price").innerHTML = Number(nse_price).toFixed(2);
-      // })
-
-      fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
-          .then(response => response.json())
-          .then(json => {
-            //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
-            var nse_price = json["sectoral_indices"]["data"][0]["last_price"];
-            document.getElementById("nifty-price").innerHTML = '₹'+nse_price;
-          })
-
-      //GOLD RATE API CALL
-      // var gold_rate;
-      // //1/gold_rate*37.25*76.50/1000
-      // fetch("https://metals-api.com/api/latest?access_key=cp5d01aavjgq2w0w3m0bl2fzki6va9ew43m4y5r5cm8hgczguhr34o7vynr3&base=USD&symbols=XAU")
-      //   .then(response => response.json())
-      //   .then(json => {
-      //     console.log(json.rates.XAU)
-      //     gold_rate = ((1/json.rates.XAU)*37.25*76.50)/1000
-      //     document.getElementById("gold_rate").innerHTML = gold_rate.toFixed(2);
-      //   })
-
-      //display time below the card
-      var d = new Date();
-      console.log(d.getHours()+":"+d.getMinutes());
-      displayTime();
-      window.onload = function displayTime() {
-        document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-      };
-
-    </script>
-    <style>
-      * {
-  box-sizing: border-box;
-
-}
+    // //GOLD RATE API CALL
+    // // //1/gold_rate*37.25*76.50/1000
+    // var gold_rate;
+    // fetch(
+    //     "https://metals-api.com/api/latest?access_key=cp5d01aavjgq2w0w3m0bl2fzki6va9ew43m4y5r5cm8hgczguhr34o7vynr3&base=USD&symbols=XAU"
+    //   )
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json.rates.XAU)
+    //     gold_rate = ((1 / json.rates.XAU) * 37.25 * 76.50) / 1000
+    //     document.getElementById("gold_rate").innerHTML = '₹' + gold_rate.toFixed(2);
+    //   })
 
 
-@-webkit-keyframes ticker {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes ticker {
-  0% {
-    -webkit-transform: translate3d(-100, 0, 0);
-    transform: translate3d(-100, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.ticker-wrap {
-  border-radius: 10px;
-  position: relative;
-  top: 0;
-  overflow: hidden;
-  height: 4rem;
-  background-color: rgba(#000, 0.9);
-  color: white;
-  margin-top: 40;
-  padding: 20px 0;
-  padding-left: 100%;
-  box-sizing: content-box;
-  z-index: 1;
-}
-
-.ticker {
-  display: inline-block;
-  height: 4rem;
-  line-height: 4rem;
-  white-space: nowrap;
-  padding-right: 100%;
-  box-sizing: content-box;
+    // fetch("https://www.moneycontrol.com/techmvc/mc_apis/market_action/?classic=false&section=sectoral_indices&limit=2")
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     //console.log(json["sectoral_indices"]["data"][1]["last_price"]);
+    //     var nse_price = json["sectoral_indices"]["data"][0]["last_price"];
+    //     document.getElementById("nifty-price").innerHTML = '₹' + nse_price;
+    //   });
 
 
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-name: ticker;
-  animation-name: ticker;
-  -webkit-animation-duration: 30s;
-  animation-duration: 15s;
-}
-.ticker__item {
-  display: inline-block;
-  padding: 0 2rem;
-  font-size: 2rem;
-  color: white;
-  /* background-color: rgb(103,196,159); */
-  background-color: #ADEFD1FF;
-  border: 1px solid black;
-  border-radius: 25px;
-
-}
-
-body {
-  padding-bottom: 5rem;
-}
-h1,h2,p {
-  padding: 0 5%;
-}
 
 
-    </style>
-  </head>
+    fetch("http://localhost:8080/getRecentNews")
+      .then(response => response.json())
+      .then(json => {
+        var news = json["articles"];
 
-  <body>
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-      <div class="ball-scale">
-        <div class="contain">
-          <div class="ring">
-            <div class="frame"></div>
-          </div>
+        let insertNews = "";
+
+        for (var i = 0; i < 15; i++) {
+          insertNews += "<tr><th scope='row'>" + (i + 1) +
+            "</th><td style='word-wrap: break-word'><h6 class='m-b-5'><a href='" + json["articles"][i]["url"] +
+            "' target='_blank'>" + json["articles"][i]["title"] + "</a></h6></td></tr>";
+        }
+        document.getElementById("recentNews").innerHTML = insertNews;
+      });
+    //src="..\files\assets\images\avatar-4.jpg"
+
+    //ALPHAVANTAGE
+    // fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en", {
+    // "method": "GET",
+    // "headers": {
+    //   "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+    //   "x-rapidapi-key": "fdb94fdf5fmsha889a078658ad2bp1b36abjsn36e87e69a883"
+    // }
+    // })
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   document.getElementById("alpha-summary").innerHTML = err;
+    // });
+
+    //BSE
+    //https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO
+
+    // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+    // .then(response => response.json())
+    // .then(json => {
+    //   var a = json["Time Series (5min)"];
+    //   var keys = [];
+    //   for (let k in a) {
+    //     keys.push(k);
+    //   }
+    //   var bse_price = a[keys[keys.length-1]]["4. close"];
+    //   console.log(bse_price);
+    //   document.getElementById("sensex-price").innerHTML = Number(bse_price).toFixed(2);
+    // })
+
+
+    // fetch("https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json")
+    // .then(response => response.json())
+    // .then(json => {
+    //   console.log(json);
+    // });
+
+    // fetch("http://localhost:8081/topnews.json")
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json["news"]);
+    //     ins = "";
+    //     var data = json["news"];
+    //     for (let j in data) {
+    //       // console.log(j)
+    //       ins += "<tr>";
+    //       ins += "<td style='word-wrap: break-word'>" + json["news"][j]["headline"] + "</td>";
+    //       ins += "<td>" + json["news"][j]["vader"] + "</td></tr>";
+    //     }
+    //     document.getElementById("nifty-gainers").innerHTML = ins;
+    //   })
+
+
+
+    // fetch("http://localhost:8080/niftytops")
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json);
+    //     //     ins = "";
+    //     //     var data = json["news"];
+    //     //     for (let j in data) {
+    //     //       // console.log(j)
+    //     //       ins += "<tr>";
+    //     //       ins += "<td style='word-wrap: break-word'>" + json["news"][j]["headline"] + "</td>";
+    //     //       ins += "<td>" + json["news"][j]["vader"] + "</td></tr>";
+    //     //     }
+    //     //     document.getElementById("nifty-gainers").innerHTML = ins;
+    //   })
+
+    //NSE
+    // fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NSE%3AIOC&interval=5min&apikey=WGZXT5BD8JHRY0GO")
+    // .then(response => response.json())
+    // .then(json => {
+    //   var a = json["Time Series (5min)"];
+    //   var keys = [];
+    //   for (let k in a) {
+    //     keys.push(k);
+    //   }
+    //   var nse_price = a[keys[keys.length-1]]["4. close"];
+    //   console.log(nse_price);
+    //   document.getElementById("nifty-price").innerHTML = Number(nse_price).toFixed(2);
+    // })
+
+
+    //display time below the card
+    // var d = new Date();
+    // console.log(d.getHours() + ":" + d.getMinutes());
+    // // displayTime();
+    // window.onload = function displayTime() {
+    //   document.getElementById("get_time").innerHTML = d.getHours() + ":" + (d.getMinutes.length == 1 ? "0" + String(d
+    //     .getMinutes()) : d.getMinutes());
+    // };
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+
+    }
+
+
+    @-webkit-keyframes ticker {
+      0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+      }
+
+      100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+
+    @keyframes ticker {
+      0% {
+        -webkit-transform: translate3d(-100, 0, 0);
+        transform: translate3d(-100, 0, 0);
+        visibility: visible;
+      }
+
+      100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+
+    .ticker-wrap {
+      border-radius: 10px;
+      position: relative;
+      top: 0;
+      overflow: hidden;
+      height: 4rem;
+      background-color: rgba(#000, 0.9);
+      color: white;
+      margin-top: 40;
+      padding: 20px 0;
+      padding-left: 100%;
+      box-sizing: content-box;
+      z-index: 1;
+    }
+
+    .ticker {
+      display: inline-block;
+      height: 4rem;
+      line-height: 4rem;
+      white-space: nowrap;
+      padding-right: 100%;
+      box-sizing: content-box;
+
+
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-name: ticker;
+      animation-name: ticker;
+      -webkit-animation-duration: 30s;
+      animation-duration: 15s;
+    }
+
+    .ticker__item {
+      display: inline-block;
+      padding: 0 2rem;
+      font-size: 2rem;
+      color: white;
+      /* background-color: rgb(103,196,159); */
+      background-color: #ADEFD1FF;
+      border: 1px solid black;
+      border-radius: 25px;
+
+    }
+
+    body {
+      padding-bottom: 5rem;
+    }
+
+    h1,
+    h2,
+    p {
+      padding: 0 5%;
+    }
+
+    #tickers {
+      margin: 30;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Pre-loader start -->
+  <div class="theme-loader">
+    <div class="ball-scale">
+      <div class="contain">
+        <div class="ring">
+          <div class="frame"></div>
         </div>
       </div>
     </div>
-    <!-- Pre-loader end -->
-    <div id="pcoded" class="pcoded">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-        <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
-          <div class="navbar-wrapper">
-            <div class="navbar-logo">
-              <a class="mobile-menu" id="mobile-collapse" href="#!">
-                <i class="ion ion-navicon"></i>
-                <!-- <i class="feather icon-menu"></i> -->
-              </a>
-              <a href="index-1.htm">
-                <img class="img-fluid" alt="AeroStocks" />
-              </a>
-              <a class="mobile-options">
-                <i class="feather icon-more-horizontal"></i>
-              </a>
-            </div>
+  </div>
+  <!-- Pre-loader end -->
+  <div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+      <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
+        <div class="navbar-wrapper">
+          <div class="navbar-logo">
+            <a class="mobile-menu" id="mobile-collapse" href="#!">
+              <i class="ion ion-navicon"></i>
+              <!-- <i class="feather icon-menu"></i> -->
+            </a>
+            <a href="index-1.htm">
+              <img class="img-fluid" alt="AeroStocks" />
+            </a>
+            <a class="mobile-options">
+              <i class="feather icon-more-horizontal"></i>
+            </a>
+          </div>
 
-            <div class="navbar-container container-fluid">
-              <ul class="nav-left">
-                <li class="header-search">
-                  <div class="main-search morphsearch-search">
-                    <div class="input-group">
-                      <span class="input-group-addon search-close"
-                        ><i class="feather icon-x"></i
-                      ></span>
-                      <input type="text" class="form-control" />
-                      <span class="input-group-addon search-btn"
-                        ><i class="feather icon-search"></i
-                      ></span>
-                    </div>
+          <div class="navbar-container container-fluid">
+            <ul class="nav-left">
+              <li class="header-search">
+                <div class="main-search morphsearch-search">
+                  <div class="input-group">
+                    <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
                   </div>
-                </li>
-                <li>
-                  <a href="#!" onclick="javascript:toggleFullScreen()">
-                    <i class="feather icon-maximize full-screen"></i>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav-right">
-                <!-- <li class="header-notification">
+                </div>
+              </li>
+              <li>
+                <a href="#!" onclick="javascript:toggleFullScreen()">
+                  <i class="feather icon-maximize full-screen"></i>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav-right">
+              <!-- <li class="header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
                                         <i class="feather icon-message-square"></i>
@@ -285,52 +337,67 @@ h1,h2,p {
                                     </div>
                                 </div>
                             </li> -->
-                <li class="user-profile header-notification">
-                  <div class="dropdown-primary dropdown">
-                    <div class="dropdown-toggle">
-                      <img
-                        src="..\files\assets\images\avatar-4.jpg"
-                        class="img-radius"
-                        alt="User-Profile-Image"
-                      />
-                      <span>Warren Buffet</span>
-                    </div>
+              <li class="user-profile header-notification">
+                <div class="dropdown-primary dropdown">
+                  <div class="dropdown-toggle">
+                    <img src="..\files\assets\images\ambani.jpg" class="img-radius" alt="User-Profile-Image" />
+                    <span>Mukesh Ambani</span>
                   </div>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </li>
+            </ul>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        <div class="pcoded-main-container">
-          <div class="pcoded-wrapper">
-            <nav class="pcoded-navbar">
-              <div class="pcoded-inner-navbar main-menu">
+      <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+          <nav class="pcoded-navbar">
+            <div class="pcoded-inner-navbar main-menu">
               <ul class="pcoded-item pcoded-left-item">
                 <li class="">
                   <a href="javascript:void(0)">
-                      <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                      <span class="pcoded-mtext">Dashboard</span>
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Dashboard</span>
                   </a>
                 </li>
                 <li class=" ">
-                    <a href="sticky.htm">
-                        <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
-                        <span class="pcoded-mtext">Sticky Notes</span>
-                    </a>
+                  <a href="advanced.html">
+                    <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
+                    <span class="pcoded-mtext">Advanced Trading</span>
+                  </a>
                 </li>
-            </ul>
+                <li class=" ">
+                  <a href="newsanalysis.html">
+                    <span class="pcoded-micon"><i class="feather icon-airplay"></i></span>
+                    <span class="pcoded-mtext">News Analysis</span>
+                  </a>
+                </li>
+
+                <li class=" ">
+                  <a href="trending.html">
+                    <span class="pcoded-micon"><i class="feather icon-activity"></i></span>
+                    <span class="pcoded-mtext">Trending</span>
+                  </a>
+                </li>
+                <li class=" ">
+                  <a href="simulation.html">
+                    <span class="pcoded-micon"><i class="feather icon-award"></i></span>
+                    <span class="pcoded-mtext">News Simulation</span>
+                  </a>
+                </li>
+              </ul>
 
 
 
 
-                <!-- <ul class="pcoded-item pcoded-left-item">
+              <!-- <ul class="pcoded-item pcoded-left-item">
                   <li class=" ">
                     <a href="form-select.htm">
                       <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                       <span class="pcoded-mtext">Dashboard</span><br/>
                       <span class="pcoded-micon"><i class="feather icon-home"></i></span> -->
-                      <!-- <span class="pcoded-mtext-2">Individual companies graph</span>
+              <!-- <span class="pcoded-mtext-2">Individual companies graph</span>
                       <li>
                         <span class="pcoded-mtext-2"><a  href="individual.html">Individual companies graph</a>
                         </span>
@@ -339,684 +406,342 @@ h1,h2,p {
                     </a>
                   </li>
                 </ul> -->
-              </div>
-            </nav>
-            <div class="pcoded-content">
-              <div class="pcoded-inner-content">
+            </div>
+          </nav>
+          <div class="pcoded-content">
+            <div class="pcoded-inner-content">
 
 
 
-                <div class="page-body">
+              <div class="page-body">
                 <div class="main-body">
 
                   <div class="page-wrapper">
                     <div class="row">
                       <div class="display_ticker">
                         <p class="name-display">BREAKING NEWS</p>
-                    <div class="ticker-wrap">
-                      <div class="ticker">
-                        <div class="ticker__item" id="ticker_display"><a href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms" target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
-                        <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
-                        <div class="ticker__item"><a href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms" target="_blank">Infosys shares price down by 4%</a></div>
-                        <div class="ticker__item"><a href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst" target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers, auto stocks </a></div>
-                      </div></div></div></div><br/>
-                        <div class="row">
-                        <!-- task, page, download counter  start -->
-                        <div class="col-xl-3 col-md-6">
-                          <div class="card bg-c-yellow update-card">
-                            <div class="card-block">
-                              <div class="row align-items-end">
-                                <div class="col-12">
-                                  <h4 class="text-white" id="sensex-price"></h4>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-footer">
-                              <p>Sensex</p>
-                            </div>
+                        <div class="ticker-wrap">
+                          <div class="ticker">
+                            <div class="ticker__item" id="ticker_display"><a
+                                href="https://economictimes.indiatimes.com/markets/stocks/recos/buy-tcs-target-pricenbsprs-2020-dharmesh-shah/articleshow/75686895.cms"
+                                target="_blank">Buy TCS, target price Rs.2020: Dharmesh Shah</a></div>
+                            <div class="ticker__item"><a
+                                href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
+                                target="_blank">ICICI bank shares slip 3% in early trade.</a></div>
+                            <div class="ticker__item"><a
+                                href="https://economictimes.indiatimes.com/markets/stocks/news/trending-stocks-infosys-share-price-down-nearly-4/articleshow/75731028.cms"
+                                target="_blank">Infosys shares price down by 4%</a></div>
+                            <div class="ticker__item"><a
+                                href=" https://economictimes.indiatimes.com/markets/stocks/news/hdfc-mf-exited-bluest-of-blue-chips-in-april-to-lap-up-psus-insurers-auto-stocks/articleshow/75691845.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
+                                target="_blank">HDFC MF exited bluest of blue chips in April to lap up PSUs, insurers,
+                                auto stocks </a></div>
                           </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                          <div class="card bg-c-green update-card">
-                            <div class="card-block">
-                              <div class="row align-items-end">
-                                <div class="col-8">
-                                  <h4 class="text-white" id="nifty-price"></h4>
-                                  <h6 class="text-white m-b-0">Nifty price</h6>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-footer">
-                              <p class="text-white m-b-0">Last update:
-                                <b class="" id="get_time3"></b>
-                                <script>
-                                  var d = new Date();
-                                  document.getElementById("get_time3").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-                                </script>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                          <div class="card bg-c-pink update-card">
-                            <div class="card-block">
-                              <div class="row align-items-end">
-                                <div class="col-8">
-                                  <h4 class="text-white" id="gold_rate"></h4>
-                                  <h6 class="text-white m-b-0">Gold price/g</h6>
-                                </div>
-                                <div class="col-4 text-right">
-                                  <canvas id="update-chart-3" height="50"></canvas>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-footer">
-                              <p class="text-white m-b-0">Last update:
-                                <b class="" id="get_time"></b>
-                                <script>
-                                  var d = new Date();
-                                  document.getElementById("get_time").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? "0"+String(d.getMinutes()) : d.getMinutes());
-                                </script>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                          <div class="card bg-c-lite-green update-card">
-                            <div class="card-block">
-                              <div class="row align-items-end">
-                                <div class="col-8">
-                                  <h4 class="text-white" id="dollar_rate"> </h4>
-                                  <h6 class="text-white m-b-0">Dollar Rate</h6>
-                                </div>
-                                <div class="col-4 text-right">
-                                  <canvas id="update-chart-4" height="50"></canvas>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-footer">
-                              <p class="text-white m-b-0" >Last update:
-                                <b class="" id="get_time2"></b>
-                                <script>
-                                  var d = new Date();
-                                  document.getElementById("get_time2").innerHTML = d.getHours()+":"+(d.getMinutes.length == 1 ? ("0"+String(d.getMinutes())) : d.getMinutes());
-                                </script>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- task, page, download counter  end -->
-
-                        <!--  sale analytics start -->
-                        <div class="col-xl-12 col-md-12">
-                          <div class="card">
-                            <div class="card-header">
-                              <h5>Nifty graph</h5><br/><br/>
-                              <!-- TradingView Widget BEGIN -->
-                              <!-- <div class="tradingview-widget-container">
-                                <div id="tradingview_d0ed5"></div>
-                                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
-                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                                <script type="text/javascript">
-                                new TradingView.widget(
-                                {
-                                "width": 800,
-                                "height": 600,
-                                "symbol": "NASDAQ:AAPL",
-                                "interval": "D",
-                                "timezone": "Etc/UTC",
-                                "theme": "light",
-                                "style": "1",
-                                "locale": "en",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
-                                "allow_symbol_change": true,
-                                "container_id": "tradingview_d0ed5"
-                              }
-                                );
-                                </script>
-                              </div> -->
-                              <!-- TradingView Widget END -->
-                              <span class="text-muted">
-                                </span>
-                              <div class="card-header-right">
-                                <ul class="list-unstyled card-option">
-                                  <li><i class="feather icon-maximize full-card"></i></li>
-                                  <li><i class="feather icon-minus minimize-card"></i></li>
-                                  <li><i class="feather icon-trash-2 close-card"></i></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="card-block">
-                              <div id="sales-analytics" style="height: 265px;"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!--  sale analytics end -->
-
-                        <div class="col-xl-8 col-md-12">
-                          <div class="card table-card">
-                            <div class="card-header">
-                              <h5>News sources</h5>
-                              <div class="card-header-right">
-                                <ul class="list-unstyled card-option">
-                                  <li><i class="feather icon-maximize full-card"></i></li>
-                                  <li><i class="feather icon-minus minimize-card"></i></li>
-                                  <li><i class="feather icon-trash-2 close-card"></i></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="card-block">
-                              <div class="table-responsive">
-                                <table class="table table-hover  table-borderless">
-                                  <thead>
-                                    <tr>
-                                      <th>
-                                        <div class="chk-option">
-                                          <div class="checkbox-fade fade-in-primary">
-                                            <label class="check-task">
-                                              <input type="checkbox" value="" />
-                                              <span class="cr">
-                                                <i
-                                                  class="cr-icon feather icon-check txt-default"
-                                                ></i>
-                                              </span>
-                                            </label>
-                                          </div>
-                                        </div>
-                                        Economic Times
-                                      </th>
-                                      <th>Sales</th>
-                                      <th>Change</th>
-                                      <th>Avg Price</th>
-                                      <th>Total</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>
-                                        <div class="chk-option">
-                                          <div class="checkbox-fade fade-in-primary">
-                                            <label class="check-task">
-                                              <input type="checkbox" value="" />
-                                              <span class="cr">
-                                                <i
-                                                  class="cr-icon feather icon-check txt-default"
-                                                ></i>
-                                              </span>
-                                            </label>
-                                          </div>
-                                        </div>
-                                        <div class="d-inline-block align-middle">
-                                          <h6>Moneycontrol.com</h6>
-                                          <p class="text-muted m-b-0">Powerful Admin Theme</p>
-                                        </div>
-                                      </td>
-                                      <td>16,300</td>
-                                      <td>
-                                        <canvas id="app-sale1" height="50" width="100"></canvas>
-                                      </td>
-                                      <td>$53</td>
-                                      <td class="text-c-blue">$15,652</td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <div class="chk-option">
-                                          <div class="checkbox-fade fade-in-primary">
-                                            <label class="check-task">
-                                              <input type="checkbox" value="" />
-                                              <span class="cr">
-                                                <i
-                                                  class="cr-icon feather icon-check txt-default"
-                                                ></i>
-                                              </span>
-                                            </label>
-                                          </div>
-                                        </div>
-                                        <div class="d-inline-block align-middle">
-                                          <h6>Investing.com</h6>
-                                          <p class="text-muted m-b-0">Design Software</p>
-                                        </div>
-                                      </td>
-                                      <td>26,421</td>
-                                      <td>
-                                        <canvas id="app-sale2" height="50" width="100"></canvas>
-                                      </td>
-                                      <td>$35</td>
-                                      <td class="text-c-blue">$18,785</td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <div class="chk-option">
-                                          <div class="checkbox-fade fade-in-primary">
-                                            <label class="check-task">
-                                              <input type="checkbox" value="" />
-                                              <span class="cr">
-                                                <i
-                                                  class="cr-icon feather icon-check txt-default"
-                                                ></i>
-                                              </span>
-                                            </label>
-                                          </div>
-                                        </div>
-                                        <div class="d-inline-block align-middle">
-                                          <h6>Deccan Herald</h6>
-                                          <p class="text-muted m-b-0">Best Admin Template</p>
-                                        </div>
-                                      </td>
-                                      <td>8,265</td>
-                                      <td>
-                                        <canvas id="app-sale3" height="50" width="100"></canvas>
-                                      </td>
-                                      <td>$98</td>
-                                      <td class="text-c-blue">$9,652</td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <div class="chk-option">
-                                          <div class="checkbox-fade fade-in-primary">
-                                            <label class="check-task">
-                                              <input type="checkbox" value="" />
-                                              <span class="cr">
-                                                <i
-                                                  class="cr-icon feather icon-check txt-default"
-                                                ></i>
-                                              </span>
-                                            </label>
-                                          </div>
-                                        </div>
-                                        <div class="d-inline-block align-middle">
-                                          <h6>Economic Times</h6>
-                                          <p class="text-muted m-b-0">Admin App</p>
-                                        </div>
-                                      </td>
-                                      <td>10,652</td>
-                                      <td>
-                                        <canvas id="app-sale4" height="50" width="100"></canvas>
-                                      </td>
-                                      <td>$20</td>
-                                      <td class="text-c-blue">$7,856</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <div class="text-center">
-                                  <a href="#!" class=" b-b-primary text-primary"
-                                    >View all Projects</a
-                                  >
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-md-12">
-                          <div class="card user-activity-card">
-                            <div class="card-header">
-                              <h5>User Activity</h5>
-                            </div>
-                            <div class="card-block">
-                              <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                  <div class="u-img">
-                                    <img
-                                      src="..\files\assets\images\breadcrumb-bg.jpg"
-                                      alt="user image"
-                                      class="img-radius cover-img"
-                                    />
-                                    <img
-                                      src="..\files\assets\images\avatar-2.jpg"
-                                      alt="user image"
-                                      class="img-radius profile-img"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col">
-                                  <h6 class="m-b-5">Nitin Mukesh</h6>
-                                  <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
-                                  <p class="text-muted m-b-0">
-                                    <i class="feather icon-clock m-r-10"></i>2 min ago
-                                  </p>
-                                </div>
-                              </div>
-                              <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                  <div class="u-img">
-                                    <img
-                                      src="..\files\assets\images\breadcrumb-bg.jpg"
-                                      alt="user image"
-                                      class="img-radius cover-img"
-                                    />
-                                    <img
-                                      src="..\files\assets\images\avatar-2.jpg"
-                                      alt="user image"
-                                      class="img-radius profile-img"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col">
-                                  <h6 class="m-b-5">Nitin Mukesh</h6>
-                                  <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
-                                  <p class="text-muted m-b-0">
-                                    <i class="feather icon-clock m-r-10"></i>2 min ago
-                                  </p>
-                                </div>
-                              </div>
-                              <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                  <div class="u-img">
-                                    <img
-                                      src="..\files\assets\images\breadcrumb-bg.jpg"
-                                      alt="user image"
-                                      class="img-radius cover-img"
-                                    />
-                                    <img
-                                      src="..\files\assets\images\avatar-2.jpg"
-                                      alt="user image"
-                                      class="img-radius profile-img"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col">
-                                  <h6 class="m-b-5">Nitin Mukesh</h6>
-                                  <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
-                                  <p class="text-muted m-b-0">
-                                    <i class="feather icon-clock m-r-10"></i>2 min ago
-                                  </p>
-                                </div>
-                              </div>
-                              <div class="row m-b-5">
-                                <div class="col-auto p-r-0">
-                                  <div class="u-img">
-                                    <img
-                                      src="..\files\assets\images\breadcrumb-bg.jpg"
-                                      alt="user image"
-                                      class="img-radius cover-img"
-                                    />
-                                    <img
-                                      src="..\files\assets\images\avatar-2.jpg"
-                                      alt="user image"
-                                      class="img-radius profile-img"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col">
-                                  <h6 class="m-b-5">Nitin Mukesh</h6>
-                                  <p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>
-                                  <p class="text-muted m-b-0">
-                                    <i class="feather icon-clock m-r-10"></i>2 min ago
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div class="text-center">
-                                <a href="#!" class="b-b-primary text-primary">View all Projects</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- wather user -->
-                        <div class="col-xl-6 col-md-12">
-                          <div class="card latest-update-card">
-                            <div class="card-header">
-                              <h5>Latest Updates</h5>
-                              <div class="card-header-right">
-                                <ul class="list-unstyled card-option">
-                                  <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                  <li><i class="fa fa-window-maximize full-card"></i></li>
-                                  <li><i class="fa fa-minus minimize-card"></i></li>
-                                  <li><i class="fa fa-refresh reload-card"></i></li>
-                                  <li><i class="fa fa-trash close-card"></i></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="card-block">
-                              <div class="latest-update-box">
-                                <div class="row p-b-15">
-                                  <div class="col-auto text-right update-meta">
-                                    <p class="text-muted m-b-0 d-inline">4 hrs ago</p>
-                                    <i
-                                      class="feather icon-briefcase bg-simple-c-pink update-icon"
-                                    ></i>
-                                  </div>
-                                  <div class="col">
-                                    <h6>+ 5 New Products were added!</h6>
-                                    <p class="text-muted m-b-0">Congratulations!</p>
-                                  </div>
-                                </div>
-                                <div class="row p-b-15">
-                                  <div class="col-auto text-right update-meta">
-                                    <p class="text-muted m-b-0 d-inline">1 day ago</p>
-                                    <i
-                                      class="feather icon-check bg-simple-c-yellow  update-icon"
-                                    ></i>
-                                  </div>
-                                  <div class="col">
-                                    <h6>Database backup completed!</h6>
-                                    <p class="text-muted m-b-0">
-                                      Download the <span class="text-c-blue">latest backup</span>.
-                                    </p>
-                                  </div>
-                                </div>
-                                <div class="row p-b-0">
-                                  <div class="col-auto text-right update-meta">
-                                    <p class="text-muted m-b-0 d-inline">2 day ago</p>
-                                    <i
-                                      class="feather icon-facebook bg-simple-c-green update-icon"
-                                    ></i>
-                                  </div>
-                                  <div class="col">
-                                    <h6>+1 Friend Requests</h6>
-                                    <p class="text-muted m-b-10">This is great, keep it up!</p>
-                                    <div class="table-responsive">
-                                      <table class="table table-hover m-b-0">
-                                        <tbody>
-                                          <tr>
-                                            <td class="b-none">
-                                              <a href="#!" class="align-middle">
-                                                <img
-                                                  src="..\files\assets\images\avatar-2.jpg"
-                                                  alt="user image"
-                                                  class="img-radius img-40 align-top m-r-15"
-                                                />
-                                                <div class="d-inline-block">
-                                                  <h6>User Info</h6>
-                                                  <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                              </a>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="text-center">
-                                <a href="#!" class="b-b-primary text-primary">View all Projects</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-xl-6 col-md-12">
-                          <div class="card user-card-full">
-                            <div class="row m-l-0 m-r-0">
-                              <div class="col-sm-4 bg-c-lite-green user-profile">
-                                <div class="card-block text-center text-white">
-                                  <div class="m-b-25">
-                                    <img
-
-                                      class="img-radius"
-                                      alt="User-Profile-Image"
-                                    />
-                                  </div>
-                                  <h6 class="f-w-600">Warren Buffet</h6>
-                                  <p>Investor</p>
-                                  <i class="feather icon-edit m-t-10 f-16"></i>
-                                </div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="card-block">
-                                  <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                                  <div class="row">
-                                    <div class="col-sm-6">
-                                      <p class="m-b-10 f-w-600">Email</p>
-                                      <h6 class="text-muted f-w-400">
-                                        <a
-                                          href="..\..\..\cdn-cgi\l\email-protection.htm"
-                                          class="__cf_email__"
-                                          data-cfemail="3a505f54437a5d575b535614595557"
-                                          >[email&#160;protected]</a
-                                        >
-                                      </h6>
-                                    </div>
-                                    <div class="col-sm-6">
-                                      <p class="m-b-10 f-w-600">Phone</p>
-                                      <h6 class="text-muted f-w-400">0023-333-526136</h6>
-                                    </div>
-                                  </div>
-                                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
-                                  <div class="row">
-                                    <div class="col-sm-6">
-                                      <p class="m-b-10 f-w-600">Recent</p>
-                                      <h6 class="text-muted f-w-400">Guruable Admin</h6>
-                                    </div>
-                                    <div class="col-sm-6">
-                                      <p class="m-b-10 f-w-600">Most Viewed</p>
-                                      <h6 class="text-muted f-w-400">Able Pro Admin</h6>
-                                    </div>
-                                  </div>
-                                  <ul class="social-link list-unstyled m-t-40 m-b-10">
-                                    <li>
-                                      <a
-                                        href="#!"
-                                        data-toggle="tooltip"
-                                        data-placement="bottom"
-                                        title=""
-                                        data-original-title="facebook"
-                                        ><i
-                                          class="feather icon-facebook facebook"
-                                          aria-hidden="true"
-                                        ></i
-                                      ></a>
-                                    </li>
-                                    <li>
-                                      <a
-                                        href="#!"
-                                        data-toggle="tooltip"
-                                        data-placement="bottom"
-                                        title=""
-                                        data-original-title="twitter"
-                                        ><i
-                                          class="feather icon-twitter twitter"
-                                          aria-hidden="true"
-                                        ></i
-                                      ></a>
-                                    </li>
-                                    <li>
-                                      <a
-                                        href="#!"
-                                        data-toggle="tooltip"
-                                        data-placement="bottom"
-                                        title=""
-                                        data-original-title="instagram"
-                                        ><i
-                                          class="feather icon-instagram instagram"
-                                          aria-hidden="true"
-                                        ></i
-                                      ></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- wather user -->
-
-                        <!-- social download  start -->
-                        <div class="col-xl-4 col-md-6">
-                          <div class="card social-card bg-simple-c-blue">
-                            <div class="card-block">
-                              <div class="row align-items-center">
-                                <div class="col-auto">
-                                  <i class="feather icon-mail f-20 text-c-blue social-icon"></i>
-                                </div>
-                                <div class="col">
-                                  <h3 class="m-b-15">Economic Times</h3>
-                                  <p class="m-b-15"></p>
-                                </div>
-                              </div>
-                            </div>
-                            <a href="#!" class="download-icon"
-                              ><i class="feather icon-arrow-right"></i
-                            ></a>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                          <div class="card social-card bg-simple-c-pink">
-                            <div class="card-block">
-                              <div class="row align-items-center">
-                                <div class="col-auto">
-                                  <i class="feather icon-twitter f-34 text-c-pink social-icon"></i>
-                                </div>
-                                <!-- <div class="col">
-                                  <h6 class="m-b-0">twitter</h6>
-                                  <p>231.2w downloads</p>
-                                  <p class="m-b-0">
-                                    Lorem Ipsum is simply dummy text of the printing
-                                  </p>
-                                </div> -->
-                              </div>
-                            </div>
-                            <a href="#!" class="download-icon"
-                              ><i class="feather icon-arrow-down"></i
-                            ></a>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-md-12">
-                          <div class="card social-card bg-simple-c-green">
-                            <div class="card-block">
-                              <div class="row align-items-center">
-                                <div class="col-auto">
-                                  <i
-                                    class="feather icon-instagram f-34 text-c-green social-icon"
-                                  ></i>
-                                </div>
-                                <!-- <div class="col">
-                                  <h6 class="m-b-0">Instagram</h6>
-                                  <p>231.2w downloads</p>
-                                  <p class="m-b-0">
-                                    Lorem Ipsum is simply dummy text of the printing
-                                  </p>
-                                </div> -->
-                              </div>
-                            </div>
-                            <a href="#!" class="download-icon"
-                              ><i class="feather icon-arrow-down"></i
-                            ></a>
-                          </div>
-                        </div>
-                        <!-- social download  end -->
                       </div>
+                    </div><br />
+
+                    <div class="row" id="tickers" style="padding:20;margin:20;">
+                      <div class="col-xl-12 col-md-12">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                          <div class="tradingview-widget-container__widget"></div><br /><br />
+
+                          <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                            {
+                              "symbols": [{
+                                  "proName": "FOREXCOM:SPXUSD",
+                                  "title": "S&P 500"
+                                },
+                                {
+                                  "proName": "FOREXCOM:NSXUSD",
+                                  "title": "Nasdaq 100"
+                                },
+                                {
+                                  "proName": "FX_IDC:EURUSD",
+                                  "title": "EUR/USD"
+                                },
+                                {
+                                  "proName": "BITSTAMP:BTCUSD",
+                                  "title": "BTC/USD"
+                                },
+                                {
+                                  "proName": "BITSTAMP:ETHUSD",
+                                  "title": "ETH/USD"
+                                }
+                              ],
+                              "colorTheme": "light",
+                              "isTransparent": false,
+                              "displayMode": "adaptive",
+                              "locale": "in"
+                            }
+                          </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                      </div>
+                    </div><br />
+                    <div class="row">
+                      <!-- task, page, download counter  start -->
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-c-yellow update-card">
+                          <div class="card-block">
+                            <div class="row align-items-end">
+                              <div class="col-12">
+                                <h4 class="text-white" id="sensex-price">₹34769.41</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <p class="text-white m-b-0">Sensex</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-c-green update-card">
+                          <div class="card-block">
+                            <div class="row align-items-end">
+                              <div class="col-12">
+                                <h4 class="text-white" id="nifty-price">₹10279.90</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <p class="text-white m-b-0">Nifty Price
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-c-pink update-card">
+                          <div class="card-block">
+                            <div class="row align-items-end">
+                              <div class="col-12">
+                                <h4 class="text-white" id="gold_rate">₹4825.67</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <p class="text-white m-b-0">Gold price/g
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-md-6">
+                        <div class="card bg-c-lite-green update-card">
+                          <div class="card-block">
+                            <div class="row align-items-end">
+                              <div class="col-12">
+                                <h4 class="text-white" id="dollar_rate">₹75.45</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <p class="text-white m-b-0">Dollar Rate
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- task, page, download counter  end -->
+
+                      <!--  sale analytics start -->
+                      <div class="col-xl-12 col-md-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <h5>Sensex graph</h5>
+                            <div class="card-header-right">
+                              <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="card-block">
+                            <div class="tradingview-widget-container">
+                              <div id="tradingview_2449e"></div>
+
+                              <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                              <script type="text/javascript">
+                                new TradingView.MediumWidget({
+                                  "symbols": [
+                                    [
+                                      "Sensex",
+                                      "BSE:SENSEX|12m"
+                                    ],
+                                    [
+                                      "Infosys",
+                                      "BSE:INFY|12m"
+                                    ],
+                                    [
+                                      "Reliance",
+                                      "BSE:RELIANCE|12m"
+                                    ],
+                                    [
+                                      "Microsoft",
+                                      "MSFT"
+                                    ]
+                                  ],
+                                  "chartOnly": false,
+                                  "width": "100%",
+                                  "height": 400,
+                                  "locale": "in",
+                                  "colorTheme": "light",
+                                  "gridLineColor": "#F0F3FA",
+                                  "trendLineColor": "#2196F3",
+                                  "fontColor": "#787B86",
+                                  "underLineColor": "#E3F2FD",
+                                  "isTransparent": false,
+                                  "autosize": true,
+                                  "container_id": "tradingview_2449e"
+                                });
+                              </script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-12 col-md-12">
+                        <div class="card user-activity-card">
+                          <div class="card-header">
+                            <h5>Recent News</h5>
+                            <div class="card-header-right">
+                              <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="card-block table-border-style">
+                            <div class="col-xl-12">
+                              <table class="table table-hover table-responsive">
+                                <thead>
+                                  <!-- <tr>
+                                    <th>#</th>
+                                    <th>News</th>
+                                  </tr> -->
+                                </thead>
+                                <tbody id="recentNews">
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-12 col-md-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <h5>Recent data</h5>
+                            <div class="card-header-right">
+                              <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="card-block">
+                            <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container">
+                              <div class="tradingview-widget-container__widget"></div>
+                              <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+                                {
+                                  "colorTheme": "light",
+                                  "dateRange": "12m",
+                                  "exchange": "BSE",
+                                  "showChart": true,
+                                  "locale": "in",
+                                  "width": "100%",
+                                  "height": 600,
+                                  "largeChartUrl": "",
+                                  "isTransparent": false,
+                                  "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+                                  "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+                                  "gridLineColor": "rgba(240, 243, 250, 1)",
+                                  "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                  "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                                  "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                                  "symbolActiveColor": "rgba(33, 150, 243, 0.12)"
+                                }
+                              </script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <!-- social download  start -->
+                      <div class="col-xl-4 col-md-6">
+                        <div class="card social-card bg-simple-c-blue">
+                          <div class="card-block">
+                            <div class="row align-items-center">
+                              <div class="col-auto">
+                                <i class="feather icon-mail f-34 text-c-blue social-icon"></i>
+                              </div>
+                              <div class="col">
+                                <h3 class="m-b-12">Economic Times</h3>
+                                <p class="m-b-15"></p>
+                              </div>
+                            </div>
+                          </div>
+                          <a href="http://economictimes.indiatimes.com/" target="_blank" class="download-icon"><i
+                              class="feather icon-arrow-right"></i></a>
+                        </div>
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                        <div class="card social-card bg-simple-c-pink">
+                          <div class="card-block">
+                            <div class="row align-items-center">
+                              <div class="col-auto">
+                                <i class="feather icon-mail f-34 text-c-pink social-icon"></i>
+                              </div>
+                              <div class="col">
+                                <h3 class="m-b-12">Money control</h3>
+                                <p class="m-b-15"></p>
+                              </div>
+                            </div>
+                          </div>
+                          <a href="http://moneycontrol.com/" target="_blank" class="download-icon"><i
+                              class="feather icon-arrow-right"></i></a>
+                        </div>
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                        <div class="card social-card bg-simple-c-green">
+                          <div class="card-block">
+                            <div class="row align-items-center">
+                              <div class="col-auto">
+                                <i class="feather icon-mail f-34 text-c-green social-icon"></i>
+                              </div>
+                              <div class="col">
+                                <h3 class="m-b-12">First post<br /></h3>
+                                <p class="m-b-15"></p>
+                              </div>
+                            </div>
+                          </div>
+                          <a href="https://www.firstpost.com/" target="_blank" class="download-icon"><i
+                              class="feather icon-arrow-right"></i></a>
+                        </div>
+                      </div>
+                      <!-- social download  end -->
                     </div>
                   </div>
+                </div>
 
-                  <!-- <div id="styleSelector">
+                <!-- <div id="styleSelector">
 
                                 </div> -->
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
+  <!-- Warning Section Starts -->
+  <!-- Older IE warning message -->
+  <!--[if lt IE 10]>
       <div class="ie-warning">
         <h1>Warning!!</h1>
         <p>
@@ -1060,53 +785,33 @@ h1,h2,p {
         <p>Sorry for the inconvenience!</p>
       </div>
     <![endif]-->
-    <!-- Warning Section Ends -->
-    <!-- Required Jquery -->
-    <script
-      data-cfasync="false"
-      src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"
-    ></script
-    ><script
-      type="text/javascript"
-      src="..\files\bower_components\jquery\js\jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="..\files\bower_components\popper.js\js\popper.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="..\files\bower_components\bootstrap\js\bootstrap.min.js"
-    ></script>
-    <!-- jquery slimscroll js -->
-    <script
-      type="text/javascript"
-      src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"
-    ></script>
-    <!-- modernizr js -->
-    <script
-      type="text/javascript"
-      src="..\files\bower_components\modernizr\js\modernizr.js"
-    ></script>
-    <!-- Chart js -->
-    <script type="text/javascript" src="..\files\bower_components\chart.js\js\Chart.js"></script>
-    <!-- amchart js -->
-    <script src="..\files\assets\pages\widget\amchart\amcharts.js"></script>
-    <script src="..\files\assets\pages\widget\amchart\serial.js"></script>
-    <script src="..\files\assets\pages\widget\amchart\light.js"></script>
-    <script src="..\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="..\files\assets\js\SmoothScroll.js"></script>
-    <script src="..\files\assets\js\pcoded.min.js"></script>
-    <!-- custom js -->
-    <script src="..\files\assets\js\vartical-layout.min.js"></script>
-    <script
+  <!-- Warning Section Ends -->
+  <!-- Required Jquery -->
+  <!-- <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script> -->
+  <script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
+  <script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+  <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script>
+  <script type="text/javascript" src="..\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+  <!-- jquery slimscroll js -->
+  <script type="text/javascript" src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+  <!-- modernizr js -->
+  <script type="text/javascript" src="..\files\bower_components\modernizr\js\modernizr.js"></script>
+  <!-- Chart js -->
+  <script type="text/javascript" src="..\files\bower_components\chart.js\js\Chart.js"></script>
+  <!-- amchart js -->
+  <script src="..\files\assets\pages\widget\amchart\amcharts.js"></script>
+  <script src="..\files\assets\pages\widget\amchart\serial.js"></script>
+  <script src="..\files\assets\pages\widget\amchart\light.js"></script>
+  <script src="..\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+  <script type="text/javascript" src="..\files\assets\js\SmoothScroll.js"></script>
+  <script src="..\files\assets\js\pcoded.min.js"></script>
+  <!-- custom js -->
+  <script src="..\files\assets\js\vartical-layout.min.js"></script>
+  <!-- <script
       type="text/javascript"
       src="..\files\assets\pages\dashboard\custom-dashboard.js"
-    ></script>
-    <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
-  </body>
+    ></script> -->
+  <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
+</body>
+
 </html>

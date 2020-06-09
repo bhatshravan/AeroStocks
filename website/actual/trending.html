@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Stock Market</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="#" />
+    <meta name="keywords" content="Admin , Stock, Market, app" />
+    <meta name="author" content="#" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon" />
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css" />
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css" />
+    <!-- ion icon css -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\ion-icon\css\ionicons.min.css" />
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style2.css" />
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css" />
+    <script>
+        fetch("http://localhost:8081/topnews.json")
+            .then(response => response.json())
+            .then(json => {
+
+                let insertNews = "";
+
+                for (var i = 0; i < json["companies"].length; i++) {
+                    insertNews += "<tr><th scope='row'>" + (i + 1) +
+                        "</th><td style='word-wrap: break-word'><h6 class='m-b-5'>" + json["companies"][i][
+                            "company"
+                        ] + "</h6></td><td>" + json["companies"][i]["vader"] + "</td><td>" + json[
+                            "companies"][i]["sector"] + "</td><td>" + json["companies"][i]["assoc"] + "</td></tr>";
+                }
+                document.getElementById("recentNews").innerHTML = insertNews;
+
+                let insertSectors = "";
+                for (var i = 0; i < json["sectors"].length; i++) {
+                    insertSectors += "<tr><th scope='row'>" + (i + 1) +
+                        "</th><td style='word-wrap: break-word'><h6 class='m-b-5'>" + json["sectors"][i]["name"] +
+                        "</h6></td><td>" + json["sectors"][i]["sector"] + "</td></tr>";
+                }
+                document.getElementById("recentSectors").innerHTML = insertSectors;
+            });
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+
+        @-webkit-keyframes ticker {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        @keyframes ticker {
+            0% {
+                -webkit-transform: translate3d(-100, 0, 0);
+                transform: translate3d(-100, 0, 0);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        .ticker-wrap {
+            border-radius: 10px;
+            position: relative;
+            top: 0;
+            overflow: hidden;
+            height: 4rem;
+            background-color: rgba(#000, 0.9);
+            color: white;
+            margin-top: 40;
+            padding: 20px 0;
+            padding-left: 100%;
+            box-sizing: content-box;
+            z-index: 1;
+        }
+
+        .ticker {
+            display: inline-block;
+            height: 4rem;
+            line-height: 4rem;
+            white-space: nowrap;
+            padding-right: 100%;
+            box-sizing: content-box;
+
+
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            -webkit-animation-name: ticker;
+            animation-name: ticker;
+            -webkit-animation-duration: 30s;
+            animation-duration: 15s;
+        }
+
+        .ticker__item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 2rem;
+            color: white;
+            /* background-color: rgb(103,196,159); */
+            background-color: #ADEFD1FF;
+            border: 1px solid black;
+            border-radius: 25px;
+
+        }
+
+        body {
+            padding-bottom: 5rem;
+        }
+
+        h1,
+        h2,
+        p {
+            padding: 0 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class="contain">
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="ion ion-navicon"></i>
+                            <!-- <i class="feather icon-menu"></i> -->
+                        </a>
+                        <a href="index-1.htm">
+                            <img class="img-fluid" alt="AeroStocks" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i
+                                                class="feather icon-x"></i></span>
+                                        <input type="text" class="form-control" />
+                                        <span class="input-group-addon search-btn"><i
+                                                class="feather icon-search"></i></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="feather icon-maximize full-screen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <!-- <li class="header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
+                                        <i class="feather icon-message-square"></i>
+                                        <span class="badge bg-c-green">3</span>
+                                    </div>
+                                </div>
+                            </li> -->
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle">
+                                        <img src="..\files\assets\images\ambani.jpg" class="img-radius"
+                                            alt="User-Profile-Image" />
+                                        <span>Mukesh Ambani</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="pcoded-inner-navbar main-menu">
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="index-1.html">
+                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                        <span class="pcoded-mtext">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="advanced.html">
+                                        <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
+                                        <span class="pcoded-mtext">Advanced Trading</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="newsanalysis.html">
+                                        <span class="pcoded-micon"><i class="feather icon-airplay"></i></span>
+                                        <span class="pcoded-mtext">News Analysis</span>
+                                    </a>
+                                </li>
+
+                                <li class=" ">
+                                    <a href="trending.html">
+                                        <span class="pcoded-micon"><i class="feather icon-activity"></i></span>
+                                        <span class="pcoded-mtext">Trending</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="simulation.html">
+                                        <span class="pcoded-micon"><i class="feather icon-award"></i></span>
+                                        <span class="pcoded-mtext">News Simulation</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+
+
+
+                            <div class="page-body">
+                                <div class="main-body">
+
+                                    <div class="page-wrapper">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="card user-activity-card">
+                                                    <div class="card-header">
+                                                        <h5>Trending companies</h5>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block table-border-style">
+                                                        <div class="col-xl-12">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Company</th>
+                                                                        <th>Vader</th>
+                                                                        <th>Sector</th>
+                                                                        <th>Assoc</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="recentNews">
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="card user-activity-card">
+                                                    <div class="card-header">
+                                                        <h5>Trending Sectors</h5>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block table-border-style">
+                                                        <div class="col-xl-12">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Sector</th>
+                                                                        <th>Score</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="recentSectors">
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+      <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>
+          You are using an outdated version of Internet Explorer, please upgrade <br />to any of the
+          following web browsers to access this website.
+        </p>
+        <div class="iew-container">
+          <ul class="iew-download">
+            <li>
+              <a href="http://www.google.com/chrome/">
+                <img src="../files/assets/images/browser/chrome.png" alt="Chrome" />
+                <div>Chrome</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.mozilla.org/en-US/firefox/new/">
+                <img src="../files/assets/images/browser/firefox.png" alt="Firefox" />
+                <div>Firefox</div>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.opera.com">
+                <img src="../files/assets/images/browser/opera.png" alt="Opera" />
+                <div>Opera</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.apple.com/safari/">
+                <img src="../files/assets/images/browser/safari.png" alt="Safari" />
+                <div>Safari</div>
+              </a>
+            </li>
+            <li>
+              <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                <img src="../files/assets/images/browser/ie.png" alt="" />
+                <div>IE (9 & above)</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+      </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    <!-- <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script> -->
+    <script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
+    <script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+    <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script>
+    <script type="text/javascript" src="..\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="..\files\bower_components\modernizr\js\modernizr.js"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="..\files\bower_components\chart.js\js\Chart.js"></script>
+    <!-- amchart js -->
+    <script src="..\files\assets\pages\widget\amchart\amcharts.js"></script>
+    <script src="..\files\assets\pages\widget\amchart\serial.js"></script>
+    <script src="..\files\assets\pages\widget\amchart\light.js"></script>
+    <script src="..\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="..\files\assets\js\SmoothScroll.js"></script>
+    <script src="..\files\assets\js\pcoded.min.js"></script>
+    <!-- custom js -->
+    <script src="..\files\assets\js\vartical-layout.min.js"></script>
+    <!-- <script
+      type="text/javascript"
+      src="..\files\assets\pages\dashboard\custom-dashboard.js"
+    ></script> -->
+    <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
+</body>
+
+</html>
