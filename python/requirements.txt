@@ -1,7 +1,7 @@
 beautifulsoup4==4.8.2
 dateutils==0.6.8
 Flask==1.1.2
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 en-core-web-sm==2.2.5
 Keras==2.3.1
 Keras-Applications==1.0.8
