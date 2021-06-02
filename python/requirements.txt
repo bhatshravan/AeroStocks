@@ -18,7 +18,7 @@ sklearn==0.0
 tensorboard==2.1.1
 tensorflow==2.1.0
 tensorflow-estimator==2.1.0
-urllib3==1.25.6
+urllib3==1.26.5
 vaderSentiment==3.3.1
 wordcloud==1.6.0
 yfinance==0.1.54
